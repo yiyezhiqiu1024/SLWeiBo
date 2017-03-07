@@ -79,6 +79,11 @@
                 <constraint firstItem="h2L-zd-SdE" firstAttribute="top" secondItem="4pl-nQ-4gA" secondAttribute="bottom" constant="110" id="yKk-4K-zbK"/>
                 <constraint firstItem="4pl-nQ-4gA" firstAttribute="centerX" secondItem="Alv-7U-n7G" secondAttribute="centerX" id="yTv-l4-mEZ"/>
             </constraints>
+            <connections>
+                <outlet property="iconView" destination="S2k-uu-TLj" id="XLi-5c-GSb"/>
+                <outlet property="rotationView" destination="4pl-nQ-4gA" id="q3w-Ti-geu"/>
+                <outlet property="tipLabel" destination="5Px-KE-bJZ" id="qH1-NP-Q5g"/>
+            </connections>
             <point key="canvasLocation" x="385" y="330"/>
         </view>
     </objects>

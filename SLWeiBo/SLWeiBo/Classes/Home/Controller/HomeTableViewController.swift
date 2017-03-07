@@ -13,11 +13,13 @@ class HomeTableViewController: BaseTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        // 1.判断用户是否登录
+        if !isLogin
+        {
+            // 设置访客视图
+            visitorView.setupVisitorViewInfo(nil, title: "关注一些人，回这里看看有什么惊喜")
+            return
+        }
     }
 
     override func didReceiveMemoryWarning() {
