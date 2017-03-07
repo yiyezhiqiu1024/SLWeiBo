@@ -41,7 +41,6 @@ extension SLPresentationController {
 }
 
 // MARK: - 事件监听
-
 extension SLPresentationController {
     @objc private func coverViewClick() {
         presentedViewController.dismissViewControllerAnimated(true, completion: nil)
