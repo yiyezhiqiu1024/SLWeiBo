@@ -9,6 +9,9 @@
 import UIKit
 
 class SLPresentationController: UIPresentationController {
+    // MARK:- 对外提供属性
+    var presentedFrame : CGRect = CGRectZero
+    
     // MARK: - 懒加载属性
     private lazy var coverView : UIView = UIView()
     
@@ -17,7 +20,7 @@ class SLPresentationController: UIPresentationController {
         super.containerViewWillLayoutSubviews()
         
         // 1.设置弹出View的尺寸
-        presentedView()?.frame = CGRect(x: 100, y: 55, width: 180, height: 250)
+        presentedView()?.frame = presentedFrame
         
         // 2.添加蒙版
         setupCoverView()

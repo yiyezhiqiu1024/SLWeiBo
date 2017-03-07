@@ -9,14 +9,18 @@
 import UIKit
 
 class HomeTableViewController: BaseTableViewController {
-    // MARK:- 自定义变量属性
-    var isPresented : Bool = false
     
     // MARK: - 懒加载属性
     /// 标题按钮
     private lazy var titleBtn : TitleButton = TitleButton()
+    /*
+      注意:在闭包中如果使用当前对象的属性或者调用方法,也需要加self
+      两个地方需要使用self : 1> 如果在一个函数中出现歧义 2> 在闭包中使用当前对象的属性和方法也需要加self
+     */
     /// 转场动画
-    private lazy var popoverAnimator : PopoverAnimator = PopoverAnimator()
+    private lazy var popoverAnimator : PopoverAnimator = PopoverAnimator { [weak self] (presented) in
+        self?.titleBtn.selected = presented
+    }
 
     
     // MARK: - 系统回调函数
@@ -71,17 +75,16 @@ extension HomeTableViewController
     
     @objc private func titleBtnClick(button: TitleButton)
     {
-        // 1.改变按钮的状态
-        titleBtn.selected = !titleBtn.selected
-        
-        // 2.创建弹出的控制器
+        // 1.创建弹出的控制器
         let popoverVc = PopoverViewController()
         
-        // 3.设置控制器的modal样式
+        // 2.设置控制器的modal样式
         popoverVc.modalPresentationStyle = .Custom
         
-        // 4.设置转场的代理
+        // 3.设置转场的代理
         popoverVc.transitioningDelegate = popoverAnimator
+        // 4.设置展示出来的尺寸
+        popoverAnimator.presentedFrame = CGRect(x: 100, y: 55, width: 180, height: 250)
         
         // 5.弹出控制器
         presentViewController(popoverVc, animated: true, completion: nil)
