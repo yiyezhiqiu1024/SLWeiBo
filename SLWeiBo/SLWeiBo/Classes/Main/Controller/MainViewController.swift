@@ -23,7 +23,7 @@ class MainViewController: UITabBarController {
         super.viewDidLoad()
         
         // 添所有子控制器
-        addChildViewControllers()
+//        addChildViewControllers()
         
         
     }
