@@ -14,25 +14,7 @@ class MainViewController: UITabBarController {
     // MARK: - 懒加载属性
     //==========================================================================================================
     /// 发微博按钮
-    private lazy var composeButton: UIButton = {
-        () -> UIButton
-        in
-        // 1.创建按钮
-        let btn = UIButton()
-        // 2.设置前景图片
-        btn.setImage(UIImage(named: "tabbar_compose_icon_add"), forState: UIControlState.Normal)
-        btn.setImage(UIImage(named: "tabbar_compose_icon_add_highlighted"), forState: UIControlState.Highlighted)
-        // 3.设置背景图片
-        btn.setBackgroundImage(UIImage(named: "tabbar_compose_button"), forState: UIControlState.Normal)
-        btn.setBackgroundImage(UIImage(named: "tabbar_compose_button_highlighted"), forState: UIControlState.Highlighted)
-        
-        // 4.监听按钮点击
-        btn.addTarget(self, action: #selector(MainViewController.composeBtnClick(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-        // 4.调整按钮尺寸
-        btn.sizeToFit()
-        
-        return btn
-    }()
+    private lazy var composeButton: UIButton = UIButton(imageName:"tabbar_compose_icon_add", backgroundImageName: "tabbar_compose_button")
 
     //==========================================================================================================
     // MARK: - 系统回调函数
@@ -47,46 +29,8 @@ class MainViewController: UITabBarController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        tabBar.addSubview(composeButton)
-        
-        // 保存按钮尺寸
-        let rect = composeButton.frame
-        // 计算宽度
-        let width = tabBar.bounds.width / CGFloat(childViewControllers.count)
-        // 设置按钮的位置
-//        composeButton.frame = CGRect(x: 2 * width, y: 0, width: width, height: rect.height)
-        composeButton.frame = CGRectOffset(rect, 2 * width, 0)
-        
-    }
-    
-}
-
-//==========================================================================================================
-// MARK: - 监听事件处理
-//==========================================================================================================
-extension MainViewController
-{
-    /*
-     public : 最大权限, 可以在当前framework和其他framework中访问
-     internal : 默认的权限, 可以在当前framework中随意访问
-     private : 私有权限, 只能在当前文件中访问
-     以上权限可以修饰属性/方法/类
-     
-     在企业开发中建议严格的控制权限, 不想让别人访问的东西一定要private
-     */
-    // 如果给按钮的监听方法加上private就会报错, 报错原因是因为监听事件是由运行循环触发的, 而如果该方法是私有的只能在当前类中访问
-    // 而相同的情况在OC中是没有问题, 因为OC是动态派发的
-    // 而Swift不一样, Swift中所有的东西都在是编译时确定的
-    // 如果想让Swift中的方法也支持动态派发, 可以在方法前面加上 @objc
-    // 加上 @objc就代表告诉系统需要动态派发
-    /**
-     点击发微博按钮
-     
-     - parameter btn: 发按钮
-     */
-    @objc private func composeBtnClick(btn: UIButton)
-    {
-        myLog(btn)
+        // 设置发微博按钮
+        setupComposeButton()
     }
 }
 
@@ -209,5 +153,36 @@ extension MainViewController
         // 6.包装导航栏控制器
         let childNav = UINavigationController(rootViewController: childCtr)
         addChildViewController(childNav)
+    }
+    
+    /**
+     设置发微博按钮
+     */
+    func setupComposeButton()
+    {
+        // 1.添加按钮
+        tabBar.addSubview(composeButton)
+        
+        // 2.设置按钮的位置
+        composeButton.center = CGPoint(x: tabBar.center.x, y: tabBar.bounds.size.height * 0.5)
+        
+        // 3.监听按钮点击
+        composeButton.addTarget(self, action: #selector(MainViewController.composeBtnClick(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+    }
+}
+
+//==========================================================================================================
+// MARK: - 监听事件处理
+//==========================================================================================================
+extension MainViewController
+{
+    /**
+     点击发微博按钮
+     
+     - parameter btn: 发按钮
+     */
+    @objc private func composeBtnClick(btn: UIButton)
+    {
+        myLog(btn)
     }
 }
