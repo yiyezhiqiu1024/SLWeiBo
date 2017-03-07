@@ -11,6 +11,8 @@ import AVFoundation
 
 class QRCodeViewController: UIViewController {
     // MARK: - 控件属性
+    /// 扫描容器
+    @IBOutlet weak var customContainerView: UIView!
     /// 底部工具条
     @IBOutlet weak var customTabbar: UITabBar!
     /// 结果文本
@@ -33,7 +35,27 @@ class QRCodeViewController: UIViewController {
     private lazy var session: AVCaptureSession = AVCaptureSession()
     
     /// 输出对象
-    private lazy var output: AVCaptureMetadataOutput = AVCaptureMetadataOutput()
+    private lazy var output: AVCaptureMetadataOutput = {
+        let out = AVCaptureMetadataOutput()
+        // 设置输出对象解析数据时感兴趣的范围
+        // 默认值是 CGRect(x: 0, y: 0, width: 1, height: 1)
+        // 通过对这个值的观察, 我们发现传入的是比例
+        // 注意: 参照是以横屏的左上角作为, 而不是以竖屏
+        //        out.rectOfInterest = CGRect(x: 0, y: 0, width: 0.5, height: 0.5)
+        
+        // 1.获取屏幕的frame
+        let viewRect = self.view.frame
+        // 2.获取扫描容器的frame
+        let containerRect = self.customContainerView.frame
+        let x = containerRect.origin.y / viewRect.height;
+        let y = containerRect.origin.x / viewRect.width;
+        let width = containerRect.height / viewRect.height;
+        let height = containerRect.width / viewRect.width;
+        
+        out.rectOfInterest = CGRect(x: x, y: y, width: width, height: height)
+        
+        return out
+    }()
     
     /// 预览图层
     private lazy var previewLayer: AVCaptureVideoPreviewLayer = AVCaptureVideoPreviewLayer(session: self.session)
@@ -147,12 +169,9 @@ extension QRCodeViewController: AVCaptureMetadataOutputObjectsDelegate
         {
             return
         }
-        // 转换前: corners { 0.3,0.7 0.5,0.7 0.5,0.4 0.3,0.4 }
-        // 转换后: corners { 40.0,230.3 30.9,403.9 216.5,416.3 227.1,244.2 }
+        
         // 通过预览图层将corners值转换为我们能识别的类型
         let objc = previewLayer.transformedMetadataObjectForMetadataObject(metadata)
-        
-        //        NJLog((objc as! AVMetadataMachineReadableCodeObject).corners)
         
         // 2.对扫描到的二维码进行描边
         drawLines(objc as! AVMetadataMachineReadableCodeObject)
