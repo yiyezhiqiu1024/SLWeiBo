@@ -73,6 +73,16 @@ extension HomeTableViewController
     
     @objc private func titleBtnClick(button: TitleButton)
     {
+        // 1.改变按钮的状态
         titleBtn.selected = !titleBtn.selected
+        
+        // 2.创建弹出的控制器
+        let popoverVc = PopoverViewController()
+        
+        // 3.设置控制器的modal样式
+        popoverVc.modalPresentationStyle = .Custom
+        
+        // 4.弹出控制器
+        presentViewController(popoverVc, animated: true, completion: nil)
     }
 }

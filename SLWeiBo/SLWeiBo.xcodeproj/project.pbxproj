@@ -20,6 +20,8 @@
 		9241AD331E6E9A47008D8BD5 /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9241AD321E6E9A47008D8BD5 /* BaseTableViewController.swift */; };
 		9241AD371E6EA619008D8BD5 /* UIBarButtonItem+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9241AD361E6EA619008D8BD5 /* UIBarButtonItem+Extension.swift */; };
 		9241AD391E6EAADD008D8BD5 /* TitleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9241AD381E6EAADD008D8BD5 /* TitleButton.swift */; };
+		9241AD4C1E6EB6A9008D8BD5 /* PopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9241AD4A1E6EB6A9008D8BD5 /* PopoverViewController.swift */; };
+		9241AD4D1E6EB6A9008D8BD5 /* PopoverViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9241AD4B1E6EB6A9008D8BD5 /* PopoverViewController.xib */; };
 		9250B7261E6DAA9000390BBE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9250B7251E6DAA9000390BBE /* AppDelegate.swift */; };
 		9250B72D1E6DAA9000390BBE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9250B72C1E6DAA9000390BBE /* Assets.xcassets */; };
 		9250B7301E6DAA9000390BBE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9250B72E1E6DAA9000390BBE /* LaunchScreen.storyboard */; };
@@ -64,6 +66,8 @@
 		9241AD321E6E9A47008D8BD5 /* BaseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
 		9241AD361E6EA619008D8BD5 /* UIBarButtonItem+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Extension.swift"; sourceTree = "<group>"; };
 		9241AD381E6EAADD008D8BD5 /* TitleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleButton.swift; sourceTree = "<group>"; };
+		9241AD4A1E6EB6A9008D8BD5 /* PopoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverViewController.swift; sourceTree = "<group>"; };
+		9241AD4B1E6EB6A9008D8BD5 /* PopoverViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopoverViewController.xib; sourceTree = "<group>"; };
 		9250B7221E6DAA9000390BBE /* SLWeiBo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SLWeiBo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9250B7251E6DAA9000390BBE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9250B72C1E6DAA9000390BBE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -114,6 +118,15 @@
 				9241AD061E6E56CB008D8BD5 /* MainVCSettings.json */,
 			);
 			path = Resource;
+			sourceTree = "<group>";
+		};
+		9241AD471E6EB569008D8BD5 /* Popover */ = {
+			isa = PBXGroup;
+			children = (
+				9241AD4A1E6EB6A9008D8BD5 /* PopoverViewController.swift */,
+				9241AD4B1E6EB6A9008D8BD5 /* PopoverViewController.xib */,
+			);
+			path = Popover;
 			sourceTree = "<group>";
 		};
 		9250B7191E6DAA9000390BBE = {
@@ -249,6 +262,7 @@
 		9250B75C1E6DAAAC00390BBE /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				9241AD471E6EB569008D8BD5 /* Popover */,
 				9250B75D1E6DAAAC00390BBE /* Controller */,
 				9250B75E1E6DAAAC00390BBE /* Model */,
 				9250B75F1E6DAAAC00390BBE /* View */,
@@ -510,6 +524,7 @@
 				9241AD1F1E6E8D14008D8BD5 /* Home.storyboard in Resources */,
 				9250B72D1E6DAA9000390BBE /* Assets.xcassets in Resources */,
 				9241AD071E6E56CB008D8BD5 /* MainVCSettings.json in Resources */,
+				9241AD4D1E6EB6A9008D8BD5 /* PopoverViewController.xib in Resources */,
 				9241AD211E6E8DE4008D8BD5 /* Message.storyboard in Resources */,
 				9241AD271E6E8F21008D8BD5 /* Profile.storyboard in Resources */,
 				9241AD231E6E8EC0008D8BD5 /* Compose.storyboard in Resources */,
@@ -540,6 +555,7 @@
 			files = (
 				9250B7771E6DABC600390BBE /* ProfileTableViewController.swift in Sources */,
 				9250B7711E6DABA200390BBE /* HomeTableViewController.swift in Sources */,
+				9241AD4C1E6EB6A9008D8BD5 /* PopoverViewController.swift in Sources */,
 				9241AD331E6E9A47008D8BD5 /* BaseTableViewController.swift in Sources */,
 				9250B7261E6DAA9000390BBE /* AppDelegate.swift in Sources */,
 				9241AD371E6EA619008D8BD5 /* UIBarButtonItem+Extension.swift in Sources */,
