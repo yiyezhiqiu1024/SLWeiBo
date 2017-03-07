@@ -19,6 +19,10 @@ class VisitorView: UIView {
     @IBOutlet weak var iconView: UIImageView!
     /// 提示标签栏
     @IBOutlet weak var tipLabel: UILabel!
+    /// 注册按钮
+    @IBOutlet weak var registerBtn: UIButton!
+    /// 登录按钮
+    @IBOutlet weak var loginBtn: UIButton!
     
     /**
      提供快速通过xib创建的类方法
