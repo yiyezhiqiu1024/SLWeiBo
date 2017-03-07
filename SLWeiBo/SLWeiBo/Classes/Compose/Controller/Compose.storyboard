@@ -5,11 +5,11 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--Item-->
+        <!--Navigation Controller-->
         <scene sceneID="gIT-pt-QgC">
             <objects>
                 <navigationController id="Wpp-xP-gNg" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="0yK-Yc-qFE"/>
+                    <tabBarItem key="tabBarItem" enabled="NO" title="" id="0yK-Yc-qFE"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="dSk-h6-JS0">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

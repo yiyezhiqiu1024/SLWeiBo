@@ -5,11 +5,11 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--Item-->
+        <!--首页-->
         <scene sceneID="3lm-IT-4A0">
             <objects>
                 <navigationController id="iCd-cn-Z5f" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="CEh-4x-zsg"/>
+                    <tabBarItem key="tabBarItem" title="首页" image="tabbar_home" selectedImage="tabbar_home_highlighted" id="CEh-4x-zsg"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="nFF-Se-VYu">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -23,7 +23,7 @@
             </objects>
             <point key="canvasLocation" x="-675" y="201"/>
         </scene>
-        <!--Home Table View Controller-->
+        <!--首页-->
         <scene sceneID="wu7-oq-pkG">
             <objects>
                 <tableViewController id="enm-ML-Y7d" customClass="HomeTableViewController" customModule="SLWeiBo" customModuleProvider="target" sceneMemberID="viewController">
@@ -46,11 +46,15 @@
                             <outlet property="delegate" destination="enm-ML-Y7d" id="dXl-aD-28Y"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="fbZ-2K-m5p"/>
+                    <navigationItem key="navigationItem" title="首页" id="fbZ-2K-m5p"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FMk-xp-IEI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="28" y="201"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="tabbar_home" width="30" height="30"/>
+        <image name="tabbar_home_highlighted" width="30" height="30"/>
+    </resources>
 </document>

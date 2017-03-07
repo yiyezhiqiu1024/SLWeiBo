@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--Root View Controller-->
+        <!--我-->
         <scene sceneID="Dck-hD-BtK">
             <objects>
                 <tableViewController id="VgD-ub-IQ0" customClass="ProfileTableViewController" customModule="SLWeiBo" customModuleProvider="target" sceneMemberID="viewController">
@@ -28,17 +28,17 @@
                             <outlet property="delegate" destination="VgD-ub-IQ0" id="xfa-im-R6n"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="wgh-kC-QJV"/>
+                    <navigationItem key="navigationItem" title="我" id="wgh-kC-QJV"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kfF-B1-4dy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="412" y="305"/>
         </scene>
-        <!--Item-->
+        <!--我-->
         <scene sceneID="4Ml-sq-ZG5">
             <objects>
                 <navigationController id="7Fk-rZ-whg" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="LGh-9X-pzN"/>
+                    <tabBarItem key="tabBarItem" title="我" image="tabbar_profile" selectedImage="tabbar_profile_highlighted" id="LGh-9X-pzN"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="j9W-Q0-HmC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -53,4 +53,8 @@
             <point key="canvasLocation" x="-408" y="305"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="tabbar_profile" width="30" height="30"/>
+        <image name="tabbar_profile_highlighted" width="30" height="30"/>
+    </resources>
 </document>

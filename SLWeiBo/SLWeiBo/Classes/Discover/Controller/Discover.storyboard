@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--Root View Controller-->
+        <!--发现-->
         <scene sceneID="wkW-Wo-gX0">
             <objects>
                 <tableViewController id="Mws-bU-dsW" customClass="DiscoverTableViewController" customModule="SLWeiBo" customModuleProvider="target" sceneMemberID="viewController">
@@ -28,17 +28,17 @@
                             <outlet property="delegate" destination="Mws-bU-dsW" id="g39-2v-f69"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="BSo-0T-M7Q"/>
+                    <navigationItem key="navigationItem" title="发现" id="BSo-0T-M7Q" userLabel="发现"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9kP-V6-0s1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-414" y="486"/>
         </scene>
-        <!--Item-->
+        <!--发现-->
         <scene sceneID="4vm-Zk-GZe">
             <objects>
                 <navigationController id="S8z-M6-orX" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="Jcm-0R-VaS"/>
+                    <tabBarItem key="tabBarItem" title="发现" image="tabbar_discover" selectedImage="tabbar_discover_highlighted" id="Jcm-0R-VaS"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="dbK-s7-yBT">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -53,4 +53,8 @@
             <point key="canvasLocation" x="-1234" y="486"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="tabbar_discover" width="30" height="30"/>
+        <image name="tabbar_discover_highlighted" width="30" height="30"/>
+    </resources>
 </document>

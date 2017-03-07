@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--Root View Controller-->
+        <!--消息-->
         <scene sceneID="Njt-2H-kjB">
             <objects>
                 <tableViewController id="Jzb-hg-pE6" customClass="MessageTableViewController" customModule="SLWeiBo" customModuleProvider="target" sceneMemberID="viewController">
@@ -28,18 +28,18 @@
                             <outlet property="delegate" destination="Jzb-hg-pE6" id="5lD-hr-T6k"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="918-0A-T5a"/>
+                    <navigationItem key="navigationItem" title="消息" id="918-0A-T5a"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gtr-JN-HGs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-452" y="-419"/>
         </scene>
-        <!--Item-->
+        <!--消息-->
         <scene sceneID="JDa-JR-PrP">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gby-T0-sNA" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="4Iw-Dj-FVq" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="pNZ-49-1t2"/>
+                    <tabBarItem key="tabBarItem" title="消息" image="tabbar_message_center" selectedImage="tabbar_message_center_highlighted" id="pNZ-49-1t2"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="XbS-VD-PKl">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -53,4 +53,8 @@
             <point key="canvasLocation" x="-1272" y="-419"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="tabbar_message_center" width="30" height="30"/>
+        <image name="tabbar_message_center_highlighted" width="30" height="30"/>
+    </resources>
 </document>
