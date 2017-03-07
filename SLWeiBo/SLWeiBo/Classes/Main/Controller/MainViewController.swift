@@ -9,30 +9,96 @@
 import UIKit
 
 class MainViewController: UITabBarController {
+    
+    //==========================================================================================================
+    // MARK: - 懒加载属性
+    //==========================================================================================================
+    /// 发微博按钮
+    private lazy var composeButton: UIButton = {
+        () -> UIButton
+        in
+        // 1.创建按钮
+        let btn = UIButton()
+        // 2.设置前景图片
+        btn.setImage(UIImage(named: "tabbar_compose_icon_add"), forState: UIControlState.Normal)
+        btn.setImage(UIImage(named: "tabbar_compose_icon_add_highlighted"), forState: UIControlState.Highlighted)
+        // 3.设置背景图片
+        btn.setBackgroundImage(UIImage(named: "tabbar_compose_button"), forState: UIControlState.Normal)
+        btn.setBackgroundImage(UIImage(named: "tabbar_compose_button_highlighted"), forState: UIControlState.Highlighted)
+        
+        // 4.监听按钮点击
+        btn.addTarget(self, action: #selector(MainViewController.composeBtnClick(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        // 4.调整按钮尺寸
+        btn.sizeToFit()
+        
+        return btn
+    }()
 
     //==========================================================================================================
     // MARK: - 系统回调函数
     //==========================================================================================================
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // 添所有子控制器
         addChildViewControllers()
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        tabBar.addSubview(composeButton)
+        
+        // 保存按钮尺寸
+        let rect = composeButton.frame
+        // 计算宽度
+        let width = tabBar.bounds.width / CGFloat(childViewControllers.count)
+        // 设置按钮的位置
+//        composeButton.frame = CGRect(x: 2 * width, y: 0, width: width, height: rect.height)
+        composeButton.frame = CGRectOffset(rect, 2 * width, 0)
+        
+    }
+    
+}
 
+//==========================================================================================================
+// MARK: - 监听事件处理
+//==========================================================================================================
+extension MainViewController
+{
+    /*
+     public : 最大权限, 可以在当前framework和其他framework中访问
+     internal : 默认的权限, 可以在当前framework中随意访问
+     private : 私有权限, 只能在当前文件中访问
+     以上权限可以修饰属性/方法/类
+     
+     在企业开发中建议严格的控制权限, 不想让别人访问的东西一定要private
+     */
+    // 如果给按钮的监听方法加上private就会报错, 报错原因是因为监听事件是由运行循环触发的, 而如果该方法是私有的只能在当前类中访问
+    // 而相同的情况在OC中是没有问题, 因为OC是动态派发的
+    // 而Swift不一样, Swift中所有的东西都在是编译时确定的
+    // 如果想让Swift中的方法也支持动态派发, 可以在方法前面加上 @objc
+    // 加上 @objc就代表告诉系统需要动态派发
+    /**
+     点击发微博按钮
+     
+     - parameter btn: 发按钮
+     */
+    @objc private func composeBtnClick(btn: UIButton)
+    {
+        myLog(btn)
+    }
 }
 
 //==========================================================================================================
 // MARK: - 自定义函数
 //==========================================================================================================
-
 extension MainViewController
 {
     /**
      添加所有子控制器
      */
-    func addChildViewControllers() {
+    private func addChildViewControllers() {
         
         // 1.根据JSON文件创建控制器
         // 1.1读取JSON数据
@@ -52,27 +118,6 @@ extension MainViewController
         // 1.3将JSON数据转换为对象(数组字典)
         do
         {
-            /*
-             Swift和OC不太一样, OC中一般情况如果发生错误会给传入的指针赋值, 而在Swift中使用的是异常处理机制
-             如果在调用系统某一个方法时,该方法最后有一个throws.说明该方法会抛出异常.如果一个方法会抛出异常,那么需要对该异常进行处理
-             在swift中提供三种处理异常的方式
-             方式一:try方式 程序员手动捕捉异常
-             do {
-             try NSJSONSerialization.JSONObjectWithData(jsonData, options: .MutableContainers)
-             } catch {
-             // error异常的对象
-             print(error)
-             }
-             
-             方式二:try?方式(常用方式) 系统帮助我们处理异常,如果该方法出现了异常,则该方法返回nil.如果没有异常,则返回对应的对象
-             guard let anyObject = try? NSJSONSerialization.JSONObjectWithData(jsonData, options: .MutableContainers) else {
-             return
-             }
-             
-             方式三:try!方法(不建议,非常危险) 直接告诉系统,该方法没有异常.注意:如果该方法出现了异常,那么程序会报错(崩溃)
-             let anyObject = try! NSJSONSerialization.JSONObjectWithData(jsonData, options: .MutableContainers)
-             */
-
             let anyObject = try NSJSONSerialization.JSONObjectWithData(jsonData, options: .MutableContainers)
             
             guard let dictArray = anyObject as? [[String : AnyObject]] else
@@ -105,7 +150,6 @@ extension MainViewController
             addChildViewController("ProfileTableViewController", title: "我", imageNamed: "tabbar_profile")
         }
         
-       
     }
     
     
@@ -165,6 +209,5 @@ extension MainViewController
         // 6.包装导航栏控制器
         let childNav = UINavigationController(rootViewController: childCtr)
         addChildViewController(childNav)
-
     }
 }
