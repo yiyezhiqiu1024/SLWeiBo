@@ -24,6 +24,8 @@
 		9241AD4D1E6EB6A9008D8BD5 /* PopoverViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9241AD4B1E6EB6A9008D8BD5 /* PopoverViewController.xib */; };
 		9241AD4F1E6EB79B008D8BD5 /* SLPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9241AD4E1E6EB79B008D8BD5 /* SLPresentationController.swift */; };
 		9241AD511E6EBB33008D8BD5 /* PopoverAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9241AD501E6EBB33008D8BD5 /* PopoverAnimator.swift */; };
+		9241AD5C1E6EE2D4008D8BD5 /* QRCode.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9241AD5A1E6EE2D4008D8BD5 /* QRCode.storyboard */; };
+		9241AD5D1E6EE2D4008D8BD5 /* QRCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9241AD5B1E6EE2D4008D8BD5 /* QRCodeViewController.swift */; };
 		9250B7261E6DAA9000390BBE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9250B7251E6DAA9000390BBE /* AppDelegate.swift */; };
 		9250B72D1E6DAA9000390BBE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9250B72C1E6DAA9000390BBE /* Assets.xcassets */; };
 		9250B7301E6DAA9000390BBE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9250B72E1E6DAA9000390BBE /* LaunchScreen.storyboard */; };
@@ -72,6 +74,8 @@
 		9241AD4B1E6EB6A9008D8BD5 /* PopoverViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopoverViewController.xib; sourceTree = "<group>"; };
 		9241AD4E1E6EB79B008D8BD5 /* SLPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLPresentationController.swift; sourceTree = "<group>"; };
 		9241AD501E6EBB33008D8BD5 /* PopoverAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverAnimator.swift; sourceTree = "<group>"; };
+		9241AD5A1E6EE2D4008D8BD5 /* QRCode.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = QRCode.storyboard; sourceTree = "<group>"; };
+		9241AD5B1E6EE2D4008D8BD5 /* QRCodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeViewController.swift; sourceTree = "<group>"; };
 		9250B7221E6DAA9000390BBE /* SLWeiBo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SLWeiBo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9250B7251E6DAA9000390BBE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9250B72C1E6DAA9000390BBE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -133,6 +137,15 @@
 				9241AD501E6EBB33008D8BD5 /* PopoverAnimator.swift */,
 			);
 			path = Popover;
+			sourceTree = "<group>";
+		};
+		9241AD591E6EE2B7008D8BD5 /* QRCode */ = {
+			isa = PBXGroup;
+			children = (
+				9241AD5A1E6EE2D4008D8BD5 /* QRCode.storyboard */,
+				9241AD5B1E6EE2D4008D8BD5 /* QRCodeViewController.swift */,
+			);
+			path = QRCode;
 			sourceTree = "<group>";
 		};
 		9250B7191E6DAA9000390BBE = {
@@ -268,6 +281,7 @@
 		9250B75C1E6DAAAC00390BBE /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				9241AD591E6EE2B7008D8BD5 /* QRCode */,
 				9241AD471E6EB569008D8BD5 /* Popover */,
 				9250B75D1E6DAAAC00390BBE /* Controller */,
 				9250B75E1E6DAAAC00390BBE /* Model */,
@@ -534,6 +548,7 @@
 				9241AD211E6E8DE4008D8BD5 /* Message.storyboard in Resources */,
 				9241AD271E6E8F21008D8BD5 /* Profile.storyboard in Resources */,
 				9241AD231E6E8EC0008D8BD5 /* Compose.storyboard in Resources */,
+				9241AD5C1E6EE2D4008D8BD5 /* QRCode.storyboard in Resources */,
 				9241AD1D1E6E8CC4008D8BD5 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -561,6 +576,7 @@
 			files = (
 				9250B7771E6DABC600390BBE /* ProfileTableViewController.swift in Sources */,
 				9250B7711E6DABA200390BBE /* HomeTableViewController.swift in Sources */,
+				9241AD5D1E6EE2D4008D8BD5 /* QRCodeViewController.swift in Sources */,
 				9241AD4C1E6EB6A9008D8BD5 /* PopoverViewController.swift in Sources */,
 				9241AD331E6E9A47008D8BD5 /* BaseTableViewController.swift in Sources */,
 				9241AD4F1E6EB79B008D8BD5 /* SLPresentationController.swift in Sources */,

@@ -70,7 +70,11 @@ extension HomeTableViewController
     }
     @objc private func rightBtnClick()
     {
-        myLog("")
+        // 1.创建二维码控制器
+        let sb = UIStoryboard(name: "QRCode", bundle: nil)
+        let vc = sb.instantiateInitialViewController()!
+        // 2.弹出二维码控制器
+        presentViewController(vc, animated: true, completion: nil)
     }
     
     @objc private func titleBtnClick(button: TitleButton)
