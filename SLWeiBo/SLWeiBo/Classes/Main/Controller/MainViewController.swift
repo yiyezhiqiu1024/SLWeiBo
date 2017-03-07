@@ -34,16 +34,78 @@ extension MainViewController
      */
     func addChildViewControllers() {
         
-        // 1.首页
-        addChildViewController("HomeTableViewController", title: "首页", imageNamed: "tabbar_home")
-        // 2.消息
-        addChildViewController("MessageTableViewController", title: "消息", imageNamed: "tabbar_message_center")
-        // 3.发微博
-        addChildViewController("ComposeViewController", title: nil , imageNamed: "")
-        // 4.发现
-        addChildViewController("DiscoverTableViewController", title: "发现", imageNamed: "tabbar_discover")
-        // 5.我
-        addChildViewController("ProfileTableViewController", title: "我", imageNamed: "tabbar_profile")
+        // 1.根据JSON文件创建控制器
+        // 1.1读取JSON数据
+        guard let jsonPath =  NSBundle.mainBundle().pathForResource("MainVCSettings.json", ofType: nil) else
+        {
+            myLog("获取到对应的文件路径失败, JSON文件不存在")
+            return
+        }
+        
+        // 1.2.读取json文件中的内容
+        guard let jsonData = NSData(contentsOfFile: jsonPath) else
+        {
+            myLog("加载二进制数据，获取到json文件中数据失败")
+            return
+        }
+        
+        // 1.3将JSON数据转换为对象(数组字典)
+        do
+        {
+            /*
+             Swift和OC不太一样, OC中一般情况如果发生错误会给传入的指针赋值, 而在Swift中使用的是异常处理机制
+             如果在调用系统某一个方法时,该方法最后有一个throws.说明该方法会抛出异常.如果一个方法会抛出异常,那么需要对该异常进行处理
+             在swift中提供三种处理异常的方式
+             方式一:try方式 程序员手动捕捉异常
+             do {
+             try NSJSONSerialization.JSONObjectWithData(jsonData, options: .MutableContainers)
+             } catch {
+             // error异常的对象
+             print(error)
+             }
+             
+             方式二:try?方式(常用方式) 系统帮助我们处理异常,如果该方法出现了异常,则该方法返回nil.如果没有异常,则返回对应的对象
+             guard let anyObject = try? NSJSONSerialization.JSONObjectWithData(jsonData, options: .MutableContainers) else {
+             return
+             }
+             
+             方式三:try!方法(不建议,非常危险) 直接告诉系统,该方法没有异常.注意:如果该方法出现了异常,那么程序会报错(崩溃)
+             let anyObject = try! NSJSONSerialization.JSONObjectWithData(jsonData, options: .MutableContainers)
+             */
+
+            let anyObject = try NSJSONSerialization.JSONObjectWithData(jsonData, options: .MutableContainers)
+            
+            guard let dictArray = anyObject as? [[String : AnyObject]] else
+            {
+                return
+            }
+            
+            // 1.4遍历数组字典取出每一个字典
+            for dict in dictArray
+            {
+                // 1.5根据遍历到的字典创建控制器
+                let vcName = dict["vcName"] as? String
+                let title = dict["title"] as? String
+                let imageName = dict["imageName"] as? String
+                addChildViewController(vcName, title: title, imageNamed: imageName)
+            }
+        }catch
+        {
+            // 只要try对应的方法发生了异常, 就会执行catch{}中的代码
+            // 2.根据字符串创建控制器
+            // 2.1首页
+            addChildViewController("HomeTableViewController", title: "首页", imageNamed: "tabbar_home")
+            // 2.2消息
+            addChildViewController("MessageTableViewController", title: "消息", imageNamed: "tabbar_message_center")
+            // 2.3发微博
+            addChildViewController("ComposeViewController", title: nil , imageNamed: "")
+            // 2.4发现
+            addChildViewController("DiscoverTableViewController", title: "发现", imageNamed: "tabbar_discover")
+            // 2.5我
+            addChildViewController("ProfileTableViewController", title: "我", imageNamed: "tabbar_profile")
+        }
+        
+       
     }
     
     
@@ -56,30 +118,14 @@ extension MainViewController
      */
     private func addChildViewController(childControllerName: String?, title: String?, imageNamed: String?) {
         
-        /*
-         guard 条件表达式 else {
-         //            需要执行的语句
-         //            只有条件为假才会执行{}中的内容
-         return
-         }
-         guard可以有效的解决可选绑定容易形成{}嵌套问题
-         */
+        
         
         // 1.动态获取命名空间
-        // 由于字典/数组中只能存储对象, 所以通过一个key从字典中获取值取出来是一个AnyObject类型, 并且如果key写错或者没有对应的值, 那么就取不到值, 所以返回值可能有值也可能没值, 所以最终的类型是AnyObject?
         guard let nameSpace =  NSBundle.mainBundle().infoDictionary!["CFBundleExecutable"] as? String else
         {
             myLog("获取命名空间失败")
             return
         }
-        
-        /*
-         Swift中新增了一个叫做命名空间的概念
-         作用: 避免重复
-         不用项目中的命名空间是不一样的, 默认情况下命名空间的名称就是当前项目的名称
-         正是因为Swift可以通过命名空间来解决重名的问题, 所以在做Swift开发时尽量使用cocoapods来集成三方框架, 这样可以有效的避免类名重复
-         正是因为Swift中有命名空间, 所以通过一个字符串来创建一个类和OC中也不太一样了, OC中可以直接通过类名创建一个类, 而Swift中如果想通过类名来创建一个类必须加上命名空间
-         */
         
         guard let childCtrName = childControllerName else
         {
@@ -90,7 +136,6 @@ extension MainViewController
         // 2.根据字符串获取对应的Class
         let childVCClass: AnyClass? = NSClassFromString(nameSpace + "." + childCtrName)
         
-        // Swift中如果想通过一个Class来创建一个对象, 必须告诉系统这个Class的确切类型
         // 3.将对应的AnyObject转成控制器的类型
         guard let childVCType = childVCClass as? UIViewController.Type else
         {

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9241AD071E6E56CB008D8BD5 /* MainVCSettings.json in Resources */ = {isa = PBXBuildFile; fileRef = 9241AD061E6E56CB008D8BD5 /* MainVCSettings.json */; };
 		9250B7261E6DAA9000390BBE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9250B7251E6DAA9000390BBE /* AppDelegate.swift */; };
 		9250B72B1E6DAA9000390BBE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9250B7291E6DAA9000390BBE /* Main.storyboard */; };
 		9250B72D1E6DAA9000390BBE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9250B72C1E6DAA9000390BBE /* Assets.xcassets */; };
@@ -39,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9241AD061E6E56CB008D8BD5 /* MainVCSettings.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MainVCSettings.json; sourceTree = "<group>"; };
 		9250B7221E6DAA9000390BBE /* SLWeiBo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SLWeiBo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9250B7251E6DAA9000390BBE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9250B72A1E6DAA9000390BBE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -84,6 +86,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9241AD051E6E56CB008D8BD5 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				9241AD061E6E56CB008D8BD5 /* MainVCSettings.json */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
 		9250B7191E6DAA9000390BBE = {
 			isa = PBXGroup;
 			children = (
@@ -248,6 +258,7 @@
 		9250B7601E6DAAAC00390BBE /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				9241AD051E6E56CB008D8BD5 /* Resource */,
 				9250B7611E6DAAAC00390BBE /* Controller */,
 				9250B7621E6DAAAC00390BBE /* Model */,
 				9250B7631E6DAAAC00390BBE /* View */,
@@ -462,6 +473,7 @@
 			files = (
 				9250B7301E6DAA9000390BBE /* LaunchScreen.storyboard in Resources */,
 				9250B72D1E6DAA9000390BBE /* Assets.xcassets in Resources */,
+				9241AD071E6E56CB008D8BD5 /* MainVCSettings.json in Resources */,
 				9250B72B1E6DAA9000390BBE /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
