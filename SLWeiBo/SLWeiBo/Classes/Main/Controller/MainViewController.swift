@@ -24,6 +24,8 @@ class MainViewController: UITabBarController {
         
         // 添所有子控制器
         addChildViewControllers()
+        
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -31,6 +33,8 @@ class MainViewController: UITabBarController {
         
         // 设置发微博按钮
         setupComposeButton()
+        // 设置发微博item不可点击
+        setupComposeItemEnable()
     }
 }
 
@@ -168,6 +172,23 @@ extension MainViewController
         
         // 3.监听按钮点击
         composeButton.addTarget(self, action: #selector(MainViewController.composeBtnClick(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+    }
+    
+    /**
+     设置发微博item不可点击
+     */
+    func setupComposeItemEnable()
+    {
+        // 1.遍历所有的item
+        for i  in 0..<tabBar.items!.count {
+            // 2.获取item
+            let item = tabBar.items![i]
+            // 3.如果是下标值为2,则该item不可以和用户交互
+            if i == 2 {
+                item.enabled = false
+                continue
+            }
+        }
     }
 }
 
