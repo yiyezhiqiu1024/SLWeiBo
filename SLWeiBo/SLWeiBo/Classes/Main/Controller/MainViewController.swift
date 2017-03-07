@@ -58,7 +58,7 @@ extension MainViewController
         
         guard let name = imageNamed else
         {
-            print("图片名不能传nil")
+            myLog("图片名不能传nil")
             return
         }
         

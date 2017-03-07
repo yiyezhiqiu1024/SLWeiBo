@@ -53,3 +53,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+/**
+ 自定义打印函数
+ 
+ - parameter message:    给外界提供的消息参数
+ - parameter fileName:   文件名
+ - parameter methodName: 函数名
+ - parameter lineNumber: 行号
+ */
+func myLog<T>(message: T, fileName: String = #file, funcName: String = #function, lineNumber: Int = #line)
+{
+    #if DEBUG
+        print("\((fileName as NSString).lastPathComponent) [\(lineNumber)] \(funcName):\(message)")
+    #endif
+}

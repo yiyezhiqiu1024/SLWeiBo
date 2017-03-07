@@ -637,6 +637,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = SLWeiBo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				"OTHER_SWIFT_FLAGS[arch=*]" = "-D DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = CoderSLZeng.com.github.SLWeiBo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -718,6 +719,7 @@
 				9250B74C1E6DAA9000390BBE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9250B74D1E6DAA9000390BBE /* Build configuration list for PBXNativeTarget "SLWeiBoTests" */ = {
 			isa = XCConfigurationList;
@@ -726,6 +728,7 @@
 				9250B74F1E6DAA9000390BBE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9250B7501E6DAA9000390BBE /* Build configuration list for PBXNativeTarget "SLWeiBoUITests" */ = {
 			isa = XCConfigurationList;
@@ -734,6 +737,7 @@
 				9250B7521E6DAA9000390BBE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
