@@ -79,9 +79,20 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vig-1R-pOv">
+                                <rect key="frame" x="264" y="511" width="72" height="34"/>
+                                <state key="normal" title="我的名片">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="EKy-me-v2w" kind="show" id="h2d-EO-v2u"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="vig-1R-pOv" firstAttribute="top" secondItem="YxQ-Xn-0Jj" secondAttribute="bottom" constant="20" id="7As-fG-cnF"/>
+                            <constraint firstItem="vig-1R-pOv" firstAttribute="centerX" secondItem="7y0-jQ-yD8" secondAttribute="centerX" id="8gk-0s-8qk"/>
                             <constraint firstItem="YxQ-Xn-0Jj" firstAttribute="leading" secondItem="Bb7-8t-uRW" secondAttribute="leading" id="BFB-Os-45e"/>
                             <constraint firstItem="Bb7-8t-uRW" firstAttribute="centerX" secondItem="7y0-jQ-yD8" secondAttribute="centerX" id="GS1-Oq-tyz"/>
                             <constraint firstItem="klF-tx-zVg" firstAttribute="leading" secondItem="7y0-jQ-yD8" secondAttribute="leading" id="Gqy-ue-BDg"/>
@@ -116,6 +127,40 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0AF-yt-BFp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="111" y="548"/>
+        </scene>
+        <!--Code Create View Controller-->
+        <scene sceneID="EuD-05-K9F">
+            <objects>
+                <viewController id="EKy-me-v2w" customClass="QRCodeCreateViewController" customModule="XMGWB" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="iOj-OS-TdR"/>
+                        <viewControllerLayoutGuide type="bottom" id="IqV-4E-ak2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="shS-q1-7SW">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="67I-hj-3u1">
+                                <rect key="frame" x="150" y="150" width="300" height="300"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="cMe-H9-u8s"/>
+                                    <constraint firstAttribute="width" constant="300" id="gO6-2E-UvI"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="67I-hj-3u1" firstAttribute="centerY" secondItem="shS-q1-7SW" secondAttribute="centerY" id="8jh-Xx-bEF"/>
+                            <constraint firstItem="67I-hj-3u1" firstAttribute="centerX" secondItem="shS-q1-7SW" secondAttribute="centerX" id="G0a-Gl-WUj"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="customImageVivew" destination="67I-hj-3u1" id="RQz-ko-VwG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4OA-46-X5F" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="779" y="548"/>
         </scene>
     </scenes>
     <resources>

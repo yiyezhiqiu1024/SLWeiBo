@@ -53,7 +53,7 @@ class QRCodeViewController: UIViewController {
         let height = containerRect.width / viewRect.width;
         
         // 3.设置输出对象解析数据时感兴趣的范围
-        out.rectOfInterest = CGRect(x: x, y: y, width: width, height: height)
+//        out.rectOfInterest = CGRect(x: x, y: y, width: width, height: height)
         
         return out
     }()
@@ -292,7 +292,7 @@ extension QRCodeViewController: UITabBarDelegate
     func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
         //        myLog(item.tag)
         // 根据当前选中的按钮重新设置二维码容器高度
-        containerHeightCons.constant = (item.tag == 1) ? 150 : 300
+        containerHeightCons.constant = (item.tag == 1) ? 100 : 200
         view.layoutIfNeeded()
         
         // 移除动画
