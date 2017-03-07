@@ -9,6 +9,11 @@
 import UIKit
 
 class HomeTableViewController: BaseTableViewController {
+    
+    //==========================================================================================================
+    // MARK: - 懒加载属性
+    //==========================================================================================================
+    private lazy var titleBtn : TitleButton = TitleButton()
 
     //==========================================================================================================
     // MARK: - 系统回调函数
@@ -25,42 +30,31 @@ class HomeTableViewController: BaseTableViewController {
             return
         }
         
-        // 2.添加登录后的导航条按钮
-        /*
-         let leftBtn = UIButton()
-         leftBtn.setImage(UIImage(named: "navigationbar_friendattention"), forState: UIControlState.Normal)
-         leftBtn.setImage(UIImage(named: "navigationbar_friendattention_highlighted"), forState: UIControlState.Highlighted)
-         leftBtn.sizeToFit()
-         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: leftBtn)
-         
-         let rigthBtn = UIButton()
-         rigthBtn.setImage(UIImage(named: "navigationbar_pop"), forState: UIControlState.Normal)
-         rigthBtn.setImage(UIImage(named: "navigationbar_pop_highlighted"), forState: UIControlState.Highlighted)
-         rigthBtn.sizeToFit()
-         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: rigthBtn)
-         */
-        /*
-         navigationItem.leftBarButtonItem = createBarButtonItem("navigationbar_friendattention")
-         navigationItem.rightBarButtonItem = createBarButtonItem("navigationbar_pop")
-         */
+        // 2.设置导航条
+        setupNavigationBar()
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(imageName: "navigationbar_friendattention", target: self, action: #selector(HomeTableViewController.leftBtnClick))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(imageName: "navigationbar_pop", target: self, action: #selector(HomeTableViewController.rightBtnClick))
     }
     
-    
-    /*
-     /// 创建UIBarButtonItem
-     private func createBarButtonItem(imageName: String) -> UIBarButtonItem
-     {
-     let btn = UIButton()
-     btn.setImage(UIImage(named: imageName), forState: UIControlState.Normal)
-     btn.setImage(UIImage(named: imageName + "_highlighted"), forState: UIControlState.Highlighted)
-     btn.sizeToFit()
-     return UIBarButtonItem(customView: btn)
-     }
-     */
+}
 
+//==========================================================================================================
+// MARK: - 设置UI界面
+//==========================================================================================================
+extension HomeTableViewController
+{
+    /**
+     设置导航条
+     */
+    func setupNavigationBar()
+    {
+        // 1.添加左右按钮
+        navigationItem.leftBarButtonItem = UIBarButtonItem(imageName: "navigationbar_friendattention", target: self, action: #selector(HomeTableViewController.leftBtnClick))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(imageName: "navigationbar_pop", target: self, action: #selector(HomeTableViewController.rightBtnClick))
+        // 2.添加标题按钮
+        titleBtn.setTitle("CoderSLZeng", forState: .Normal)
+        titleBtn.addTarget(self, action: #selector(HomeTableViewController.titleBtnClick(_:)), forControlEvents: .TouchUpInside)
+        navigationItem.titleView = titleBtn
+    }
 }
 
 //==========================================================================================================
@@ -75,5 +69,10 @@ extension HomeTableViewController
     @objc private func rightBtnClick()
     {
         myLog("")
+    }
+    
+    @objc private func titleBtnClick(button: TitleButton)
+    {
+        titleBtn.selected = !titleBtn.selected
     }
 }
