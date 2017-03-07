@@ -59,7 +59,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="bUj-Z5-dHv" firstAttribute="top" secondItem="Bb7-8t-uRW" secondAttribute="top" id="83x-G1-6dI"/>
                                     <constraint firstAttribute="bottom" secondItem="dzc-LB-b5O" secondAttribute="bottom" id="CHz-Ts-aw8"/>
@@ -73,14 +73,23 @@
                                     <constraint firstItem="bUj-Z5-dHv" firstAttribute="height" secondItem="Bb7-8t-uRW" secondAttribute="height" id="zgb-kD-12X"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="将二维码放入框内, 即可扫描二维码" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YxQ-Xn-0Jj">
+                                <rect key="frame" x="150" y="470" width="300" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="YxQ-Xn-0Jj" firstAttribute="leading" secondItem="Bb7-8t-uRW" secondAttribute="leading" id="BFB-Os-45e"/>
                             <constraint firstItem="Bb7-8t-uRW" firstAttribute="centerX" secondItem="7y0-jQ-yD8" secondAttribute="centerX" id="GS1-Oq-tyz"/>
                             <constraint firstItem="klF-tx-zVg" firstAttribute="leading" secondItem="7y0-jQ-yD8" secondAttribute="leading" id="Gqy-ue-BDg"/>
                             <constraint firstAttribute="trailing" secondItem="klF-tx-zVg" secondAttribute="trailing" id="Obe-pU-nvq"/>
                             <constraint firstItem="Bb7-8t-uRW" firstAttribute="centerY" secondItem="7y0-jQ-yD8" secondAttribute="centerY" id="Zrc-KY-wLr"/>
+                            <constraint firstItem="YxQ-Xn-0Jj" firstAttribute="trailing" secondItem="Bb7-8t-uRW" secondAttribute="trailing" id="l6V-31-4r3"/>
                             <constraint firstItem="nZG-2O-8ii" firstAttribute="top" secondItem="klF-tx-zVg" secondAttribute="bottom" id="mcu-yu-Oaj"/>
+                            <constraint firstItem="YxQ-Xn-0Jj" firstAttribute="top" secondItem="Bb7-8t-uRW" secondAttribute="bottom" constant="20" id="myk-rb-vJy"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="扫一扫" id="XYv-ET-X4W">
@@ -97,6 +106,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="containerHeightCons" destination="UDv-zf-BV4" id="tj2-Zq-cFO"/>
+                        <outlet property="customLabel" destination="YxQ-Xn-0Jj" id="S16-wB-6Vf"/>
                         <outlet property="customTabbar" destination="klF-tx-zVg" id="4p9-e1-cR1"/>
                         <outlet property="scanLineCons" destination="83x-G1-6dI" id="leA-Ex-nCq"/>
                         <outlet property="scanLineView" destination="bUj-Z5-dHv" id="ZqR-Jp-rY1"/>

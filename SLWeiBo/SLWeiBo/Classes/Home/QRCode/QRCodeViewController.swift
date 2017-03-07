@@ -7,17 +7,36 @@
 //
 
 import UIKit
+import AVFoundation
 
 class QRCodeViewController: UIViewController {
     // MARK: - 控件属性
     /// 底部工具条
     @IBOutlet weak var customTabbar: UITabBar!
+    /// 结果文本
+    @IBOutlet weak var customLabel: UILabel!
     /// 冲击波视图
     @IBOutlet weak var scanLineView: UIImageView!
     /// 容器视图高度约束
     @IBOutlet weak var containerHeightCons: NSLayoutConstraint!
     /// 冲击波顶部约束
     @IBOutlet weak var scanLineCons: NSLayoutConstraint!
+    
+    // MARK: - 懒加载
+    /// 输入对象
+    private lazy var input: AVCaptureDeviceInput? = {
+        let device = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
+        return try? AVCaptureDeviceInput(device: device)
+    }()
+    
+    /// 会话
+    private lazy var session: AVCaptureSession = AVCaptureSession()
+    
+    /// 输出对象
+    private lazy var output: AVCaptureMetadataOutput = AVCaptureMetadataOutput()
+    
+    /// 预览图层
+    private lazy var previewLayer: AVCaptureVideoPreviewLayer = AVCaptureVideoPreviewLayer(session: self.session)
 
     // MARK: - 系统回调函数
     override func viewDidLoad() {
@@ -28,6 +47,9 @@ class QRCodeViewController: UIViewController {
         
         // 2.添加监听, 监听底部工具条点击
         customTabbar.delegate = self
+        
+        // 3.开始扫描二维码
+        scanQRCode()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -67,6 +89,49 @@ extension QRCodeViewController
             self.view.layoutIfNeeded()
         }
         
+    }
+    
+    /// 开始扫描二维码
+    private func scanQRCode()
+    {
+        // 1.判断输入能否添加到会话中
+        if !session.canAddInput(input)
+        {
+            return
+        }
+        // 2.判断输出能够添加到会话中
+        if !session.canAddOutput(output)
+        {
+            return
+        }
+        // 3.添加输入和输出到会话中
+        session.addInput(input)
+        session.addOutput(output)
+        
+        // 4.设置输出能够解析的数据类型
+        // 注意点: 设置数据类型一定要在输出对象添加到会话之后才能设置
+        output.metadataObjectTypes = output.availableMetadataObjectTypes
+        
+        // 5.设置监听监听输出解析到的数据
+        output.setMetadataObjectsDelegate(self, queue: dispatch_get_main_queue())
+        
+        // 6.添加预览图层
+        view.layer.insertSublayer(previewLayer, atIndex: 0)
+        previewLayer.frame = view.bounds
+        
+        // 7.开始扫描
+        session.startRunning()
+        
+    }
+}
+
+// MARK: - AVCaptureMetadataOutputObjects代理
+extension QRCodeViewController: AVCaptureMetadataOutputObjectsDelegate
+{
+    /// 只要扫描到结果就会调用
+    func captureOutput(captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [AnyObject]!, fromConnection connection: AVCaptureConnection!)
+    {
+        customLabel.text =  metadataObjects.last?.stringValue
     }
 }
 
