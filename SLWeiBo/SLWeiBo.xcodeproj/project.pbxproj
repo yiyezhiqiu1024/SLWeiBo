@@ -18,6 +18,7 @@
 		9241AD291E6E968C008D8BD5 /* VisitorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9241AD281E6E968C008D8BD5 /* VisitorView.swift */; };
 		9241AD2B1E6E969D008D8BD5 /* VisitorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9241AD2A1E6E969D008D8BD5 /* VisitorView.xib */; };
 		9241AD331E6E9A47008D8BD5 /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9241AD321E6E9A47008D8BD5 /* BaseTableViewController.swift */; };
+		9241AD371E6EA619008D8BD5 /* UIBarButtonItem+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9241AD361E6EA619008D8BD5 /* UIBarButtonItem+Extension.swift */; };
 		9250B7261E6DAA9000390BBE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9250B7251E6DAA9000390BBE /* AppDelegate.swift */; };
 		9250B72D1E6DAA9000390BBE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9250B72C1E6DAA9000390BBE /* Assets.xcassets */; };
 		9250B7301E6DAA9000390BBE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9250B72E1E6DAA9000390BBE /* LaunchScreen.storyboard */; };
@@ -60,6 +61,7 @@
 		9241AD281E6E968C008D8BD5 /* VisitorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisitorView.swift; sourceTree = "<group>"; };
 		9241AD2A1E6E969D008D8BD5 /* VisitorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VisitorView.xib; sourceTree = "<group>"; };
 		9241AD321E6E9A47008D8BD5 /* BaseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
+		9241AD361E6EA619008D8BD5 /* UIBarButtonItem+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Extension.swift"; sourceTree = "<group>"; };
 		9250B7221E6DAA9000390BBE /* SLWeiBo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SLWeiBo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9250B7251E6DAA9000390BBE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9250B72C1E6DAA9000390BBE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -390,6 +392,7 @@
 			isa = PBXGroup;
 			children = (
 				9241AD081E6E622D008D8BD5 /* UIButton+Extension.swift */,
+				9241AD361E6EA619008D8BD5 /* UIBarButtonItem+Extension.swift */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -536,6 +539,7 @@
 				9250B7711E6DABA200390BBE /* HomeTableViewController.swift in Sources */,
 				9241AD331E6E9A47008D8BD5 /* BaseTableViewController.swift in Sources */,
 				9250B7261E6DAA9000390BBE /* AppDelegate.swift in Sources */,
+				9241AD371E6EA619008D8BD5 /* UIBarButtonItem+Extension.swift in Sources */,
 				9250B7791E6DB11E00390BBE /* ComposeViewController.swift in Sources */,
 				9250B7731E6DABB000390BBE /* MessageTableViewController.swift in Sources */,
 				9241AD091E6E622D008D8BD5 /* UIButton+Extension.swift in Sources */,
