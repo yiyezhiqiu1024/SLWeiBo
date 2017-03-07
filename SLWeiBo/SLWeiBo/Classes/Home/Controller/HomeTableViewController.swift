@@ -10,15 +10,13 @@ import UIKit
 
 class HomeTableViewController: BaseTableViewController {
     
-    //==========================================================================================================
     // MARK: - 懒加载属性
-    //==========================================================================================================
+    /// 标题按钮
     private lazy var titleBtn : TitleButton = TitleButton()
 
-    //==========================================================================================================
+    
     // MARK: - 系统回调函数
-    //==========================================================================================================
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -37,9 +35,7 @@ class HomeTableViewController: BaseTableViewController {
     
 }
 
-//==========================================================================================================
 // MARK: - 设置UI界面
-//==========================================================================================================
 extension HomeTableViewController
 {
     /**
@@ -57,9 +53,7 @@ extension HomeTableViewController
     }
 }
 
-//==========================================================================================================
 // MARK: - 监听事件处理
-//==========================================================================================================
 extension HomeTableViewController
 {
     @objc private func leftBtnClick()
@@ -82,7 +76,17 @@ extension HomeTableViewController
         // 3.设置控制器的modal样式
         popoverVc.modalPresentationStyle = .Custom
         
-        // 4.弹出控制器
+        // 4.设置转场的代理
+        popoverVc.transitioningDelegate = self
+        
+        // 5.弹出控制器
         presentViewController(popoverVc, animated: true, completion: nil)
+    }
+}
+
+// MARK: - UIViewControllerTransitioningDelegate
+extension HomeTableViewController : UIViewControllerTransitioningDelegate {
+    func presentationControllerForPresentedViewController(presented: UIViewController, presentingViewController presenting: UIViewController, sourceViewController source: UIViewController) -> UIPresentationController? {
+        return SLPresentationController(presentedViewController: presented, presentingViewController: presenting)
     }
 }
