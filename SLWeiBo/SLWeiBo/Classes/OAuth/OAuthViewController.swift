@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class OAuthViewController: UIViewController {
     // MARK:- 控件的属性
@@ -20,7 +21,7 @@ class OAuthViewController: UIViewController {
         setupNavigationBar()
         
         // 2.加载网页
-        webView.loadRequest(NSURLRequest(URL: NSURL(string: "https://github.com/CoderSLZeng/SLWeiBo")!))
+        loadPage()
     }
     
 }
@@ -38,9 +39,26 @@ extension OAuthViewController {
         // 3.设置标题
         title = "登录页面"
     }
+    
+    /**
+     加载网页
+     */
+    private func loadPage() {
+        // 1.获取登录页面的URLString
+        let urlString = "https://api.weibo.com/oauth2/authorize?client_id=2550724916&redirect_uri=https://github.com/CoderSLZeng"
+        
+        // 2.创建对应NSURL
+        guard let url = NSURL(string: urlString) else {
+            return
+        }
+        
+        // 3.创建NSURLRequest对象
+        let request = NSURLRequest(URL: url)
+        
+        // 4.加载request对象
+        webView.loadRequest(request)
+    }
 }
-
-
 
 // MARK:- 事件监听处理
 extension OAuthViewController {
@@ -53,3 +71,24 @@ extension OAuthViewController {
     }
 }
 
+// MARK: - UIWebView代理
+extension OAuthViewController: UIWebViewDelegate
+{
+    /// webView开始加载网页
+    func webViewDidStartLoad(webView: UIWebView) {
+            SVProgressHUD.showInfoWithStatus("正在拼命加载网页...")
+            SVProgressHUD.setDefaultMaskType(.Black)
+    }
+    
+    /// webView网页加载完成
+    func webViewDidFinishLoad(webView: UIWebView) {
+        SVProgressHUD.dismiss()
+        
+        
+    }
+    
+    /// webView加载网页失败
+    func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {
+        SVProgressHUD.dismiss()
+    }
+}
