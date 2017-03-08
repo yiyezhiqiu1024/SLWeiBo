@@ -6,6 +6,7 @@ target 'SLWeiBo' do
   use_frameworks!
 
   # Pods for SLWeiBo
+  pod 'SVProgressHUD'
 
   target 'SLWeiBoTests' do
     inherit! :search_paths
