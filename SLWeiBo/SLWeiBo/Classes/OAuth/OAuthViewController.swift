@@ -45,7 +45,7 @@ extension OAuthViewController {
      */
     private func loadPage() {
         // 1.获取登录页面的URLString
-        let urlString = "https://api.weibo.com/oauth2/authorize?client_id=2550724916&redirect_uri=https://github.com/CoderSLZeng"
+        let urlString = "https://api.weibo.com/oauth2/authorize?client_id=\(WB_App_Key)&redirect_uri=\(WB_Redirect_URI)"
         
         // 2.创建对应NSURL
         guard let url = NSURL(string: urlString) else {

@@ -42,6 +42,7 @@
 		9250B7751E6DABBC00390BBE /* DiscoverTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9250B7741E6DABBC00390BBE /* DiscoverTableViewController.swift */; };
 		9250B7771E6DABC600390BBE /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9250B7761E6DABC600390BBE /* ProfileTableViewController.swift */; };
 		9250B7791E6DB11E00390BBE /* ComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9250B7781E6DB11E00390BBE /* ComposeViewController.swift */; };
+		92A7C5C41E719D500099245E /* OAuthInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A7C5C31E719D500099245E /* OAuthInfo.swift */; };
 		AD92AC51B3E9EA7EE3E57344 /* Pods_SLWeiBoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7315829F06E61C78B8021EE0 /* Pods_SLWeiBoUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -104,6 +105,7 @@
 		9250B7741E6DABBC00390BBE /* DiscoverTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverTableViewController.swift; sourceTree = "<group>"; };
 		9250B7761E6DABC600390BBE /* ProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
 		9250B7781E6DB11E00390BBE /* ComposeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeViewController.swift; sourceTree = "<group>"; };
+		92A7C5C31E719D500099245E /* OAuthInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuthInfo.swift; sourceTree = "<group>"; };
 		9B5B0EB0965765B8CD956DDE /* Pods-SLWeiBoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SLWeiBoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SLWeiBoTests/Pods-SLWeiBoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A21F5230D931D0372DB2FA85 /* Pods-SLWeiBo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SLWeiBo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SLWeiBo/Pods-SLWeiBo.debug.xcconfig"; sourceTree = "<group>"; };
 		C667F88693BD8BA1196719EF /* Pods_SLWeiBoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SLWeiBoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -154,6 +156,7 @@
 		922F89071E6F9BB4002631BA /* OAuth */ = {
 			isa = PBXGroup;
 			children = (
+				92A7C5C31E719D500099245E /* OAuthInfo.swift */,
 				922F89081E6F9BB4002631BA /* OAuthViewController.swift */,
 				922F89091E6F9BB4002631BA /* OAuthViewController.xib */,
 			);
@@ -781,6 +784,7 @@
 				9250B7751E6DABBC00390BBE /* DiscoverTableViewController.swift in Sources */,
 				9241AD391E6EAADD008D8BD5 /* TitleButton.swift in Sources */,
 				9250B76F1E6DAB6A00390BBE /* MainViewController.swift in Sources */,
+				92A7C5C41E719D500099245E /* OAuthInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
