@@ -63,3 +63,5 @@ fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots
 fastlane/test_output
+# 忽略授权信息文件
+SLWeiBo/SLWeiBo/Classes/OAuth/OAuthInfo.swift
