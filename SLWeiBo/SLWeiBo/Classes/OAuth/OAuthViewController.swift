@@ -129,9 +129,27 @@ extension OAuthViewController: UIWebViewDelegate
         // 4.将code截取出来
         let code = urlString.componentsSeparatedByString("code=").last!
         
-        myLog(code)
+        // 5.加载accessToken
+        loadAccessToken(code)
         
         return false
-    }    
+    }
+}
 
+
+// MARK:- 请求数据
+extension OAuthViewController {
+    /// 加载AccessToken
+    private func loadAccessToken(code : String) {
+        NetworkTools.shareInstance.loadAccessToken(code) { (result, error) -> () in
+            // 1.错误校验
+            if error != nil {
+                print(error)
+                return
+            }
+            
+            // 2.拿到结果
+            print(result)
+        }
+    }
 }
