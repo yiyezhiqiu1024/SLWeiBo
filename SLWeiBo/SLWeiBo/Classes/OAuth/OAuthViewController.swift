@@ -96,4 +96,42 @@ extension OAuthViewController: UIWebViewDelegate
     func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {
         SVProgressHUD.dismiss()
     }
+    
+    // 当准备加载某一个页面时,会执行该方法
+    // 返回值: true -> 继续加载该页面 false -> 不会加载该页面
+    func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+        
+        /*
+         登录界面: https://api.weibo.com/oauth2/authorize?client_id=2550724916&redirect_uri=https://github.com/CoderSLZeng
+         输入账号密码之后: https://api.weibo.com/oauth2/authorize
+         取消授权: https://github.com/CoderSLZeng/?error_uri=%2Foauth2%2Fauthorize&error=access_denied&error_description=user%20denied%20your%20request.&error_code=
+         授权:https://github.com/CoderSLZeng?code=63541580e8837a7f5ea054b59aea8c57
+         通过观察
+         1.如果是授权成功获取失败都会跳转到授权回调页面
+         2.如果授权回调页面包含code=就代表授权成功, 需要截取code=后面字符串
+         3.而且如果是授权回调页面不需要显示给用户看, 返回false
+         */
+        
+        // 1.获取加载网页的NSURL
+        guard let url = request.URL else {
+            return true
+        }
+        
+        // 2.获取url中的字符串
+        let urlString = url.absoluteString
+        
+        
+        // 3.判断该字符串中是否包含code
+        guard urlString.containsString("code=") else {
+            return true
+        }
+        
+        // 4.将code截取出来
+        let code = urlString.componentsSeparatedByString("code=").last!
+        
+        myLog(code)
+        
+        return false
+    }    
+
 }
