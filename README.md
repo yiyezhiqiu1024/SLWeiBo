@@ -6,6 +6,7 @@
 clone项目之后
 
 打开 SLWeiBo.xcworkspace之后会发现两个红色的文件
+
 ![两个红色的文件](SLWeiBo/SLWeiBo/Assets.xcassets/README/error_1.imageset/error_1.png)
 
 尝试编译或运行项目，出现下图
