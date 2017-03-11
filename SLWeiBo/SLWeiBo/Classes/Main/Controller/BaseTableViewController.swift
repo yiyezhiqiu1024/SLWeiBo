@@ -17,26 +17,11 @@ class BaseTableViewController: UITableViewController {
     
     // MARK: - 自定义变量
     /// 定义标记记录用户登录状态
-    var isLogin : Bool = false
+    var isLogin : Bool =  UserAccountViewModel.shareIntance.isLogin
     
     // MARK: - 系统回调函数
     
     override func loadView() {
-        
-        // 1.从沙盒中读取中归档的信息
-        // 1.1.获取沙盒路径
-        var accountPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first!
-        accountPath = (accountPath as NSString).stringByAppendingPathComponent("accout.plist")
-        
-        // 1.2.读取信息
-        let account = NSKeyedUnarchiver.unarchiveObjectWithFile(accountPath) as? UserAccount
-        if let account = account {
-            
-            // 1.3.取出过期日期 : 当前日期
-            if let expiresDate = account.expires_date {
-                isLogin = expiresDate.compare(NSDate()) == NSComparisonResult.OrderedDescending
-            }
-        }
         
         // 判断用户是否登录, 如果没有登录就显示访客界面, 如果已经登录就显示tableview
         isLogin ? super.loadView() : setupVisitorView()

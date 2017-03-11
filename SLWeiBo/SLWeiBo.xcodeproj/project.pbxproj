@@ -43,6 +43,7 @@
 		9250B7751E6DABBC00390BBE /* DiscoverTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9250B7741E6DABBC00390BBE /* DiscoverTableViewController.swift */; };
 		9250B7771E6DABC600390BBE /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9250B7761E6DABC600390BBE /* ProfileTableViewController.swift */; };
 		9250B7791E6DB11E00390BBE /* ComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9250B7781E6DB11E00390BBE /* ComposeViewController.swift */; };
+		925677EF1E73A43A00C7C227 /* UserAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925677EE1E73A43A00C7C227 /* UserAccountViewModel.swift */; };
 		928770291E727F2E00B82B73 /* NetworkTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928770281E727F2E00B82B73 /* NetworkTools.swift */; };
 		929F30C41E728DBD00E7104B /* OAuthInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929F30C31E728DBD00E7104B /* OAuthInfo.swift */; };
 		AD92AC51B3E9EA7EE3E57344 /* Pods_SLWeiBoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7315829F06E61C78B8021EE0 /* Pods_SLWeiBoUITests.framework */; };
@@ -108,6 +109,7 @@
 		9250B7741E6DABBC00390BBE /* DiscoverTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverTableViewController.swift; sourceTree = "<group>"; };
 		9250B7761E6DABC600390BBE /* ProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
 		9250B7781E6DB11E00390BBE /* ComposeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeViewController.swift; sourceTree = "<group>"; };
+		925677EE1E73A43A00C7C227 /* UserAccountViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAccountViewModel.swift; sourceTree = "<group>"; };
 		928770281E727F2E00B82B73 /* NetworkTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkTools.swift; sourceTree = "<group>"; };
 		929F30C31E728DBD00E7104B /* OAuthInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuthInfo.swift; sourceTree = "<group>"; };
 		9B5B0EB0965765B8CD956DDE /* Pods-SLWeiBoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SLWeiBoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SLWeiBoTests/Pods-SLWeiBoTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				922E84341E72C8CC00CE80C0 /* UserAccount.swift */,
+				925677EE1E73A43A00C7C227 /* UserAccountViewModel.swift */,
 			);
 			path = Mode;
 			sourceTree = "<group>";
@@ -805,6 +808,7 @@
 				9241AD4F1E6EB79B008D8BD5 /* SLPresentationController.swift in Sources */,
 				9250B7261E6DAA9000390BBE /* AppDelegate.swift in Sources */,
 				9241AD371E6EA619008D8BD5 /* UIBarButtonItem+Extension.swift in Sources */,
+				925677EF1E73A43A00C7C227 /* UserAccountViewModel.swift in Sources */,
 				9250B7791E6DB11E00390BBE /* ComposeViewController.swift in Sources */,
 				922F890A1E6F9BB4002631BA /* OAuthViewController.swift in Sources */,
 				9250B7731E6DABB000390BBE /* MessageTableViewController.swift in Sources */,
