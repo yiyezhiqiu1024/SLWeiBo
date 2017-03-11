@@ -183,8 +183,7 @@ extension OAuthViewController {
             
             // 4.将account对象保存
             // 4.1.获取沙盒路径
-            var accountPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first!
-            accountPath = (accountPath as NSString).stringByAppendingPathComponent("accout.plist")
+            let accountPath = "accout.plist".docDir()
             myLog(accountPath)
             
             // 4.2.保存对象

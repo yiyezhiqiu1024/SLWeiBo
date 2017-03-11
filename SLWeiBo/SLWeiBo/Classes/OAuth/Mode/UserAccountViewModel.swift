@@ -19,8 +19,7 @@ class UserAccountViewModel {
     // MARK:- 计算属性
     /// 获取沙盒路径
     var accountPath : String {
-        let accountPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first!
-        return (accountPath as NSString).stringByAppendingPathComponent("accout.plist")
+        return "accout.plist".docDir()
     }
     
     /// 是否已经登录
