@@ -24,6 +24,11 @@ class UserAccount: NSObject {
     var expires_date : NSDate?
     /// 用户ID
     var uid : String?
+    /// 昵称
+    var screen_name : String?
+    
+    /// 用户的头像地址
+    var avatar_large : String?
     
     // MARK:- 自定义构造函数
     init(dict : [String : AnyObject]) {
@@ -35,7 +40,7 @@ class UserAccount: NSObject {
     
     // MARK:- 重写description属性
     override var description : String {
-        let propertyKeys = ["access_token", "expires_date", "uid"]
+        let propertyKeys = ["access_token", "expires_date", "uid", "screen_name", "avatar_large"]
         return dictionaryWithValuesForKeys(propertyKeys).description
     }
 }

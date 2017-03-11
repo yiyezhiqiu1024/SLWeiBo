@@ -146,6 +146,41 @@ extension OAuthViewController {
             // 3.将字典转成模型对象
             let account = UserAccount(dict: accountDict)
             
+            // 4.请求用户信息
+            self.loadUserInfo(account)
+        }
+    }
+    
+    
+    /// 请求用户信息
+    private func loadUserInfo(account : UserAccount) {
+        // 1.获取AccessToken
+        guard let accessToken = account.access_token else {
+            return
+        }
+        
+        // 2.获取uid
+        guard let uid = account.uid else {
+            return
+        }
+        
+        // 3.发送网络请求
+        NetworkTools.shareInstance.loadUserInfo(accessToken, uid: uid) { (result, error) -> () in
+            // 1.错误校验
+            if error != nil {
+                myLog(error)
+                return
+            }
+            
+            // 2.拿到用户信息的结果
+            guard let userInfoDict = result else {
+                return
+            }
+            
+            // 3.从字典中取出昵称和用户头像地址
+            account.screen_name = userInfoDict["screen_name"] as? String
+            account.avatar_large = userInfoDict["avatar_large"] as? String
+            
             myLog(account)
         }
     }
