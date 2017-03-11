@@ -16,10 +16,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-        /// 设置全局颜色
+        /// 设置全局外观
         UITabBar.appearance().tintColor = UIColor.orangeColor()
         UINavigationBar.appearance().tintColor = UIColor.orangeColor()
 
+        window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        window?.backgroundColor  = UIColor.whiteColor()
+        let sb = UIStoryboard(name: "Newfeature", bundle: nil)
+        let vc = sb.instantiateInitialViewController()!
+        window?.rootViewController = vc
+        window?.makeKeyAndVisible()
         
         return true
     }

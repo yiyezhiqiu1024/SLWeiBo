@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1217" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="rGc-cb-taW">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--Newfeature View Controller-->
+        <scene sceneID="fGU-hs-Bu4">
+            <objects>
+                <viewController id="rGc-cb-taW" customClass="NewfeatureViewController" customModule="SLWeiBo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="84E-IV-kpy"/>
+                        <viewControllerLayoutGuide type="bottom" id="wu6-WX-Mey"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Vjy-yS-Hy1">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="o9C-2b-uqH">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <collectionViewLayout key="collectionViewLayout" id="PFg-6g-83L" customClass="SLFlowLayout" customModule="SLWeiBo" customModuleProvider="target"/>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="newfeatureCell" id="12m-K6-ZgU" customClass="SLCollectionViewCell" customModule="SLWeiBo" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="rGc-cb-taW" id="qeb-Rn-M63"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="wu6-WX-Mey" firstAttribute="top" secondItem="o9C-2b-uqH" secondAttribute="bottom" id="4HF-xc-Vf2"/>
+                            <constraint firstAttribute="trailing" secondItem="o9C-2b-uqH" secondAttribute="trailing" id="Bwv-Et-IMd"/>
+                            <constraint firstItem="o9C-2b-uqH" firstAttribute="leading" secondItem="Vjy-yS-Hy1" secondAttribute="leading" id="K03-2C-0d7"/>
+                            <constraint firstItem="o9C-2b-uqH" firstAttribute="top" secondItem="Vjy-yS-Hy1" secondAttribute="top" id="TM3-YW-vDo"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="S36-30-GU1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="675" y="136"/>
+        </scene>
+    </scenes>
+</document>
