@@ -13,7 +13,15 @@ class UserAccount: NSObject {
     /// 授权AccessToken
     var access_token : String?
     /// 过期时间-->秒
-    var expires_in : NSTimeInterval = 0.0
+    var expires_in : NSTimeInterval = 0.0 {
+        didSet
+        {
+           expires_date = NSDate(timeIntervalSinceNow: expires_in)
+        }
+    }
+    
+    /// 过期日期
+    var expires_date : NSDate?
     /// 用户ID
     var uid : String?
     
@@ -27,7 +35,7 @@ class UserAccount: NSObject {
     
     // MARK:- 重写description属性
     override var description : String {
-        let propertyKeys = ["access_token", "expires_in", "uid"]
+        let propertyKeys = ["access_token", "expires_date", "uid"]
         return dictionaryWithValuesForKeys(propertyKeys).description
     }
 }
