@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UserAccount: NSObject {
+class UserAccount: NSObject, NSCoding {
     // MARK:- 属性
     /// 授权AccessToken
     var access_token : String?
@@ -43,4 +43,24 @@ class UserAccount: NSObject {
         let propertyKeys = ["access_token", "expires_date", "uid", "screen_name", "avatar_large"]
         return dictionaryWithValuesForKeys(propertyKeys).description
     }
+    
+    // MARK:- 归档&解档
+    /// 解档的方法
+    required init?(coder aDecoder: NSCoder) {
+        access_token = aDecoder.decodeObjectForKey("access_token") as? String
+        uid = aDecoder.decodeObjectForKey("uid") as? String
+        expires_date = aDecoder.decodeObjectForKey("expires_date") as? NSDate
+        avatar_large = aDecoder.decodeObjectForKey("avatar_large") as? String
+        screen_name = aDecoder.decodeObjectForKey("screen_name") as? String
+    }
+    
+    /// 归档方法
+    func encodeWithCoder(aCoder: NSCoder) {
+        aCoder.encodeObject(access_token, forKey: "access_token")
+        aCoder.encodeObject(uid, forKey: "uid")
+        aCoder.encodeObject(expires_date, forKey: "expires_date")
+        aCoder.encodeObject(avatar_large, forKey: "avatar_large")
+        aCoder.encodeObject(screen_name, forKey: "screen_name")
+    }
+
 }
