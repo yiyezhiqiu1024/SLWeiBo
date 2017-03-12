@@ -8,6 +8,7 @@ target 'SLWeiBo' do
   # Pods for SLWeiBo
   pod 'SVProgressHUD'
   pod 'AFNetworking'
+  pod 'SDWebImage'
 
   target 'SLWeiBoTests' do
     inherit! :search_paths
