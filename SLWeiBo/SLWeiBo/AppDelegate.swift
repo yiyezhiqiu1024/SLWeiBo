@@ -13,6 +13,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    var defaultViewController : UIViewController? {
+        let isLogin = UserAccountViewModel.shareIntance.isLogin
+        return isLogin ? WelcomeViewController() : UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
+    }
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
@@ -21,8 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().tintColor = UIColor.orangeColor()
 
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        window?.backgroundColor  = UIColor.whiteColor()
-        window?.rootViewController = WelcomeViewController()
+        window?.rootViewController = defaultViewController
         window?.makeKeyAndVisible()
         
         return true

@@ -27,15 +27,16 @@ class WelcomeViewController: UIViewController {
         iconView.sd_setImageWithURL(url, placeholderImage: UIImage(named: "avatar_default_big"))
         
         // 1.改变约束的值
-        iconViewBottomCons.constant = UIScreen.mainScreen().bounds.height - 250
+        iconViewBottomCons.constant = UIScreen.mainScreen().bounds.height - 200
         
         // 2.执行动画
         // Damping : 阻力系数,阻力系数越大,弹动的效果越不明显 0~1
         // initialSpringVelocity : 初始化速度
-        UIView.animateWithDuration(5.0, delay: 0.0, usingSpringWithDamping: 0.00001, initialSpringVelocity: 5.0, options: [], animations: { () -> Void in
+        UIView.animateWithDuration(1.5, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 5.0, options: [], animations: { () -> Void in
             self.view.layoutIfNeeded()
         }) { (_) -> Void in
-            
+            // 3.将创建根控制器改成从Main.storyboard加载
+            UIApplication.sharedApplication().keyWindow?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
         }
     }
 }
