@@ -33,6 +33,7 @@
                                 </cells>
                                 <connections>
                                     <outlet property="dataSource" destination="rGc-cb-taW" id="qeb-Rn-M63"/>
+                                    <outlet property="delegate" destination="rGc-cb-taW" id="kbb-dc-rMu"/>
                                 </connections>
                             </collectionView>
                         </subviews>
