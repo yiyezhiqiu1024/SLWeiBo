@@ -188,8 +188,8 @@ extension OAuthViewController {
             UserAccountViewModel.shareIntance.account = account
             
             // 6.退出当前控制器
-            self.dismissViewControllerAnimated(false, completion: { () -> Void in
-                UIApplication.sharedApplication().keyWindow?.rootViewController = WelcomeViewController()
+            self.dismissViewControllerAnimated(true, completion: { () -> Void in
+                 UIApplication.sharedApplication().keyWindow?.rootViewController = WelcomeViewController()
             })
 
         }

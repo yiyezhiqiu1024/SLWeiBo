@@ -140,7 +140,7 @@ class SLCollectionViewCell: UICollectionViewCell {
      */
     @objc private func startBtnClick()
     {
-        myLog("")
+        UIApplication.sharedApplication().keyWindow?.rootViewController = WelcomeViewController()
     }
     
 }

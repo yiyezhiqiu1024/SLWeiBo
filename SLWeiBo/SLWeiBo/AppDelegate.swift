@@ -13,9 +13,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    /// 默认控制器
     var defaultViewController : UIViewController? {
-        let isLogin = UserAccountViewModel.shareIntance.isLogin
-        return isLogin ? WelcomeViewController() : UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
+        
+        if UserAccountViewModel.shareIntance.isLogin
+        {
+            return isNewVersion() ? UIStoryboard(name: "Newfeature", bundle: nil).instantiateInitialViewController() : WelcomeViewController()
+        }
+        
+        return UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
+        
     }
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
@@ -28,7 +35,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = defaultViewController
         window?.makeKeyAndVisible()
         
-        myLog(isNewVersion())
         
         return true
     }
@@ -41,7 +47,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // 2.从沙盒中获取以前的软件版本号   1.0
         let userDefaults = NSUserDefaults.standardUserDefaults()
         let sanboxVersion = (userDefaults.objectForKey("CFBundleShortVersionString") as? String) ?? "0.0"
-        
         // 3.利用"当前的"和"沙盒的"进行比较
         // 如果当前的 > 沙盒的, 有新版本
         // 1.0 0.0
@@ -50,7 +55,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // 有新版本
             // 4.存储当前的软件版本号到沙盒中 1.0
             userDefaults.setObject(currentVersion, forKey: "CFBundleShortVersionString")
-            userDefaults.synchronize() // iOS7以前需要这样做, iOS7以后不需要了
             return true
         }
         
