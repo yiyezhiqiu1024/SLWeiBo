@@ -21,6 +21,9 @@ class HomeTableViewController: BaseTableViewController {
     private lazy var popoverAnimator : PopoverAnimator = PopoverAnimator { [weak self] (presented) in
         self?.titleBtn.selected = presented
     }
+    
+    /// 存放微博模型的数组
+    private lazy var statuses : [Status] = [Status]()
 
     
     // MARK: - 系统回调函数
@@ -115,8 +118,32 @@ extension HomeTableViewController {
             
             // 3.遍历微博对应的字典
             for statusDict in resultArray {
-                myLog(statusDict)
+                let status = Status(dict: statusDict)
+                self.statuses.append(status)
             }
+            
+            // 4.刷新表格
+            self.tableView.reloadData()
         }
+    }
+}
+
+
+// MARK:- tableView的数据源方法
+extension HomeTableViewController {
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return statuses.count
+    }
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        // 1.创建cell
+        let cell = tableView.dequeueReusableCellWithIdentifier("HomeCell")!
+        
+        // 2.给cell设置数据
+        let status = statuses[indexPath.row]
+        cell.textLabel?.text = status.text
+        
+        
+        return cell
     }
 }

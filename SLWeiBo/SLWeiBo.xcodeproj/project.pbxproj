@@ -52,6 +52,7 @@
 		929658ED1E75581A008D7E36 /* WelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 929658EC1E75581A008D7E36 /* WelcomeViewController.xib */; };
 		929F30C41E728DBD00E7104B /* OAuthInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929F30C31E728DBD00E7104B /* OAuthInfo.swift */; };
 		92F963F71E76A56200ABD8DA /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F963F61E76A56200ABD8DA /* Common.swift */; };
+		92F964051E76DEE000ABD8DA /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F964041E76DEE000ABD8DA /* Status.swift */; };
 		AD92AC51B3E9EA7EE3E57344 /* Pods_SLWeiBoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7315829F06E61C78B8021EE0 /* Pods_SLWeiBoUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -124,6 +125,7 @@
 		929658EC1E75581A008D7E36 /* WelcomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WelcomeViewController.xib; sourceTree = "<group>"; };
 		929F30C31E728DBD00E7104B /* OAuthInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuthInfo.swift; sourceTree = "<group>"; };
 		92F963F61E76A56200ABD8DA /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
+		92F964041E76DEE000ABD8DA /* Status.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
 		9B5B0EB0965765B8CD956DDE /* Pods-SLWeiBoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SLWeiBoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SLWeiBoTests/Pods-SLWeiBoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A21F5230D931D0372DB2FA85 /* Pods-SLWeiBo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SLWeiBo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SLWeiBo/Pods-SLWeiBo.debug.xcconfig"; sourceTree = "<group>"; };
 		C667F88693BD8BA1196719EF /* Pods_SLWeiBoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SLWeiBoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -404,6 +406,7 @@
 		9250B75E1E6DAAAC00390BBE /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				92F964041E76DEE000ABD8DA /* Status.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -849,6 +852,7 @@
 				925677EF1E73A43A00C7C227 /* UserAccountViewModel.swift in Sources */,
 				9250B7791E6DB11E00390BBE /* ComposeViewController.swift in Sources */,
 				922F890A1E6F9BB4002631BA /* OAuthViewController.swift in Sources */,
+				92F964051E76DEE000ABD8DA /* Status.swift in Sources */,
 				9250B7731E6DABB000390BBE /* MessageTableViewController.swift in Sources */,
 				928770291E727F2E00B82B73 /* NetworkTools.swift in Sources */,
 				9241AD091E6E622D008D8BD5 /* UIButton+Extension.swift in Sources */,
