@@ -189,7 +189,7 @@ extension OAuthViewController {
             
             // 6.退出当前控制器
             self.dismissViewControllerAnimated(true, completion: { () -> Void in
-                 UIApplication.sharedApplication().keyWindow?.rootViewController = WelcomeViewController()
+                 NSNotificationCenter.defaultCenter().postNotificationName(SLRootViewControllerChange, object: self, userInfo: ["message": true])
             })
 
         }

@@ -9,36 +9,40 @@
 import UIKit
 
 @UIApplicationMain
+
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-    /// 默认控制器
-    var defaultViewController : UIViewController? {
-        
-        if UserAccountViewModel.shareIntance.isLogin
-        {
-            return isNewVersion() ? UIStoryboard(name: "Newfeature", bundle: nil).instantiateInitialViewController() : WelcomeViewController()
-        }
-        
-        return UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
-        
-    }
-
+    
+    // MARK: - 系统回调函数
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         /// 设置全局外观
         UITabBar.appearance().tintColor = UIColor.orangeColor()
         UINavigationBar.appearance().tintColor = UIColor.orangeColor()
-
+        
+        // 2.注册通知, 监听根控制器的改变
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(AppDelegate.switchRootViewController(_:)), name: SLRootViewControllerChange, object: nil)
+        
+        // 3.创建keywindow
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        window?.rootViewController = defaultViewController
+        window?.rootViewController = defaultViewController()
         window?.makeKeyAndVisible()
         
         
         return true
     }
     
+    deinit
+    {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+
+}
+
+// MARK: - 自定义函数
+extension AppDelegate
+{
     /// 检查是否有新版本
     private func isNewVersion() -> Bool
     {
@@ -60,32 +64,40 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // 5.返回结果 true false
         return false
+    }
+    
+    /// 根据一个Storyboard的名称创建一个控制器
+    private func createViewController(viewControllerName: String) -> UIViewController
+    {
+        let sb = UIStoryboard(name: viewControllerName, bundle: nil)
+        return sb.instantiateInitialViewController()!
+    }
+    
+    /// 返回默认控制器
+    private func defaultViewController() -> UIViewController
+    {
         
+        if UserAccountViewModel.shareIntance.isLogin
+        {
+            return isNewVersion() ? createViewController("Newfeature") : WelcomeViewController()
+        }
+        
+        return createViewController("Main")
     }
-
-
-    func applicationWillResignActive(application: UIApplication) {
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+    
+    /// 切换根控制器器
+    @objc private func switchRootViewController(notify: NSNotification)
+    {
+        if let _ = notify.userInfo
+        {
+            // 切换到欢迎界面
+            window?.rootViewController = WelcomeViewController()
+            return
+        }
+        
+        // 切换到首页
+        window?.rootViewController = createViewController("Main")
     }
-
-    func applicationDidEnterBackground(application: UIApplication) {
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-    }
-
-    func applicationWillEnterForeground(application: UIApplication) {
-        // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-    }
-
-    func applicationDidBecomeActive(application: UIApplication) {
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    }
-
-    func applicationWillTerminate(application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-    }
-
 
 }
 

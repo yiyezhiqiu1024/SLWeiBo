@@ -36,7 +36,9 @@ class WelcomeViewController: UIViewController {
             self.view.layoutIfNeeded()
         }) { (_) -> Void in
             // 3.将创建根控制器改成从Main.storyboard加载
-            UIApplication.sharedApplication().keyWindow?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
+            // 发送通知, 通知AppDelegate切换根控制器
+            NSNotificationCenter.defaultCenter().postNotificationName(SLRootViewControllerChange, object: self, userInfo: nil)
+
         }
     }
 }

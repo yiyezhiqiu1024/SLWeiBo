@@ -140,7 +140,7 @@ class SLCollectionViewCell: UICollectionViewCell {
      */
     @objc private func startBtnClick()
     {
-        UIApplication.sharedApplication().keyWindow?.rootViewController = WelcomeViewController()
+        NSNotificationCenter.defaultCenter().postNotificationName(SLRootViewControllerChange, object: self, userInfo: nil)
     }
     
 }
