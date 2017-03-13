@@ -28,8 +28,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = defaultViewController
         window?.makeKeyAndVisible()
         
+        myLog(isNewVersion())
+        
         return true
     }
+    
+    /// 检查是否有新版本
+    private func isNewVersion() -> Bool
+    {
+        // 1.从info.plist中获取当前软件的版本号  2.0
+        let currentVersion = NSBundle.mainBundle().infoDictionary!["CFBundleShortVersionString"] as! String
+        // 2.从沙盒中获取以前的软件版本号   1.0
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        let sanboxVersion = (userDefaults.objectForKey("CFBundleShortVersionString") as? String) ?? "0.0"
+        
+        // 3.利用"当前的"和"沙盒的"进行比较
+        // 如果当前的 > 沙盒的, 有新版本
+        // 1.0 0.0
+        if currentVersion.compare(sanboxVersion) == NSComparisonResult.OrderedDescending
+        {
+            // 有新版本
+            // 4.存储当前的软件版本号到沙盒中 1.0
+            userDefaults.setObject(currentVersion, forKey: "CFBundleShortVersionString")
+            userDefaults.synchronize() // iOS7以前需要这样做, iOS7以后不需要了
+            return true
+        }
+        
+        // 5.返回结果 true false
+        return false
+        
+    }
+
 
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
