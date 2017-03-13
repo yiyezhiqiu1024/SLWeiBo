@@ -39,6 +39,9 @@ class HomeTableViewController: BaseTableViewController {
         // 2.设置导航条
         setupNavigationBar()
         
+        // 3.请求数据
+        loadStatuses()
+        
     }
     
 }
@@ -92,5 +95,28 @@ extension HomeTableViewController
         
         // 5.弹出控制器
         presentViewController(popoverVc, animated: true, completion: nil)
+    }
+}
+
+// MARK:- 请求数据
+extension HomeTableViewController {
+    private func loadStatuses() {
+        NetworkTools.shareInstance.loadStatuses { (result, error) -> () in
+            // 1.错误校验
+            if error != nil {
+                myLog(error)
+                return
+            }
+            
+            // 2.获取可选类型中的数据
+            guard let resultArray = result else {
+                return
+            }
+            
+            // 3.遍历微博对应的字典
+            for statusDict in resultArray {
+                myLog(statusDict)
+            }
+        }
     }
 }

@@ -82,3 +82,27 @@ extension NetworkTools {
         }
     }
 }
+
+// MARK:- 请求首页数据
+extension NetworkTools {
+    func loadStatuses(finished : (result : [[String : AnyObject]]?, error : NSError?) -> ()) {
+        // 1.获取请求的URLString
+        let urlString = "2/statuses/home_timeline.json"
+        
+        // 2.获取请求的参数
+        let parameters = ["access_token" : (UserAccountViewModel.shareIntance.account?.access_token)!]
+        
+        // 3.发送网络请求
+        request(.GET, urlString: urlString, parameters: parameters) { (result, error) -> () in
+            
+            // 1.获取字典的数据
+            guard let resultDict = result as? [String : AnyObject] else {
+                finished(result: nil, error: error)
+                return
+            }
+            
+            // 2.将数组数据回调给外界控制器
+            finished(result: resultDict["statuses"] as? [[String : AnyObject]], error: error)
+        }
+    }
+}
