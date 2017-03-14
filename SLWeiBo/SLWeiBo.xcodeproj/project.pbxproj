@@ -13,6 +13,7 @@
 		9217BB781E73F1C100F26475 /* NewfeatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9217BB761E73F1C100F26475 /* NewfeatureViewController.swift */; };
 		922038AB1E77895800C84FCE /* NSDate+DealWithtime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922038AA1E77895800C84FCE /* NSDate+DealWithtime.swift */; };
 		922038AD1E778A0700C84FCE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922038AC1E778A0700C84FCE /* User.swift */; };
+		922038AF1E778C6200C84FCE /* StatusViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922038AE1E778C6200C84FCE /* StatusViewModel.swift */; };
 		922E84351E72C8CC00CE80C0 /* UserAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922E84341E72C8CC00CE80C0 /* UserAccount.swift */; };
 		922F890A1E6F9BB4002631BA /* OAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922F89081E6F9BB4002631BA /* OAuthViewController.swift */; };
 		922F890B1E6F9BB4002631BA /* OAuthViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 922F89091E6F9BB4002631BA /* OAuthViewController.xib */; };
@@ -82,6 +83,7 @@
 		9217BB761E73F1C100F26475 /* NewfeatureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewfeatureViewController.swift; sourceTree = "<group>"; };
 		922038AA1E77895800C84FCE /* NSDate+DealWithtime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+DealWithtime.swift"; sourceTree = "<group>"; };
 		922038AC1E778A0700C84FCE /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		922038AE1E778C6200C84FCE /* StatusViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusViewModel.swift; sourceTree = "<group>"; };
 		922E84341E72C8CC00CE80C0 /* UserAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAccount.swift; sourceTree = "<group>"; };
 		922F89081E6F9BB4002631BA /* OAuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuthViewController.swift; sourceTree = "<group>"; };
 		922F89091E6F9BB4002631BA /* OAuthViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OAuthViewController.xib; sourceTree = "<group>"; };
@@ -412,6 +414,7 @@
 			children = (
 				92F964041E76DEE000ABD8DA /* Status.swift */,
 				922038AC1E778A0700C84FCE /* User.swift */,
+				922038AE1E778C6200C84FCE /* StatusViewModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -860,6 +863,7 @@
 				925677EF1E73A43A00C7C227 /* UserAccountViewModel.swift in Sources */,
 				9250B7791E6DB11E00390BBE /* ComposeViewController.swift in Sources */,
 				922F890A1E6F9BB4002631BA /* OAuthViewController.swift in Sources */,
+				922038AF1E778C6200C84FCE /* StatusViewModel.swift in Sources */,
 				92F964051E76DEE000ABD8DA /* Status.swift in Sources */,
 				9250B7731E6DABB000390BBE /* MessageTableViewController.swift in Sources */,
 				928770291E727F2E00B82B73 /* NetworkTools.swift in Sources */,
