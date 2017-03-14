@@ -47,6 +47,8 @@ class Status: NSObject {
     var text : String?
     /// 微博的ID
     var mid : Int = 0
+    /// 微博的用户
+    var user : User?
     
     // MARK:- 对数据处理的属性
     /// 处理过的微博来源
@@ -59,6 +61,11 @@ class Status: NSObject {
         super.init()
         
         setValuesForKeysWithDictionary(dict)
+        
+        // 将用户字典转成用户模型对象
+        if let userDict = dict["user"] as? [String : AnyObject] {
+            user = User(dict: userDict)
+        }
     }
     override func setValue(value: AnyObject?, forUndefinedKey key: String) {}
 }
