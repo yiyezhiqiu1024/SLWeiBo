@@ -85,7 +85,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="今天天气不错噢" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NPq-mm-BnO" userLabel="微博正文">
-                                            <rect key="frame" x="15" y="65" width="105" height="230"/>
+                                            <rect key="frame" x="15" y="65" width="105" height="146"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="105" id="MH8-Kg-bX5"/>
                                             </constraints>
@@ -176,6 +176,31 @@
                                                 </mask>
                                             </variation>
                                         </view>
+                                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="I6U-nM-0Cp">
+                                            <rect key="frame" x="15" y="221" width="240" height="74"/>
+                                            <color key="backgroundColor" red="1" green="0.4388735701" blue="0.21729926599999999" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="74" id="9F8-q7-kea"/>
+                                                <constraint firstAttribute="width" constant="240" id="Cdj-5p-q35"/>
+                                            </constraints>
+                                            <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="xzq-Ba-IG7">
+                                                <size key="itemSize" width="50" height="50"/>
+                                                <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                            </collectionViewFlowLayout>
+                                            <cells>
+                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="YGt-ei-49d">
+                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    </view>
+                                                </collectionViewCell>
+                                            </cells>
+                                        </collectionView>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="3UV-BV-HKT" firstAttribute="leading" secondItem="0Oy-zw-ylS" secondAttribute="leading" constant="15" id="296-O8-Hi2"/>
@@ -185,9 +210,11 @@
                                         <constraint firstItem="OH0-Li-Zs2" firstAttribute="leading" secondItem="wFi-1I-fYE" secondAttribute="leading" id="70n-4S-FpV"/>
                                         <constraint firstItem="NPq-mm-BnO" firstAttribute="top" secondItem="3UV-BV-HKT" secondAttribute="bottom" constant="15" id="ALI-e0-NRu"/>
                                         <constraint firstItem="HgQ-s4-mJC" firstAttribute="leading" secondItem="OH0-Li-Zs2" secondAttribute="trailing" constant="10" id="I3Y-j3-obH"/>
+                                        <constraint firstItem="I6U-nM-0Cp" firstAttribute="top" secondItem="NPq-mm-BnO" secondAttribute="bottom" constant="10" id="QK9-Qm-eNL"/>
                                         <constraint firstAttribute="trailing" secondItem="mlG-JS-FTq" secondAttribute="trailing" id="QSV-X7-VLN"/>
-                                        <constraint firstItem="mlG-JS-FTq" firstAttribute="top" secondItem="NPq-mm-BnO" secondAttribute="bottom" constant="10" id="XcO-ex-brl"/>
+                                        <constraint firstItem="mlG-JS-FTq" firstAttribute="top" secondItem="I6U-nM-0Cp" secondAttribute="bottom" priority="700" constant="10" id="SpD-pM-L1E"/>
                                         <constraint firstItem="vgC-wu-AQp" firstAttribute="leading" secondItem="wFi-1I-fYE" secondAttribute="trailing" constant="8" id="Xts-qq-lmN"/>
+                                        <constraint firstItem="I6U-nM-0Cp" firstAttribute="leading" secondItem="3UV-BV-HKT" secondAttribute="leading" id="YR5-Br-Qag"/>
                                         <constraint firstItem="wFi-1I-fYE" firstAttribute="top" secondItem="3UV-BV-HKT" secondAttribute="top" id="bip-mp-k7p"/>
                                         <constraint firstItem="NPq-mm-BnO" firstAttribute="top" secondItem="3UV-BV-HKT" secondAttribute="bottom" constant="15" id="e5i-dn-rqM"/>
                                         <constraint firstItem="HgQ-s4-mJC" firstAttribute="top" secondItem="OH0-Li-Zs2" secondAttribute="top" id="e60-B6-UOy"/>
@@ -210,6 +237,8 @@
                                     <outlet property="contentLabel" destination="NPq-mm-BnO" id="UUN-wg-JMW"/>
                                     <outlet property="contentLabelWCons" destination="MH8-Kg-bX5" id="HLd-nd-PRn"/>
                                     <outlet property="iconView" destination="3UV-BV-HKT" id="Jmu-pV-eLR"/>
+                                    <outlet property="picViewHCons" destination="9F8-q7-kea" id="uhw-vo-eMR"/>
+                                    <outlet property="picViewWCons" destination="Cdj-5p-q35" id="g32-Mj-dxB"/>
                                     <outlet property="screenNameLabel" destination="wFi-1I-fYE" id="ali-0E-ryZ"/>
                                     <outlet property="sourceLabel" destination="HgQ-s4-mJC" id="OUA-wt-bfj"/>
                                     <outlet property="timeLabel" destination="OH0-Li-Zs2" id="NDi-Ql-j7a"/>

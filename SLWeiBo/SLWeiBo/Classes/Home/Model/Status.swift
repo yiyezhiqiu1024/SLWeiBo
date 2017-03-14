@@ -20,6 +20,8 @@ class Status: NSObject {
     var mid : Int = 0
     /// 微博的用户
     var user : User?
+    /// 微博的配图
+    var pic_urls : [[String : String]]?
     
     
     
