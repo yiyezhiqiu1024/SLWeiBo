@@ -112,7 +112,14 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="contentLabel" destination="NPq-mm-BnO" id="UUN-wg-JMW"/>
                                     <outlet property="contentLabelWCons" destination="MH8-Kg-bX5" id="HLd-nd-PRn"/>
+                                    <outlet property="iconView" destination="3UV-BV-HKT" id="Jmu-pV-eLR"/>
+                                    <outlet property="screenNameLabel" destination="wFi-1I-fYE" id="ali-0E-ryZ"/>
+                                    <outlet property="sourceLabel" destination="HgQ-s4-mJC" id="OUA-wt-bfj"/>
+                                    <outlet property="timeLabel" destination="OH0-Li-Zs2" id="NDi-Ql-j7a"/>
+                                    <outlet property="verifiedView" destination="QKN-Wt-l3t" id="uPN-MY-BRE"/>
+                                    <outlet property="vipView" destination="vgC-wu-AQp" id="Tcp-AU-kXy"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

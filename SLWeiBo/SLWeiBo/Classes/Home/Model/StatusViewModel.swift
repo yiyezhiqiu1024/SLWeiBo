@@ -21,6 +21,8 @@ class StatusViewModel {
     var verifiedImage : UIImage?
     /// 处理过的用户会员图标
     var vipImage : UIImage?
+    // 处理过的用户头像的地址
+    var profileURL : NSURL?
     
     // MARK:- 自定义构造函数
     init(status : Status) {
@@ -59,6 +61,10 @@ class StatusViewModel {
         if mbrank > 0 && mbrank <= 6 {
             vipImage = UIImage(named: "common_icon_membership_level\(mbrank)")
         }
+        
+        // 5.用户头像的处理
+        let profileURLString = status.user?.profile_image_url ?? ""
+        profileURL = NSURL(string: profileURLString)
     }
 
 }
