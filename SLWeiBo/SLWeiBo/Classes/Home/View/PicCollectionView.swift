@@ -45,7 +45,7 @@ extension PicCollectionView : UICollectionViewDataSource {
 
 
 
-/// 配图的cell
+// MARK:- 配图的cell
 class PicCollectionViewCell : UICollectionViewCell {
     // MARK:- 定义模型属性
     var picURL : NSURL? {

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class HomeTableViewController: BaseTableViewController {
     
@@ -127,11 +128,44 @@ extension HomeTableViewController {
                 self.viewModels.append(viewModel)
             }
             
-            // 4.刷新表格
+            // 4.缓存图片
+            self.cacheImages(self.viewModels)
+        }
+    }
+    
+    /**
+     缓存图片
+     */
+    private func cacheImages(viewModels : [StatusViewModel]) {
+        // 0.创建group
+        let group = dispatch_group_create()
+        
+        // 1.缓存图片
+        for viewmodel in viewModels {
+            for picURL in viewmodel.picURLs {
+                dispatch_group_enter(group)
+              SDWebImageManager.sharedManager().loadImageWithURL(picURL, options: [], progress: nil, completed: { (_, _, _, _, _, _) in
+                SDWebImageManager.sharedManager()
+                myLog("下载了一张图片")
+                dispatch_group_leave(group)
+            })
+//                SDWebImageDownloader.sharedDownloader().downloadImageWithURL(picURL, options: [], progress: nil, completed: { (_, _, _, _) in
+//                
+//                SDWebImageDownloader.sharedDownloader()
+//                    myLog("下载了一张图片")
+//                    dispatch_group_leave(group)
+//                })
+            }
+        }
+        
+        // 2.刷新表格
+        dispatch_group_notify(group, dispatch_get_main_queue()) { () -> Void in
+            myLog("刷新表格")
             self.tableView.reloadData()
         }
     }
 }
+
 
 
 // MARK:- tableView的数据源方法
