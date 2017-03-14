@@ -13,7 +13,7 @@ private let edgeMargin : CGFloat = 15
 private let itemMargin : CGFloat = 10
 
 class HomeViewCell: UITableViewCell {
-    
+    // MARK:- 控件属性
     /// 头像
     @IBOutlet weak var iconView: UIImageView!
     
@@ -34,6 +34,9 @@ class HomeViewCell: UITableViewCell {
     
     /// 正文
     @IBOutlet weak var contentLabel: UILabel!
+    
+    /// 配图
+    @IBOutlet weak var picView: PicCollectionView!
     
     // MARK:- 约束的属性
     /// 正文的宽度约束
@@ -83,8 +86,8 @@ class HomeViewCell: UITableViewCell {
             picViewWCons.constant = picViewSize.width
             picViewHCons.constant = picViewSize.height
 
-            
-            
+            // 10.将picURL数据传递给picView
+            picView.picURLs = viewModel.picURLs
         }
     }
 
@@ -95,6 +98,11 @@ class HomeViewCell: UITableViewCell {
 
         // 设置微博正文的宽度约束
         contentLabelWCons.constant = UIScreen.mainScreen().bounds.width - 2 * edgeMargin
+        
+        // 取出picView对应的layout
+        let layout = picView.collectionViewLayout as! UICollectionViewFlowLayout
+        let imageViewWH = (UIScreen.mainScreen().bounds.width - 2 * edgeMargin - 2 * itemMargin) / 3
+        layout.itemSize = CGSize(width: imageViewWH, height: imageViewWH)
     }
     
 }

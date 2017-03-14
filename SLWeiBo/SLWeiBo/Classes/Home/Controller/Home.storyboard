@@ -176,9 +176,9 @@
                                                 </mask>
                                             </variation>
                                         </view>
-                                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="I6U-nM-0Cp">
+                                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="I6U-nM-0Cp" customClass="PicCollectionView" customModule="SLWeiBo" customModuleProvider="target">
                                             <rect key="frame" x="15" y="221" width="240" height="74"/>
-                                            <color key="backgroundColor" red="1" green="0.4388735701" blue="0.21729926599999999" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="74" id="9F8-q7-kea"/>
                                                 <constraint firstAttribute="width" constant="240" id="Cdj-5p-q35"/>
@@ -190,14 +190,28 @@
                                                 <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                             </collectionViewFlowLayout>
                                             <cells>
-                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="YGt-ei-49d">
+                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PicCell" id="YGt-ei-49d" customClass="PicCollectionViewCell" customModule="SLWeiBo" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                         <autoresizingMask key="autoresizingMask"/>
+                                                        <subviews>
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iJH-Gz-XOb">
+                                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                            </imageView>
+                                                        </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     </view>
+                                                    <constraints>
+                                                        <constraint firstItem="iJH-Gz-XOb" firstAttribute="leading" secondItem="YGt-ei-49d" secondAttribute="leading" id="0r6-Xb-t9z"/>
+                                                        <constraint firstAttribute="bottom" secondItem="iJH-Gz-XOb" secondAttribute="bottom" id="NQC-Gq-tEw"/>
+                                                        <constraint firstItem="iJH-Gz-XOb" firstAttribute="top" secondItem="YGt-ei-49d" secondAttribute="top" id="c09-tR-p62"/>
+                                                        <constraint firstAttribute="trailing" secondItem="iJH-Gz-XOb" secondAttribute="trailing" id="oAB-7D-xr1"/>
+                                                    </constraints>
+                                                    <connections>
+                                                        <outlet property="iconView" destination="iJH-Gz-XOb" id="SeL-jd-Qxh"/>
+                                                    </connections>
                                                 </collectionViewCell>
                                             </cells>
                                         </collectionView>
@@ -237,6 +251,7 @@
                                     <outlet property="contentLabel" destination="NPq-mm-BnO" id="UUN-wg-JMW"/>
                                     <outlet property="contentLabelWCons" destination="MH8-Kg-bX5" id="HLd-nd-PRn"/>
                                     <outlet property="iconView" destination="3UV-BV-HKT" id="Jmu-pV-eLR"/>
+                                    <outlet property="picView" destination="I6U-nM-0Cp" id="Bwv-EY-FK8"/>
                                     <outlet property="picViewHCons" destination="9F8-q7-kea" id="uhw-vo-eMR"/>
                                     <outlet property="picViewWCons" destination="Cdj-5p-q35" id="g32-Mj-dxB"/>
                                     <outlet property="screenNameLabel" destination="wFi-1I-fYE" id="ali-0E-ryZ"/>
