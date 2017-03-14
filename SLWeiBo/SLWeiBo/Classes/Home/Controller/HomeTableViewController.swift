@@ -146,21 +146,13 @@ extension HomeTableViewController {
                 dispatch_group_enter(group)
               SDWebImageManager.sharedManager().loadImageWithURL(picURL, options: [], progress: nil, completed: { (_, _, _, _, _, _) in
                 SDWebImageManager.sharedManager()
-                myLog("下载了一张图片")
                 dispatch_group_leave(group)
             })
-//                SDWebImageDownloader.sharedDownloader().downloadImageWithURL(picURL, options: [], progress: nil, completed: { (_, _, _, _) in
-//                
-//                SDWebImageDownloader.sharedDownloader()
-//                    myLog("下载了一张图片")
-//                    dispatch_group_leave(group)
-//                })
             }
         }
         
         // 2.刷新表格
         dispatch_group_notify(group, dispatch_get_main_queue()) { () -> Void in
-            myLog("刷新表格")
             self.tableView.reloadData()
         }
     }

@@ -22,7 +22,8 @@ class Status: NSObject {
     var user : User?
     /// 微博的配图
     var pic_urls : [[String : String]]?
-    
+    /// 微博对应的转发的微博
+    var retweeted_status : Status?
     
     
     // MARK:- 自定义构造函数
@@ -31,10 +32,16 @@ class Status: NSObject {
         
         setValuesForKeysWithDictionary(dict)
         
-        // 将用户字典转成用户模型对象
+        // 1.将用户字典转成用户模型对象
         if let userDict = dict["user"] as? [String : AnyObject] {
             user = User(dict: userDict)
         }
+        
+        // 2.将转发微博字典转成转发微博模型对象
+        if let retweetedStatusDict = dict["retweeted_status"] as? [String : AnyObject] {
+            retweeted_status = Status(dict: retweetedStatusDict)
+        }
+
     }
     override func setValue(value: AnyObject?, forUndefinedKey key: String) {}
 }
