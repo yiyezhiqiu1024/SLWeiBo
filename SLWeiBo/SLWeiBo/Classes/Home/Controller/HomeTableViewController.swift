@@ -45,7 +45,9 @@ class HomeTableViewController: BaseTableViewController {
         // 3.请求数据
         loadStatuses()
         
-        tableView.rowHeight = 300
+        // 4.设置预估高度值
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 200
         
     }
     
