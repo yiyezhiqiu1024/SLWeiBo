@@ -16,32 +16,26 @@ class HomeViewCell: UITableViewCell {
     // MARK:- 控件属性
     /// 头像
     @IBOutlet weak var iconView: UIImageView!
-    
     /// 认证图标
     @IBOutlet weak var verifiedView: UIImageView!
-    
     /// 昵称
     @IBOutlet weak var screenNameLabel: UILabel!
-    
     /// 会员图标
     @IBOutlet weak var vipView: UIImageView!
-    
     /// 时间
     @IBOutlet weak var timeLabel: UILabel!
-    
     /// 来源
     @IBOutlet weak var sourceLabel: UILabel!
-    
     /// 正文
     @IBOutlet weak var contentLabel: UILabel!
     /// 转发微博的正文
     @IBOutlet weak var retweetedContentLabel: UILabel!
-    
     /// 配图
     @IBOutlet weak var picView: PicCollectionView!
-    
     /// 转发微博的背景
     @IBOutlet weak var retweetedBgView: UIView!
+    /// 底部工具条
+    @IBOutlet weak var bottomToolView: UIView!
     
     // MARK:- 约束的属性
     /// 正文的宽度约束
@@ -119,6 +113,15 @@ class HomeViewCell: UITableViewCell {
                 
                 // 3.设置背景显示
                 retweetedBgView.hidden = true
+            }
+            
+            // 12.计算cell的高度
+            if viewModel.cellHeight == 0 {
+                // 12.1.强制布局
+                layoutIfNeeded()
+                
+                // 12.2.获取底部工具栏的最大Y值
+                viewModel.cellHeight = CGRectGetMaxY(bottomToolView.frame)
             }
         }
     }

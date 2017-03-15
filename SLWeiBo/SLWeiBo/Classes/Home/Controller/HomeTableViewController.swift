@@ -47,7 +47,6 @@ class HomeTableViewController: BaseTableViewController {
         loadStatuses()
         
         // 4.设置预估高度值
-        tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 200
         
     }
@@ -175,5 +174,12 @@ extension HomeTableViewController {
         cell.viewModel = viewModels[indexPath.row]
                 
         return cell
+    }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        // 1.获取模型对象
+        let viewModel = viewModels[indexPath.row]
+        
+        return viewModel.cellHeight
     }
 }

@@ -12,6 +12,9 @@ class StatusViewModel {
     // MARK:- 定义属性
     var status : Status?
     
+    /// cell的高度
+    var cellHeight : CGFloat = 0
+    
     // MARK:- 对数据处理的属性
     /// 处理过的微博来源
     var sourceText : String?

@@ -94,7 +94,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mlG-JS-FTq" userLabel="底部工具条">
-                                            <rect key="frame" x="0.0" y="305" width="600" height="40"/>
+                                            <rect key="frame" x="0.0" y="223" width="600" height="40"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t4c-ii-3r3">
                                                     <rect key="frame" x="0.0" y="1" width="200" height="32"/>
@@ -177,11 +177,11 @@
                                             </variation>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aJK-G1-7Xc" userLabel="转发的背景">
-                                            <rect key="frame" x="0.0" y="91" width="600" height="214"/>
+                                            <rect key="frame" x="0.0" y="91" width="600" height="132"/>
                                             <color key="backgroundColor" red="0.97254901959999995" green="0.97254901959999995" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
                                         </view>
                                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="I6U-nM-0Cp" customClass="PicCollectionView" customModule="SLWeiBo" customModuleProvider="target">
-                                            <rect key="frame" x="15" y="221" width="240" height="74"/>
+                                            <rect key="frame" x="15" y="139" width="240" height="74"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="74" id="9F8-q7-kea"/>
@@ -219,8 +219,8 @@
                                                 </collectionViewCell>
                                             </cells>
                                         </collectionView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="今天天气确实不错" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uiI-J3-AlG" userLabel="转发微博正文">
-                                            <rect key="frame" x="15" y="93" width="105" height="118"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="今天天气确实不错" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uiI-J3-AlG" userLabel="转发微博正文">
+                                            <rect key="frame" x="15" y="93" width="105" height="36"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -261,10 +261,12 @@
                                         <mask key="constraints">
                                             <exclude reference="e5i-dn-rqM"/>
                                             <exclude reference="mh0-S9-EZF"/>
+                                            <exclude reference="sF2-kd-rhJ"/>
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="bottomToolView" destination="mlG-JS-FTq" id="R94-yq-58X"/>
                                     <outlet property="contentLabel" destination="NPq-mm-BnO" id="UUN-wg-JMW"/>
                                     <outlet property="contentLabelWCons" destination="MH8-Kg-bX5" id="HLd-nd-PRn"/>
                                     <outlet property="iconView" destination="3UV-BV-HKT" id="Jmu-pV-eLR"/>
