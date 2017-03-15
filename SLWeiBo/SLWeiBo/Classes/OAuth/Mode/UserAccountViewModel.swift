@@ -14,6 +14,7 @@ class UserAccountViewModel {
     static let shareIntance : UserAccountViewModel = UserAccountViewModel()
     
     // MARK:- 定义属性
+    /// 账户
     var account : UserAccount?
     
     // MARK:- 计算属性

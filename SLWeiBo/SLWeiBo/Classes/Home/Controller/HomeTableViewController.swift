@@ -74,7 +74,9 @@ extension HomeTableViewController
         navigationItem.leftBarButtonItem = UIBarButtonItem(imageName: "navigationbar_friendattention", target: self, action: #selector(HomeTableViewController.leftBtnClick))
         navigationItem.rightBarButtonItem = UIBarButtonItem(imageName: "navigationbar_pop", target: self, action: #selector(HomeTableViewController.rightBtnClick))
         // 2.添加标题按钮
-        titleBtn.setTitle("CoderSLZeng", forState: .Normal)
+        // 获取用户名称
+        let title = UserAccountViewModel.shareIntance.account?.screen_name ?? "CoderSLZeng"
+        titleBtn.setTitle(title + " ", forState: .Normal)
         titleBtn.addTarget(self, action: #selector(HomeTableViewController.titleBtnClick(_:)), forControlEvents: .TouchUpInside)
         navigationItem.titleView = titleBtn
     }
