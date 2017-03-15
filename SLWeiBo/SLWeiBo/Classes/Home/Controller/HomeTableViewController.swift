@@ -8,6 +8,7 @@
 
 import UIKit
 import SDWebImage
+import MJRefresh
 
 class HomeTableViewController: BaseTableViewController {
     
@@ -43,11 +44,11 @@ class HomeTableViewController: BaseTableViewController {
         // 2.设置导航条
         setupNavigationBar()
         
-        // 3.请求数据
-        loadStatuses()
-        
-        // 4.设置预估高度值
+        // 3.设置预估高度值
         tableView.estimatedRowHeight = 200
+        
+        // 4.布局头部刷新空间
+        setupRefreshHeaderView()
         
     }
     
@@ -59,7 +60,7 @@ extension HomeTableViewController
     /**
      设置导航条
      */
-    func setupNavigationBar()
+    private func setupNavigationBar()
     {
         // 1.添加左右按钮
         navigationItem.leftBarButtonItem = UIBarButtonItem(imageName: "navigationbar_friendattention", target: self, action: #selector(HomeTableViewController.leftBtnClick))
@@ -68,6 +69,25 @@ extension HomeTableViewController
         titleBtn.setTitle("CoderSLZeng", forState: .Normal)
         titleBtn.addTarget(self, action: #selector(HomeTableViewController.titleBtnClick(_:)), forControlEvents: .TouchUpInside)
         navigationItem.titleView = titleBtn
+    }
+    
+    /**
+     布局刷新空间
+     */
+    private func setupRefreshHeaderView() {
+        // 1.创建headerView
+        let refreshHeader = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: #selector(HomeTableViewController.loadNewStatuses))
+        
+        // 2.设置header的属性
+        refreshHeader.setTitle("下拉刷新", forState: .Idle)
+        refreshHeader.setTitle("释放更新", forState: .Pulling)
+        refreshHeader.setTitle("加载中...", forState: .Refreshing)
+        
+        // 3.设置tableView的header
+        tableView.mj_header = refreshHeader
+        
+        // 4.进入刷新状态
+        tableView.mj_header.beginRefreshing()
     }
 }
 
@@ -103,13 +123,27 @@ extension HomeTableViewController
         // 5.弹出控制器
         presentViewController(popoverVc, animated: true, completion: nil)
     }
+    
+    /// 加载最新的数据
+    @objc private func loadNewStatuses() {
+        loadStatuses(true)
+    }
+    
 }
 
 // MARK:- 请求数据
 extension HomeTableViewController {
+    
     /// 加载微博数据
-    private func loadStatuses() {
-        NetworkTools.shareInstance.loadStatuses { (result, error) -> () in
+    private func loadStatuses(isNewData : Bool) {
+        
+        // 1.获取since_id
+        var since_id = 0
+        if isNewData {
+            since_id = viewModels.first?.status?.mid ?? 0
+        }
+        
+        NetworkTools.shareInstance.loadStatuses(since_id) { (result, error) -> () in
             // 1.错误校验
             if error != nil {
                 myLog(error)
@@ -122,14 +156,19 @@ extension HomeTableViewController {
             }
             
             // 3.遍历微博对应的字典
+            var tempViewModel = [StatusViewModel]()
             for statusDict in resultArray {
                 let status = Status(dict: statusDict)
                 let viewModel = StatusViewModel(status: status)
-                self.viewModels.append(viewModel)
+                
+                tempViewModel.append(viewModel)
             }
             
-            // 4.缓存图片
-            self.cacheImages(self.viewModels)
+            // 4.将数据放入到成员变量的数组中
+            self.viewModels = tempViewModel + self.viewModels
+            
+            // 5.缓存图片
+            self.cacheImages(tempViewModel)
         }
     }
     
@@ -154,6 +193,8 @@ extension HomeTableViewController {
         // 2.刷新表格
         dispatch_group_notify(group, dispatch_get_main_queue()) { () -> Void in
             self.tableView.reloadData()
+            
+            self.tableView.mj_header.endRefreshing()
         }
     }
 }

@@ -85,12 +85,12 @@ extension NetworkTools {
 
 // MARK:- 请求首页数据
 extension NetworkTools {
-    func loadStatuses(finished : (result : [[String : AnyObject]]?, error : NSError?) -> ()) {
+    func loadStatuses(since_id : Int, finished : (result : [[String : AnyObject]]?, error : NSError?) -> ()) {
         // 1.获取请求的URLString
         let urlString = "2/statuses/home_timeline.json"
         
         // 2.获取请求的参数
-        let parameters = ["access_token" : (UserAccountViewModel.shareIntance.account?.access_token)!]
+        let parameters = ["access_token" : (UserAccountViewModel.shareIntance.account?.access_token)!, "since_id" : "\(since_id)"]
         
         // 3.发送网络请求
         request(.GET, urlString: urlString, parameters: parameters) { (result, error) -> () in
