@@ -50,6 +50,10 @@ class HomeViewCell: UITableViewCell {
     @IBOutlet weak var picViewWCons: NSLayoutConstraint!
     /// 配图的高度约束
     @IBOutlet weak var picViewHCons: NSLayoutConstraint!
+    /// 配图底部约束
+    @IBOutlet weak var picViewBottomCons: NSLayoutConstraint!
+    /// 转发微博正文顶部约束
+    @IBOutlet weak var retweetedContentLabelTopCons: NSLayoutConstraint!
     
     // MARK:- 自定义属性
     var viewModel : StatusViewModel? {
@@ -99,15 +103,21 @@ class HomeViewCell: UITableViewCell {
                 // 1.设置转发微博的正文
                 if let screenName = viewModel.status?.retweeted_status?.user?.screen_name, retweetedText = viewModel.status?.retweeted_status?.text {
                     retweetedContentLabel.text = "@" + "\(screenName) :" + retweetedText
+                    
+                    // 2.设置转发正文距离顶部的约束
+                    retweetedContentLabelTopCons.constant = 15
                 }
                 
-                // 2.设置背景显示
+                // 3.设置背景显示
                 retweetedBgView.hidden = false
             } else {
                 // 1.设置转发微博的正文
                 retweetedContentLabel.text = nil
                 
-                // 2.设置背景显示
+                // 2.设置转发正文距离顶部的约束
+                retweetedContentLabelTopCons.constant = 0
+                
+                // 3.设置背景显示
                 retweetedBgView.hidden = true
             }
         }
@@ -129,8 +139,12 @@ extension HomeViewCell {
     private func calculatePicViewSize(count : Int) -> CGSize {
         // 1.没有配图
         if count == 0 {
+            picViewBottomCons.constant = 0
             return CGSizeZero
         }
+        
+        // 有配图需要改约束有值
+        picViewBottomCons.constant = 10
         
         // 2.取出picView对应的layout
         let layout = picView.collectionViewLayout as! UICollectionViewFlowLayout

@@ -220,7 +220,7 @@
                                             </cells>
                                         </collectionView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="今天天气确实不错" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uiI-J3-AlG" userLabel="转发微博正文">
-                                            <rect key="frame" x="15" y="93" width="105" height="124"/>
+                                            <rect key="frame" x="15" y="93" width="105" height="118"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -233,7 +233,7 @@
                                         <constraint firstItem="NPq-mm-BnO" firstAttribute="leading" secondItem="3UV-BV-HKT" secondAttribute="leading" id="5GY-sJ-G7L"/>
                                         <constraint firstItem="OH0-Li-Zs2" firstAttribute="leading" secondItem="wFi-1I-fYE" secondAttribute="leading" id="70n-4S-FpV"/>
                                         <constraint firstItem="NPq-mm-BnO" firstAttribute="top" secondItem="3UV-BV-HKT" secondAttribute="bottom" constant="15" id="ALI-e0-NRu"/>
-                                        <constraint firstItem="I6U-nM-0Cp" firstAttribute="top" secondItem="uiI-J3-AlG" secondAttribute="bottom" constant="4" id="B6J-iK-yWQ"/>
+                                        <constraint firstItem="I6U-nM-0Cp" firstAttribute="top" secondItem="uiI-J3-AlG" secondAttribute="bottom" constant="10" id="B6J-iK-yWQ"/>
                                         <constraint firstItem="aJK-G1-7Xc" firstAttribute="top" secondItem="NPq-mm-BnO" secondAttribute="bottom" constant="8" id="D9l-Ah-62q"/>
                                         <constraint firstItem="HgQ-s4-mJC" firstAttribute="leading" secondItem="OH0-Li-Zs2" secondAttribute="trailing" constant="10" id="I3Y-j3-obH"/>
                                         <constraint firstItem="uiI-J3-AlG" firstAttribute="top" secondItem="NPq-mm-BnO" secondAttribute="bottom" constant="10" id="Ks3-fs-oWh"/>
@@ -269,10 +269,12 @@
                                     <outlet property="contentLabelWCons" destination="MH8-Kg-bX5" id="HLd-nd-PRn"/>
                                     <outlet property="iconView" destination="3UV-BV-HKT" id="Jmu-pV-eLR"/>
                                     <outlet property="picView" destination="I6U-nM-0Cp" id="Bwv-EY-FK8"/>
+                                    <outlet property="picViewBottomCons" destination="SpD-pM-L1E" id="DwP-6F-BKX"/>
                                     <outlet property="picViewHCons" destination="9F8-q7-kea" id="uhw-vo-eMR"/>
                                     <outlet property="picViewWCons" destination="Cdj-5p-q35" id="g32-Mj-dxB"/>
                                     <outlet property="retweetedBgView" destination="aJK-G1-7Xc" id="SFN-a9-PJV"/>
                                     <outlet property="retweetedContentLabel" destination="uiI-J3-AlG" id="5jC-e8-4sd"/>
+                                    <outlet property="retweetedContentLabelTopCons" destination="Ks3-fs-oWh" id="ylO-NH-LP7"/>
                                     <outlet property="screenNameLabel" destination="wFi-1I-fYE" id="ali-0E-ryZ"/>
                                     <outlet property="sourceLabel" destination="HgQ-s4-mJC" id="OUA-wt-bfj"/>
                                     <outlet property="timeLabel" destination="OH0-Li-Zs2" id="NDi-Ql-j7a"/>
