@@ -69,7 +69,9 @@ class StatusViewModel {
         profileURL = NSURL(string: profileURLString)
         
         // 6.处理配图数据
-        if let picURLDicts = status.pic_urls {
+        // 6.1判断获取微博或转发配图
+        let picURLDicts = status.pic_urls!.count != 0 ? status.pic_urls : status.retweeted_status?.pic_urls
+        if let picURLDicts = picURLDicts {
             for picURLDict in picURLDicts {
                 guard let picURLString = picURLDict["thumbnail_pic"] else {
                     continue
