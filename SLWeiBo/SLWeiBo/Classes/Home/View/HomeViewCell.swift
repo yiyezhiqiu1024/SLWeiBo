@@ -75,12 +75,12 @@ class HomeViewCell: UITableViewCell {
             timeLabel.text = viewModel.createAtText
             
             // 7.设置来源
-            guard let source = viewModel.sourceText else
-            {
-                return
+            if let sourceText = viewModel.sourceText {
+                sourceLabel.text = "来自 " + sourceText
+            } else {
+                sourceLabel.text = nil
             }
-            sourceLabel.text = "来自" + source
-            
+                        
             // 8.设置正文
             contentLabel.text = viewModel.status?.text
             

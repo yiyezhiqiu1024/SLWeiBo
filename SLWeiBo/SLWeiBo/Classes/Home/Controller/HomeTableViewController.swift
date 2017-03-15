@@ -47,9 +47,11 @@ class HomeTableViewController: BaseTableViewController {
         // 3.设置预估高度值
         tableView.estimatedRowHeight = 200
         
-        // 4.布局头部刷新空间
+        // 4.设置头部刷新控件
         setupRefreshHeaderView()
         
+        // 5.设置底部刷新控件
+        setupRefreshFooterView()
     }
     
 }
@@ -72,7 +74,7 @@ extension HomeTableViewController
     }
     
     /**
-     布局刷新空间
+     设置头部刷新控件
      */
     private func setupRefreshHeaderView() {
         // 1.创建headerView
@@ -88,6 +90,13 @@ extension HomeTableViewController
         
         // 4.进入刷新状态
         tableView.mj_header.beginRefreshing()
+    }
+    
+    /**
+     设置底部刷新控件
+     */
+    private func setupRefreshFooterView() {
+         tableView.mj_footer = MJRefreshAutoFooter(refreshingTarget: self, refreshingAction: #selector(HomeTableViewController.loadMoreStatuses))
     }
 }
 
@@ -129,6 +138,11 @@ extension HomeTableViewController
         loadStatuses(true)
     }
     
+    /// 加载更多的数据
+    @objc private func loadMoreStatuses() {
+        loadStatuses(false)
+    }
+    
 }
 
 // MARK:- 请求数据
@@ -137,13 +151,18 @@ extension HomeTableViewController {
     /// 加载微博数据
     private func loadStatuses(isNewData : Bool) {
         
-        // 1.获取since_id
+        // 1.获取since_id/max_id
         var since_id = 0
+        var max_id = 0
         if isNewData {
             since_id = viewModels.first?.status?.mid ?? 0
+        } else {
+            max_id = viewModels.last?.status?.mid ?? 0
+            max_id = max_id == 0 ? 0 : (max_id - 1)
         }
         
-        NetworkTools.shareInstance.loadStatuses(since_id) { (result, error) -> () in
+        // 2.请求数据
+        NetworkTools.shareInstance.loadStatuses(since_id, max_id: max_id) { (result, error) -> () in
             // 1.错误校验
             if error != nil {
                 myLog(error)
@@ -165,7 +184,11 @@ extension HomeTableViewController {
             }
             
             // 4.将数据放入到成员变量的数组中
-            self.viewModels = tempViewModel + self.viewModels
+            if isNewData {
+                self.viewModels = tempViewModel + self.viewModels
+            } else {
+                self.viewModels += tempViewModel
+            }
             
             // 5.缓存图片
             self.cacheImages(tempViewModel)
@@ -183,10 +206,9 @@ extension HomeTableViewController {
         for viewmodel in viewModels {
             for picURL in viewmodel.picURLs {
                 dispatch_group_enter(group)
-              SDWebImageManager.sharedManager().loadImageWithURL(picURL, options: [], progress: nil, completed: { (_, _, _, _, _, _) in
-                SDWebImageManager.sharedManager()
-                dispatch_group_leave(group)
-            })
+                SDWebImageManager.sharedManager().loadImageWithURL(picURL, options: [], progress: nil, completed: { (_, _, _, _, _, _) in
+                    dispatch_group_leave(group)
+                })
             }
         }
         
@@ -195,6 +217,7 @@ extension HomeTableViewController {
             self.tableView.reloadData()
             
             self.tableView.mj_header.endRefreshing()
+            self.tableView.mj_footer.endRefreshing()
         }
     }
 }
