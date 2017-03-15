@@ -40,6 +40,9 @@ class HomeViewCell: UITableViewCell {
     /// 配图
     @IBOutlet weak var picView: PicCollectionView!
     
+    /// 转发微博的背景
+    @IBOutlet weak var retweetedBgView: UIView!
+    
     // MARK:- 约束的属性
     /// 正文的宽度约束
     @IBOutlet weak var contentLabelWCons: NSLayoutConstraint!
@@ -93,11 +96,19 @@ class HomeViewCell: UITableViewCell {
             
             // 11.设置转发微博的正文
             if viewModel.status?.retweeted_status != nil {
+                // 1.设置转发微博的正文
                 if let screenName = viewModel.status?.retweeted_status?.user?.screen_name, retweetedText = viewModel.status?.retweeted_status?.text {
                     retweetedContentLabel.text = "@" + "\(screenName) :" + retweetedText
                 }
+                
+                // 2.设置背景显示
+                retweetedBgView.hidden = false
             } else {
+                // 1.设置转发微博的正文
                 retweetedContentLabel.text = nil
+                
+                // 2.设置背景显示
+                retweetedBgView.hidden = true
             }
         }
     }

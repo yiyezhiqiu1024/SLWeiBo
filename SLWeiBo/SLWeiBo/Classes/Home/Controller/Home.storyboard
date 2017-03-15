@@ -93,7 +93,7 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mlG-JS-FTq" userLabel="工具条">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mlG-JS-FTq" userLabel="底部工具条">
                                             <rect key="frame" x="0.0" y="305" width="600" height="40"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t4c-ii-3r3">
@@ -176,6 +176,10 @@
                                                 </mask>
                                             </variation>
                                         </view>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aJK-G1-7Xc" userLabel="转发的背景">
+                                            <rect key="frame" x="0.0" y="91" width="600" height="214"/>
+                                            <color key="backgroundColor" red="0.97254901959999995" green="0.97254901959999995" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
+                                        </view>
                                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="I6U-nM-0Cp" customClass="PicCollectionView" customModule="SLWeiBo" customModuleProvider="target">
                                             <rect key="frame" x="15" y="221" width="240" height="74"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -230,8 +234,11 @@
                                         <constraint firstItem="OH0-Li-Zs2" firstAttribute="leading" secondItem="wFi-1I-fYE" secondAttribute="leading" id="70n-4S-FpV"/>
                                         <constraint firstItem="NPq-mm-BnO" firstAttribute="top" secondItem="3UV-BV-HKT" secondAttribute="bottom" constant="15" id="ALI-e0-NRu"/>
                                         <constraint firstItem="I6U-nM-0Cp" firstAttribute="top" secondItem="uiI-J3-AlG" secondAttribute="bottom" constant="4" id="B6J-iK-yWQ"/>
+                                        <constraint firstItem="aJK-G1-7Xc" firstAttribute="top" secondItem="NPq-mm-BnO" secondAttribute="bottom" constant="8" id="D9l-Ah-62q"/>
                                         <constraint firstItem="HgQ-s4-mJC" firstAttribute="leading" secondItem="OH0-Li-Zs2" secondAttribute="trailing" constant="10" id="I3Y-j3-obH"/>
                                         <constraint firstItem="uiI-J3-AlG" firstAttribute="top" secondItem="NPq-mm-BnO" secondAttribute="bottom" constant="10" id="Ks3-fs-oWh"/>
+                                        <constraint firstItem="mlG-JS-FTq" firstAttribute="top" secondItem="aJK-G1-7Xc" secondAttribute="bottom" id="Liz-0h-cFs"/>
+                                        <constraint firstAttribute="trailing" secondItem="aJK-G1-7Xc" secondAttribute="trailing" id="Mvf-Ni-79Q"/>
                                         <constraint firstAttribute="trailing" secondItem="mlG-JS-FTq" secondAttribute="trailing" id="QSV-X7-VLN"/>
                                         <constraint firstItem="mlG-JS-FTq" firstAttribute="top" secondItem="I6U-nM-0Cp" secondAttribute="bottom" priority="700" constant="10" id="SpD-pM-L1E"/>
                                         <constraint firstItem="vgC-wu-AQp" firstAttribute="leading" secondItem="wFi-1I-fYE" secondAttribute="trailing" constant="8" id="Xts-qq-lmN"/>
@@ -244,6 +251,7 @@
                                         <constraint firstItem="NPq-mm-BnO" firstAttribute="top" secondItem="HgQ-s4-mJC" secondAttribute="bottom" constant="15" id="mh0-S9-EZF"/>
                                         <constraint firstItem="3UV-BV-HKT" firstAttribute="top" secondItem="0Oy-zw-ylS" secondAttribute="top" constant="10" id="oMW-oF-AxX"/>
                                         <constraint firstItem="OH0-Li-Zs2" firstAttribute="bottom" secondItem="3UV-BV-HKT" secondAttribute="bottom" id="q9c-EC-idY"/>
+                                        <constraint firstItem="aJK-G1-7Xc" firstAttribute="leading" secondItem="0Oy-zw-ylS" secondAttribute="leading" id="rZU-mL-zfR"/>
                                         <constraint firstItem="QKN-Wt-l3t" firstAttribute="trailing" secondItem="3UV-BV-HKT" secondAttribute="trailing" id="s7N-fl-D3Q"/>
                                         <constraint firstAttribute="bottom" secondItem="mlG-JS-FTq" secondAttribute="bottom" id="sF2-kd-rhJ"/>
                                         <constraint firstItem="wFi-1I-fYE" firstAttribute="leading" secondItem="3UV-BV-HKT" secondAttribute="trailing" constant="15" id="u5S-F5-jHw"/>
@@ -263,6 +271,7 @@
                                     <outlet property="picView" destination="I6U-nM-0Cp" id="Bwv-EY-FK8"/>
                                     <outlet property="picViewHCons" destination="9F8-q7-kea" id="uhw-vo-eMR"/>
                                     <outlet property="picViewWCons" destination="Cdj-5p-q35" id="g32-Mj-dxB"/>
+                                    <outlet property="retweetedBgView" destination="aJK-G1-7Xc" id="SFN-a9-PJV"/>
                                     <outlet property="retweetedContentLabel" destination="uiI-J3-AlG" id="5jC-e8-4sd"/>
                                     <outlet property="screenNameLabel" destination="wFi-1I-fYE" id="ali-0E-ryZ"/>
                                     <outlet property="sourceLabel" destination="HgQ-s4-mJC" id="OUA-wt-bfj"/>

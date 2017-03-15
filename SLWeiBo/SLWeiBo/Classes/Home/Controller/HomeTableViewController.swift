@@ -108,6 +108,7 @@ extension HomeTableViewController
 
 // MARK:- 请求数据
 extension HomeTableViewController {
+    /// 加载微博数据
     private func loadStatuses() {
         NetworkTools.shareInstance.loadStatuses { (result, error) -> () in
             // 1.错误校验
