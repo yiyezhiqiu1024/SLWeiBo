@@ -70,6 +70,9 @@ extension ComposeViewController {
         
         // 监听添加照片的按钮的点击
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ComposeViewController.addPhotoClick), name: PicPickerAddPhotoNote, object: nil)
+        
+        // 监听删除照片的按钮的点击
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ComposeViewController.removePhotoClick(_:)), name: PicPickerRemovePhotoNote, object: nil)
     }
     
 }
@@ -133,6 +136,24 @@ extension ComposeViewController {
         
         // 弹出选择照片的控制器
         presentViewController(ipc, animated: true, completion: nil)
+    }
+    
+    @objc private func removePhotoClick(note : NSNotification) {
+        // 1.获取image对象
+        guard let image = note.object as? UIImage else {
+            return
+        }
+        
+        // 2.获取image对象所在下标值
+        guard let index = images.indexOf(image) else {
+            return
+        }
+        
+        // 3.将图片从数组删除
+        images.removeAtIndex(index)
+        
+        // 4.重写赋值collectionView新的数组
+        picPickerView.images = images
     }
 }
 
