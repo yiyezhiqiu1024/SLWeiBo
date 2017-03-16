@@ -17,6 +17,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="132" height="132"/>
                         <state key="normal" backgroundImage="compose_pic_add"/>
                         <state key="highlighted" backgroundImage="compose_pic_add_highlighted"/>
+                        <connections>
+                            <action selector="addPhotoClick" destination="gTV-IL-0wX" eventType="touchUpInside" id="QcU-9h-t8H"/>
+                        </connections>
                     </button>
                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x2p-bq-Goy">
                         <rect key="frame" x="108" y="0.0" width="24" height="24"/>

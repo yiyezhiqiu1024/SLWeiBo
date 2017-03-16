@@ -30,8 +30,7 @@ class ComposeViewController: UIViewController {
         setupNavigationBar()
         
         // 监听通知
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ComposeViewController.keyboardWillChangeFrame(_:)), name: UIKeyboardWillChangeFrameNotification, object: nil)
-    
+        setupNotifications()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -58,6 +57,15 @@ extension ComposeViewController {
         titleView.frame = CGRect(x: 0, y: 0, width: 100, height: 40)
         navigationItem.titleView = titleView
     }
+    
+    private func setupNotifications() {
+        // 监听键盘的弹出
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ComposeViewController.keyboardWillChangeFrame(_:)), name: UIKeyboardWillChangeFrameNotification, object: nil)
+        
+        // 监听添加照片的按钮的点击
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ComposeViewController.addPhotoClick), name: PicPickerAddPhotoNote, object: nil)
+    }
+    
 }
 
 
@@ -98,6 +106,39 @@ extension ComposeViewController {
         UIView.animateWithDuration(0.5) { () -> Void in
             self.view.layoutIfNeeded()
         }
+    }
+    
+    
+    // MARK:- 添加照片和删除照片的事件
+    @objc private func addPhotoClick() {
+        // 1.判断数据源是否可用
+        if !UIImagePickerController.isSourceTypeAvailable(.PhotoLibrary) {
+            return
+        }
+        
+        // 2.创建照片选择控制器
+        let ipc = UIImagePickerController()
+        
+        // 3.设置照片源
+        ipc.sourceType = .PhotoLibrary
+        
+        // 4.设置代理
+        ipc.delegate = self
+        
+        // 弹出选择照片的控制器
+        presentViewController(ipc, animated: true, completion: nil)
+    }
+}
+
+// MARK:- UIImagePickerController的代理方法
+extension ComposeViewController : UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        // 1.获取选中的照片
+        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+        
+        // 2.展示照片
+        myLog(image)
+        
     }
 }
 

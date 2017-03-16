@@ -10,9 +10,9 @@ import UIKit
 
 class PicPickerViewCell: UICollectionViewCell {
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    // MARK:- 事件监听
+    @IBAction func addPhotoClick() {
+        NSNotificationCenter.defaultCenter().postNotificationName(PicPickerAddPhotoNote, object: nil)
     }
 
 }
