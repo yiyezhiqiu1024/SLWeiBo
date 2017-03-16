@@ -23,7 +23,10 @@ class PicPickerCollectionView: UICollectionView {
         layout.minimumLineSpacing = edgeMargin
         
         // 设置collectionView的属性
-        registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: picPickerCell)
+        let nib = UINib(nibName: "\(PicPickerViewCell.self)", bundle: nil
+        )
+        registerNib(nib, forCellWithReuseIdentifier: picPickerCell)
+        
         dataSource = self
         
         // 设置collectionView的内边距
