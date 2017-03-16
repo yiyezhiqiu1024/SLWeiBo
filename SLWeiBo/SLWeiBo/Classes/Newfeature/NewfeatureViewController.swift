@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class NewfeatureViewController: UIViewController {
     // MARK: - 自定义属性
@@ -116,22 +117,16 @@ class SLCollectionViewCell: UICollectionViewCell {
         // 添加子控件
         contentView.addSubview(iconView)
         contentView.addSubview(startButton)
-    }
-    
-    // MARK: - 布局子控件
-    override func layoutSubviews() {
-        super.layoutSubviews()
         
         // 背景大图容器位置
-        iconView.translatesAutoresizingMaskIntoConstraints = false
-        
-        var cons = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[iconView]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["iconView": iconView])
-        cons += NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[iconView]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["iconView": iconView])
-        contentView.addConstraints(cons)
-        
+        iconView.snp_makeConstraints { (make) -> Void in
+            make.edges.equalTo(0)
+        }
         // 进入微博按钮位置
-        startButton.center.x = UIScreen.mainScreen().bounds.width * 0.5
-        startButton.frame.origin.y = UIScreen.mainScreen().bounds.height - 200
+        startButton.snp_makeConstraints { (make) -> Void in
+            make.centerX.equalTo(contentView)
+            make.bottom.equalTo(contentView.snp_bottom).offset(-160)
+        }
     }
     
     // MARK: - 处理事件监听
