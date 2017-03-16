@@ -17,7 +17,10 @@ class ComposeViewController: UIViewController {
     private lazy var titleView : ComposeTitleView = ComposeTitleView()
     
     // MARK:- 约束的属性
+    /// 工具条底部约束
     @IBOutlet weak var toolBarBottomCons: NSLayoutConstraint!
+    /// 选择图片视图高度约束
+    @IBOutlet weak var picPickerViewHCons: NSLayoutConstraint!
     
     // MARK:- 系统回调函数
     override func viewDidLoad() {
@@ -82,6 +85,17 @@ extension ComposeViewController {
         // 4.执行动画
         toolBarBottomCons.constant = margin
         UIView.animateWithDuration(duration) { () -> Void in
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    @IBAction func picPickerBtnClick() {
+        // 退出键盘
+        textView.resignFirstResponder()
+        
+        // 执行动画
+        picPickerViewHCons.constant = UIScreen.mainScreen().bounds.height * 0.65
+        UIView.animateWithDuration(0.5) { () -> Void in
             self.view.layoutIfNeeded()
         }
     }

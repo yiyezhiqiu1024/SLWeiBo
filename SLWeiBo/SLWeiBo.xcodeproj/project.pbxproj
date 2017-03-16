@@ -18,6 +18,7 @@
 		922E84351E72C8CC00CE80C0 /* UserAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922E84341E72C8CC00CE80C0 /* UserAccount.swift */; };
 		922F890A1E6F9BB4002631BA /* OAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922F89081E6F9BB4002631BA /* OAuthViewController.swift */; };
 		922F890B1E6F9BB4002631BA /* OAuthViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 922F89091E6F9BB4002631BA /* OAuthViewController.xib */; };
+		923C1CE21E7A95580011C1EB /* PicPickerCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923C1CE11E7A95580011C1EB /* PicPickerCollectionView.swift */; };
 		9241AD071E6E56CB008D8BD5 /* MainVCSettings.json in Resources */ = {isa = PBXBuildFile; fileRef = 9241AD061E6E56CB008D8BD5 /* MainVCSettings.json */; };
 		9241AD091E6E622D008D8BD5 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9241AD081E6E622D008D8BD5 /* UIButton+Extension.swift */; };
 		9241AD1D1E6E8CC4008D8BD5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9241AD1C1E6E8CC4008D8BD5 /* Main.storyboard */; };
@@ -92,6 +93,7 @@
 		922E84341E72C8CC00CE80C0 /* UserAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAccount.swift; sourceTree = "<group>"; };
 		922F89081E6F9BB4002631BA /* OAuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuthViewController.swift; sourceTree = "<group>"; };
 		922F89091E6F9BB4002631BA /* OAuthViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OAuthViewController.xib; sourceTree = "<group>"; };
+		923C1CE11E7A95580011C1EB /* PicPickerCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PicPickerCollectionView.swift; sourceTree = "<group>"; };
 		9241AD061E6E56CB008D8BD5 /* MainVCSettings.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MainVCSettings.json; sourceTree = "<group>"; };
 		9241AD081E6E622D008D8BD5 /* UIButton+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		9241AD1C1E6E8CC4008D8BD5 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -232,6 +234,14 @@
 			path = OAuth;
 			sourceTree = "<group>";
 		};
+		923C1CE01E7A95580011C1EB /* PicPicker */ = {
+			isa = PBXGroup;
+			children = (
+				923C1CE11E7A95580011C1EB /* PicPickerCollectionView.swift */,
+			);
+			path = PicPicker;
+			sourceTree = "<group>";
+		};
 		9241AD051E6E56CB008D8BD5 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
@@ -333,6 +343,7 @@
 		9250B7541E6DAAAC00390BBE /* Compose */ = {
 			isa = PBXGroup;
 			children = (
+				923C1CE01E7A95580011C1EB /* PicPicker */,
 				9250B7551E6DAAAC00390BBE /* Controller */,
 				9250B7561E6DAAAC00390BBE /* Model */,
 				9250B7571E6DAAAC00390BBE /* View */,
@@ -892,6 +903,7 @@
 				9241AD391E6EAADD008D8BD5 /* TitleButton.swift in Sources */,
 				9250B76F1E6DAB6A00390BBE /* MainViewController.swift in Sources */,
 				9217BB781E73F1C100F26475 /* NewfeatureViewController.swift in Sources */,
+				923C1CE21E7A95580011C1EB /* PicPickerCollectionView.swift in Sources */,
 				922E84351E72C8CC00CE80C0 /* UserAccount.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -26,6 +26,18 @@
                                     <outlet property="delegate" destination="LQ7-Yl-PNR" id="P6W-Rg-Pph"/>
                                 </connections>
                             </textView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="vMh-Qo-mmw" customClass="PicPickerCollectionView" customModule="SLWeiBo" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="600" width="600" height="0.0"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" id="n2W-6f-aa4"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="1Te-Gb-nyK">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                            </collectionView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="erx-WP-5HT">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <constraints>
@@ -39,6 +51,9 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <state key="normal" image="compose_toolbar_picture"/>
                                             <state key="highlighted" image="compose_toolbar_picture_highlighted"/>
+                                            <connections>
+                                                <action selector="picPickerBtnClick" destination="LQ7-Yl-PNR" eventType="touchUpInside" id="L1J-kh-ivS"/>
+                                            </connections>
                                         </button>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="w3n-hQ-zZr"/>
@@ -83,8 +98,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="vMh-Qo-mmw" firstAttribute="leading" secondItem="vNn-Lx-RZm" secondAttribute="leading" id="BLR-ff-p31"/>
+                            <constraint firstAttribute="trailing" secondItem="vMh-Qo-mmw" secondAttribute="trailing" id="CC7-nn-HyJ"/>
                             <constraint firstItem="fWg-L1-Ftq" firstAttribute="leading" secondItem="vNn-Lx-RZm" secondAttribute="leading" id="FYU-O9-QDX"/>
                             <constraint firstItem="erx-WP-5HT" firstAttribute="leading" secondItem="vNn-Lx-RZm" secondAttribute="leading" id="PZ4-4z-1wo"/>
+                            <constraint firstAttribute="bottom" secondItem="vMh-Qo-mmw" secondAttribute="bottom" id="QhY-0v-zUd"/>
                             <constraint firstAttribute="bottom" secondItem="fWg-L1-Ftq" secondAttribute="bottom" id="XDK-MO-H0y"/>
                             <constraint firstAttribute="bottom" secondItem="erx-WP-5HT" secondAttribute="bottom" id="bPL-v2-hJp"/>
                             <constraint firstAttribute="trailing" secondItem="erx-WP-5HT" secondAttribute="trailing" id="exQ-VO-XA7"/>
@@ -94,6 +112,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="eM8-Ex-wOb"/>
                     <connections>
+                        <outlet property="picPickerViewHCons" destination="n2W-6f-aa4" id="ovF-lO-vni"/>
                         <outlet property="textView" destination="fWg-L1-Ftq" id="90g-X0-ksC"/>
                         <outlet property="toolBarBottomCons" destination="bPL-v2-hJp" id="xTt-Rl-uap"/>
                     </connections>
