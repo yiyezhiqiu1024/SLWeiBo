@@ -112,6 +112,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="eM8-Ex-wOb"/>
                     <connections>
+                        <outlet property="picPickerView" destination="vMh-Qo-mmw" id="ocq-lz-rLv"/>
                         <outlet property="picPickerViewHCons" destination="n2W-6f-aa4" id="ovF-lO-vni"/>
                         <outlet property="textView" destination="fWg-L1-Ftq" id="90g-X0-ksC"/>
                         <outlet property="toolBarBottomCons" destination="bPL-v2-hJp" id="xTt-Rl-uap"/>

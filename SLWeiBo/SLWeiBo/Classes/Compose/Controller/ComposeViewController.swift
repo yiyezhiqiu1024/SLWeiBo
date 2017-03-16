@@ -11,10 +11,16 @@ import UIKit
 class ComposeViewController: UIViewController {
     
     // MARK:- 控件属性
+    /// 自定义输入框
     @IBOutlet weak var textView: ComposeTextView!
+    /// 选择照片视图
+    @IBOutlet weak var picPickerView: PicPickerCollectionView!
     
     // MARK:- 懒加载属性
+    /// 标题视图
     private lazy var titleView : ComposeTitleView = ComposeTitleView()
+    /// 保存照片的数组
+    private lazy var images : [UIImage] = [UIImage]()
     
     // MARK:- 约束的属性
     /// 工具条底部约束
@@ -136,8 +142,14 @@ extension ComposeViewController : UIImagePickerControllerDelegate, UINavigationC
         // 1.获取选中的照片
         let image = info[UIImagePickerControllerOriginalImage] as! UIImage
         
-        // 2.展示照片
-        myLog(image)
+        // 2.将选中的照片添加到数组中
+        images.append(image)
+        
+        // 3.将数组赋值给collectionView,让collectionView自己去展示数据
+        picPickerView.images = images
+        
+        // 4.退出选中照片控制器
+        picker.dismissViewControllerAnimated(true, completion: nil)
         
     }
 }

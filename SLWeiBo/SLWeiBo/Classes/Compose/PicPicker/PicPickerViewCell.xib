@@ -41,6 +41,9 @@
                 <constraint firstItem="OMY-00-b5a" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="UHW-Pc-GDl"/>
             </constraints>
             <size key="customSize" width="132" height="132"/>
+            <connections>
+                <outlet property="addPhotoBtn" destination="OMY-00-b5a" id="fzX-2v-f6A"/>
+            </connections>
             <point key="canvasLocation" x="347" y="401"/>
         </collectionViewCell>
     </objects>
