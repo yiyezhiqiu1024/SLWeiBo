@@ -10,26 +10,41 @@ import UIKit
 
 class ComposeViewController: UIViewController {
 
+    // MARK:- 懒加载属性
+    private lazy var titleView : ComposeTitleView = ComposeTitleView()
+    
+    // MARK:- 系统回调函数
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        // 设置导航栏
+        setupNavigationBar()
     }
+}
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+
+// MARK:- 设置UI界面
+extension ComposeViewController {
+    private func setupNavigationBar() {
+        // 1.设置左右的item
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "关闭", style: .Plain, target: self, action: #selector(ComposeViewController.closeItemClick))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "发送", style: .Plain, target: self, action: #selector(ComposeViewController.sendItemClick))
+        navigationItem.rightBarButtonItem?.enabled = false
+        
+        // 2.设置标题
+        titleView.frame = CGRect(x: 0, y: 0, width: 100, height: 40)
+        navigationItem.titleView = titleView
+    }
+}
+
+
+// MARK:- 事件监听函数
+extension ComposeViewController {
+    @objc private func closeItemClick() {
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @objc private func sendItemClick() {
+        myLog("sendItemClick")
     }
-    */
-
 }

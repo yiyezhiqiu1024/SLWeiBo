@@ -52,6 +52,7 @@
 		925677EF1E73A43A00C7C227 /* UserAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925677EE1E73A43A00C7C227 /* UserAccountViewModel.swift */; };
 		925677F51E73B0EF00C7C227 /* String+SandboxPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925677F41E73B0EF00C7C227 /* String+SandboxPath.swift */; };
 		928770291E727F2E00B82B73 /* NetworkTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928770281E727F2E00B82B73 /* NetworkTools.swift */; };
+		92893D7A1E7A5D8C009FBA42 /* ComposeTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92893D791E7A5D8C009FBA42 /* ComposeTitleView.swift */; };
 		929658EA1E755222008D7E36 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929658E81E755222008D7E36 /* WelcomeViewController.swift */; };
 		929658ED1E75581A008D7E36 /* WelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 929658EC1E75581A008D7E36 /* WelcomeViewController.xib */; };
 		929F30C41E728DBD00E7104B /* OAuthInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929F30C31E728DBD00E7104B /* OAuthInfo.swift */; };
@@ -130,6 +131,7 @@
 		925677EE1E73A43A00C7C227 /* UserAccountViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAccountViewModel.swift; sourceTree = "<group>"; };
 		925677F41E73B0EF00C7C227 /* String+SandboxPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+SandboxPath.swift"; sourceTree = "<group>"; };
 		928770281E727F2E00B82B73 /* NetworkTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkTools.swift; sourceTree = "<group>"; };
+		92893D791E7A5D8C009FBA42 /* ComposeTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeTitleView.swift; sourceTree = "<group>"; };
 		929658E81E755222008D7E36 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		929658EC1E75581A008D7E36 /* WelcomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WelcomeViewController.xib; sourceTree = "<group>"; };
 		929F30C31E728DBD00E7104B /* OAuthInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuthInfo.swift; sourceTree = "<group>"; };
@@ -355,6 +357,7 @@
 		9250B7571E6DAAAC00390BBE /* View */ = {
 			isa = PBXGroup;
 			children = (
+				92893D791E7A5D8C009FBA42 /* ComposeTitleView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -853,6 +856,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92893D7A1E7A5D8C009FBA42 /* ComposeTitleView.swift in Sources */,
 				9241AD5F1E6EF558008D8BD5 /* QRCodeCreateViewController.swift in Sources */,
 				9250B7771E6DABC600390BBE /* ProfileTableViewController.swift in Sources */,
 				92F963F71E76A56200ABD8DA /* Common.swift in Sources */,

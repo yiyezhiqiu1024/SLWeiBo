@@ -61,12 +61,20 @@ extension MainViewController
 extension MainViewController
 {
     /**
-     点击发微博按钮
+     点击发布微博按钮
      
-     - parameter btn: 发按钮
+     - parameter btn: 发布按钮
      */
     @objc private func composeBtnClick(btn: UIButton)
     {
-        myLog(btn)
+        // 1.创建发布控制器
+        guard let composeVC = UIStoryboard(name: "Compose", bundle: nil).instantiateInitialViewController() else
+        {
+            myLog("获取发布控制器失败")
+            return
+        }
+        
+        // 2.弹出控制器
+        presentViewController(composeVC, animated: true, completion: nil)
     }
 }
