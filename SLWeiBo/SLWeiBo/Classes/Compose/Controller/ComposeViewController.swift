@@ -16,18 +16,29 @@ class ComposeViewController: UIViewController {
     // MARK:- 懒加载属性
     private lazy var titleView : ComposeTitleView = ComposeTitleView()
     
+    // MARK:- 约束的属性
+    @IBOutlet weak var toolBarBottomCons: NSLayoutConstraint!
+    
     // MARK:- 系统回调函数
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // 设置导航栏
         setupNavigationBar()
+        
+        // 监听通知
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ComposeViewController.keyboardWillChangeFrame(_:)), name: UIKeyboardWillChangeFrameNotification, object: nil)
+    
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
         textView.becomeFirstResponder()
+    }
+
+deinit {
+    NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 }
 
@@ -55,6 +66,24 @@ extension ComposeViewController {
     
     @objc private func sendItemClick() {
         myLog("sendItemClick")
+    }
+    
+    @objc private func keyboardWillChangeFrame(note : NSNotification) {
+        // 1.获取动画执行的时间
+        let duration = note.userInfo![UIKeyboardAnimationDurationUserInfoKey] as! NSTimeInterval
+        
+        // 2.获取键盘最终Y值
+        let endFrame = (note.userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
+        let y = endFrame.origin.y
+        
+        // 3.计算工具栏距离底部的间距
+        let margin = UIScreen.mainScreen().bounds.height - y
+        
+        // 4.执行动画
+        toolBarBottomCons.constant = margin
+        UIView.animateWithDuration(duration) { () -> Void in
+            self.view.layoutIfNeeded()
+        }
     }
 }
 

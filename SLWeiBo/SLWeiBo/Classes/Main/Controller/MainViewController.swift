@@ -73,8 +73,10 @@ extension MainViewController
             myLog("获取发布控制器失败")
             return
         }
+        // 2.包装导航控制器
+        let composeNav = UINavigationController(rootViewController: composeVC)
         
-        // 2.弹出控制器
-        presentViewController(composeVC, animated: true, completion: nil)
+        // 3.弹出控制器
+        presentViewController(composeNav, animated: true, completion: nil)
     }
 }
