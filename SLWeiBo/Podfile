@@ -10,6 +10,8 @@ target 'SLWeiBo' do
   pod 'AFNetworking'
   pod 'SDWebImage'
   pod 'MJRefresh'
+  # 当前开发环境swift版本2.2
+  pod 'SnapKit', '~> 0.22.0'
 
   target 'SLWeiBoTests' do
     inherit! :search_paths
