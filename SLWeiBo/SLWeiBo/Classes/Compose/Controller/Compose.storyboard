@@ -34,9 +34,29 @@
                     <view key="view" contentMode="scaleToFill" id="vNn-Lx-RZm">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="fWg-L1-Ftq" customClass="ComposeTextView" customModule="SLWeiBo" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <outlet property="delegate" destination="LQ7-Yl-PNR" id="P6W-Rg-Pph"/>
+                                </connections>
+                            </textView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="fWg-L1-Ftq" firstAttribute="leading" secondItem="vNn-Lx-RZm" secondAttribute="leading" id="FYU-O9-QDX"/>
+                            <constraint firstAttribute="bottom" secondItem="fWg-L1-Ftq" secondAttribute="bottom" id="XDK-MO-H0y"/>
+                            <constraint firstAttribute="trailing" secondItem="fWg-L1-Ftq" secondAttribute="trailing" id="tJM-y2-VX4"/>
+                            <constraint firstItem="fWg-L1-Ftq" firstAttribute="top" secondItem="vNn-Lx-RZm" secondAttribute="top" id="wVA-Jt-Jtz"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="eM8-Ex-wOb"/>
+                    <connections>
+                        <outlet property="textView" destination="fWg-L1-Ftq" id="90g-X0-ksC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KfL-7r-FJ9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
