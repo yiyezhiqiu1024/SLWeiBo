@@ -13,6 +13,7 @@ target 'SLWeiBo' do
   # 当前开发环境swift版本2.2
   pod 'SnapKit', '~> 0.22.0'
   pod 'SVProgressHUD'
+  pod 'HYLabel'
 
   target 'SLWeiBoTests' do
     inherit! :search_paths
