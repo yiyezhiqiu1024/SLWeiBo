@@ -59,14 +59,14 @@
                                                 <constraint firstAttribute="width" constant="17" id="SmO-az-6lC"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="小码哥IT教育" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wFi-1I-fYE" userLabel="昵称">
-                                            <rect key="frame" x="70" y="10" width="89" height="18"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CoderSLZeng" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wFi-1I-fYE" userLabel="昵称">
+                                            <rect key="frame" x="70" y="10" width="95" height="18"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="common_icon_membership_level1" translatesAutoresizingMaskIntoConstraints="NO" id="vgC-wu-AQp" userLabel="会员图标">
-                                            <rect key="frame" x="167" y="12" width="14" height="14"/>
+                                            <rect key="frame" x="173" y="12" width="14" height="14"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="14" id="Cs4-zh-4Vw"/>
                                                 <constraint firstAttribute="width" constant="14" id="FDE-tX-RFF"/>

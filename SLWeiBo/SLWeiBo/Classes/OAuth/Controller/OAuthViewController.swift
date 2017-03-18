@@ -2,8 +2,8 @@
 //  OAuthViewController.swift
 //  DS11WB
 //
-//  Created by xiaomage on 16/4/6.
-//  Copyright © 2016年 小码哥. All rights reserved.
+//  Created by Anthony on 17/3/10.
+//  Copyright © 2017年 SLZeng. All rights reserved.
 //
 
 import UIKit
