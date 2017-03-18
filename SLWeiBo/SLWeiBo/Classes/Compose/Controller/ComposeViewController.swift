@@ -21,6 +21,11 @@ class ComposeViewController: UIViewController {
     private lazy var titleView : ComposeTitleView = ComposeTitleView()
     /// 保存照片的数组
     private lazy var images : [UIImage] = [UIImage]()
+    /// 表情键盘控制器
+    private lazy var emoticonVc : EmoticonController = EmoticonController {[weak self] (emoticon) -> () in
+        self?.textView.insertEmoticon(emoticon)
+        self?.textViewDidChange(self!.textView)
+    }
     
     // MARK:- 约束的属性
     /// 工具条底部约束
@@ -122,7 +127,7 @@ extension ComposeViewController {
         textView.resignFirstResponder()
         
         // 2.切换键盘
-        textView.inputView = textView.inputView != nil ? nil : UISwitch()
+        textView.inputView = textView.inputView != nil ? nil : emoticonVc.view
         
         // 3.弹出键盘
         textView.becomeFirstResponder()
