@@ -39,4 +39,12 @@ extension UIButton
         // 3.调整按钮尺寸
         sizeToFit()
     }
+    
+    convenience init(bgColor : UIColor, fontSize : CGFloat, title : String) {
+        self.init()
+        
+        setTitle(title, forState: .Normal)
+        backgroundColor = bgColor
+        titleLabel?.font = UIFont.systemFontOfSize(fontSize)
+    }
 }

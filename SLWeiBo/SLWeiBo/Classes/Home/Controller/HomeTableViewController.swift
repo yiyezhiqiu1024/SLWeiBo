@@ -58,6 +58,9 @@ class HomeTableViewController: BaseTableViewController {
         
         // 6.设置更新微博提示框
         setupTipLabel()
+        
+        // 6.监听通知
+        setupNatifications()
     }
     
 }
@@ -124,6 +127,10 @@ extension HomeTableViewController
         tipLabel.textAlignment = .Center
         tipLabel.hidden = true
     }
+    
+    private func setupNatifications() {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeTableViewController.showPhotoBrowser(_:)), name: ShowPhotoBrowserNote, object: nil)
+    }
 
 }
 
@@ -158,6 +165,18 @@ extension HomeTableViewController
         
         // 5.弹出控制器
         presentViewController(popoverVc, animated: true, completion: nil)
+    }
+    
+    @objc private func showPhotoBrowser(note : NSNotification) {
+        // 0.取出数据
+        let indexPath = note.userInfo![ShowPhotoBrowserIndexKey] as! NSIndexPath
+        let picURLs = note.userInfo![ShowPhotoBrowserUrlsKey] as! [NSURL]
+        
+        // 1.创建控制器
+        let photoBrowserVc = PhotoBrowserController(indexPath: indexPath, picURLs: picURLs)
+        
+        // 2.以modal的形式弹出控制器
+        presentViewController(photoBrowserVc, animated: true, completion: nil)
     }
     
     /// 加载最新的数据

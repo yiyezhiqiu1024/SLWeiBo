@@ -70,6 +70,7 @@
 		92D277351E7CCB8A00C365C6 /* EmoticonPackage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D2772C1E7CCB8A00C365C6 /* EmoticonPackage.swift */; };
 		92D277361E7CCB8A00C365C6 /* EmioticonViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D2772E1E7CCB8A00C365C6 /* EmioticonViewCell.swift */; };
 		92D2773D1E7CEE0300C365C6 /* FindEmoticon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D2773C1E7CEE0300C365C6 /* FindEmoticon.swift */; };
+		92D277461E7D100300C365C6 /* PhotoBrowserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D277451E7D100300C365C6 /* PhotoBrowserController.swift */; };
 		92F963F71E76A56200ABD8DA /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F963F61E76A56200ABD8DA /* Common.swift */; };
 		92F964051E76DEE000ABD8DA /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F964041E76DEE000ABD8DA /* Status.swift */; };
 		AD92AC51B3E9EA7EE3E57344 /* Pods_SLWeiBoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7315829F06E61C78B8021EE0 /* Pods_SLWeiBoUITests.framework */; };
@@ -162,6 +163,7 @@
 		92D2772C1E7CCB8A00C365C6 /* EmoticonPackage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmoticonPackage.swift; sourceTree = "<group>"; };
 		92D2772E1E7CCB8A00C365C6 /* EmioticonViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmioticonViewCell.swift; sourceTree = "<group>"; };
 		92D2773C1E7CEE0300C365C6 /* FindEmoticon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindEmoticon.swift; sourceTree = "<group>"; };
+		92D277451E7D100300C365C6 /* PhotoBrowserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoBrowserController.swift; sourceTree = "<group>"; };
 		92F963F61E76A56200ABD8DA /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		92F964041E76DEE000ABD8DA /* Status.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
 		9B5B0EB0965765B8CD956DDE /* Pods-SLWeiBoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SLWeiBoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SLWeiBoTests/Pods-SLWeiBoTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -437,6 +439,7 @@
 		9250B75C1E6DAAAC00390BBE /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				92D277441E7D0FCB00C365C6 /* PhotoBrowser */,
 				9241AD591E6EE2B7008D8BD5 /* QRCode */,
 				9241AD471E6EB569008D8BD5 /* Popover */,
 				9250B75D1E6DAAAC00390BBE /* Controller */,
@@ -662,6 +665,14 @@
 				92D2773C1E7CEE0300C365C6 /* FindEmoticon.swift */,
 			);
 			path = Tools;
+			sourceTree = "<group>";
+		};
+		92D277441E7D0FCB00C365C6 /* PhotoBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				92D277451E7D100300C365C6 /* PhotoBrowserController.swift */,
+			);
+			path = PhotoBrowser;
 			sourceTree = "<group>";
 		};
 		C8AB102599205870F71E7A50 /* Pods */ = {
@@ -970,6 +981,7 @@
 				922038AB1E77895800C84FCE /* NSDate+DealWithtime.swift in Sources */,
 				922038AD1E778A0700C84FCE /* User.swift in Sources */,
 				92D277321E7CCB8A00C365C6 /* Emoticon.swift in Sources */,
+				92D277461E7D100300C365C6 /* PhotoBrowserController.swift in Sources */,
 				929658EA1E755222008D7E36 /* WelcomeViewController.swift in Sources */,
 				9241AD4F1E6EB79B008D8BD5 /* SLPresentationController.swift in Sources */,
 				92D277301E7CCB8A00C365C6 /* EmoticonController.swift in Sources */,
