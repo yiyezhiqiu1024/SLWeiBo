@@ -117,6 +117,17 @@ extension ComposeViewController {
         }
     }
     
+    @IBAction func emoticonBtnClick() {
+        // 1.退出键盘
+        textView.resignFirstResponder()
+        
+        // 2.切换键盘
+        textView.inputView = textView.inputView != nil ? nil : UISwitch()
+        
+        // 3.弹出键盘
+        textView.becomeFirstResponder()
+    }
+    
     
     // MARK:- 添加照片和删除照片的事件
     @objc private func addPhotoClick() {
