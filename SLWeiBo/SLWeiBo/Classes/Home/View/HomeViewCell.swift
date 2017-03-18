@@ -8,6 +8,7 @@
 
 import UIKit
 import SDWebImage
+import HYLabel
 
 private let edgeMargin : CGFloat = 15
 private let itemMargin : CGFloat = 10
@@ -27,9 +28,9 @@ class HomeViewCell: UITableViewCell {
     /// 来源
     @IBOutlet weak var sourceLabel: UILabel!
     /// 正文
-    @IBOutlet weak var contentLabel: UILabel!
+    @IBOutlet weak var contentLabel: HYLabel!
     /// 转发微博的正文
-    @IBOutlet weak var retweetedContentLabel: UILabel!
+    @IBOutlet weak var retweetedContentLabel: HYLabel!
     /// 配图
     @IBOutlet weak var picView: PicCollectionView!
     /// 转发微博的背景
@@ -133,6 +134,31 @@ class HomeViewCell: UITableViewCell {
 
         // 设置微博正文的宽度约束
         contentLabelWCons.constant = UIScreen.mainScreen().bounds.width - 2 * edgeMargin
+        
+        // 设置HYLabel的内容
+        let customColor = UIColor(red: 0 / 255.0, green: 160 / 255.0, blue: 255 / 255.0, alpha: 1.0)
+
+        contentLabel.matchTextColor = customColor
+        retweetedContentLabel.matchTextColor = customColor
+        
+        // 监听HYlabel内容的点击
+        // 监听@谁谁谁的点击
+        contentLabel.userTapHandler = { (label, user, range) in
+            myLog(user)
+            myLog(range)
+        }
+        
+        // 监听链接的点击
+        contentLabel.linkTapHandler = { (label, link, range) in
+            myLog(link)
+            myLog(range)
+        }
+        
+        // 监听话题的点击
+        contentLabel.topicTapHandler = { (label, topic, range) in
+            myLog(topic)
+            myLog(range)
+        }
     }
     
 }
