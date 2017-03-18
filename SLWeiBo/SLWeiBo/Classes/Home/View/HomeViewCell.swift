@@ -82,7 +82,7 @@ class HomeViewCell: UITableViewCell {
             }
                         
             // 8.设置正文
-            contentLabel.text = viewModel.status?.text
+            contentLabel.attributedText = FindEmoticon.shareIntance.findAttrString(viewModel.status?.text, font: contentLabel.font)
             
             // 9.计算picView的宽度和高度的约束
             let picViewSize = calculatePicViewSize(viewModel.picURLs.count)
