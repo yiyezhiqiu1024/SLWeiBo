@@ -12,6 +12,7 @@
 		9217BB771E73F1C100F26475 /* Newfeature.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9217BB751E73F1C100F26475 /* Newfeature.storyboard */; };
 		9217BB781E73F1C100F26475 /* NewfeatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9217BB761E73F1C100F26475 /* NewfeatureViewController.swift */; };
 		921E4E211E7E646300D7A877 /* PhotoBrowserViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921E4E201E7E646300D7A877 /* PhotoBrowserViewCell.swift */; };
+		921E4E231E7E66B600D7A877 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921E4E221E7E66B600D7A877 /* ProgressView.swift */; };
 		922038AB1E77895800C84FCE /* NSDate+DealWithtime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922038AA1E77895800C84FCE /* NSDate+DealWithtime.swift */; };
 		922038AD1E778A0700C84FCE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922038AC1E778A0700C84FCE /* User.swift */; };
 		922038AF1E778C6200C84FCE /* StatusViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922038AE1E778C6200C84FCE /* StatusViewModel.swift */; };
@@ -100,6 +101,7 @@
 		9217BB751E73F1C100F26475 /* Newfeature.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Newfeature.storyboard; sourceTree = "<group>"; };
 		9217BB761E73F1C100F26475 /* NewfeatureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewfeatureViewController.swift; sourceTree = "<group>"; };
 		921E4E201E7E646300D7A877 /* PhotoBrowserViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoBrowserViewCell.swift; sourceTree = "<group>"; };
+		921E4E221E7E66B600D7A877 /* ProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		922038AA1E77895800C84FCE /* NSDate+DealWithtime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+DealWithtime.swift"; sourceTree = "<group>"; };
 		922038AC1E778A0700C84FCE /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		922038AE1E778C6200C84FCE /* StatusViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusViewModel.swift; sourceTree = "<group>"; };
@@ -674,6 +676,7 @@
 			children = (
 				92D277451E7D100300C365C6 /* PhotoBrowserController.swift */,
 				921E4E201E7E646300D7A877 /* PhotoBrowserViewCell.swift */,
+				921E4E221E7E66B600D7A877 /* ProgressView.swift */,
 			);
 			path = PhotoBrowser;
 			sourceTree = "<group>";
@@ -986,6 +989,7 @@
 				922038AD1E778A0700C84FCE /* User.swift in Sources */,
 				92D277321E7CCB8A00C365C6 /* Emoticon.swift in Sources */,
 				92D277461E7D100300C365C6 /* PhotoBrowserController.swift in Sources */,
+				921E4E231E7E66B600D7A877 /* ProgressView.swift in Sources */,
 				929658EA1E755222008D7E36 /* WelcomeViewController.swift in Sources */,
 				9241AD4F1E6EB79B008D8BD5 /* SLPresentationController.swift in Sources */,
 				92D277301E7CCB8A00C365C6 /* EmoticonController.swift in Sources */,

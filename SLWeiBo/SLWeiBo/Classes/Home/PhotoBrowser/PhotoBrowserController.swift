@@ -67,6 +67,21 @@ extension PhotoBrowserController {
         // 3.设置collectionView的属性
         collectionView.registerClass(PhotoBrowserViewCell.self, forCellWithReuseIdentifier: PhotoBrowserCell)
         collectionView.dataSource = self
+        
+        // 4.监听两个按钮的点击
+        closeBtn.addTarget(self, action: #selector(PhotoBrowserController.closeBtnClick), forControlEvents: .TouchUpInside)
+        saveBtn.addTarget(self, action: #selector(PhotoBrowserController.saveBtnClick), forControlEvents: .TouchUpInside)
+    }
+}
+
+// MARK:- 事件监听函数
+extension PhotoBrowserController {
+    @objc private func closeBtnClick() {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    @objc private func saveBtnClick() {
+        print("saveBtnClick")
     }
 }
 
