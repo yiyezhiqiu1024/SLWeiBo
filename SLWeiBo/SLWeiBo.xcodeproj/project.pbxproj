@@ -11,6 +11,7 @@
 		86CE7346CEB94E33BF1E1F63 /* Pods_SLWeiBo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAF1DB21D87F4CC524DBC1A7 /* Pods_SLWeiBo.framework */; };
 		9217BB771E73F1C100F26475 /* Newfeature.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9217BB751E73F1C100F26475 /* Newfeature.storyboard */; };
 		9217BB781E73F1C100F26475 /* NewfeatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9217BB761E73F1C100F26475 /* NewfeatureViewController.swift */; };
+		921E4E211E7E646300D7A877 /* PhotoBrowserViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921E4E201E7E646300D7A877 /* PhotoBrowserViewCell.swift */; };
 		922038AB1E77895800C84FCE /* NSDate+DealWithtime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922038AA1E77895800C84FCE /* NSDate+DealWithtime.swift */; };
 		922038AD1E778A0700C84FCE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922038AC1E778A0700C84FCE /* User.swift */; };
 		922038AF1E778C6200C84FCE /* StatusViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922038AE1E778C6200C84FCE /* StatusViewModel.swift */; };
@@ -98,6 +99,7 @@
 		7315829F06E61C78B8021EE0 /* Pods_SLWeiBoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SLWeiBoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9217BB751E73F1C100F26475 /* Newfeature.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Newfeature.storyboard; sourceTree = "<group>"; };
 		9217BB761E73F1C100F26475 /* NewfeatureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewfeatureViewController.swift; sourceTree = "<group>"; };
+		921E4E201E7E646300D7A877 /* PhotoBrowserViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoBrowserViewCell.swift; sourceTree = "<group>"; };
 		922038AA1E77895800C84FCE /* NSDate+DealWithtime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+DealWithtime.swift"; sourceTree = "<group>"; };
 		922038AC1E778A0700C84FCE /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		922038AE1E778C6200C84FCE /* StatusViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusViewModel.swift; sourceTree = "<group>"; };
@@ -671,6 +673,7 @@
 			isa = PBXGroup;
 			children = (
 				92D277451E7D100300C365C6 /* PhotoBrowserController.swift */,
+				921E4E201E7E646300D7A877 /* PhotoBrowserViewCell.swift */,
 			);
 			path = PhotoBrowser;
 			sourceTree = "<group>";
@@ -976,6 +979,7 @@
 				92D277341E7CCB8A00C365C6 /* EmoticonManager.swift in Sources */,
 				923C1CE51E7A97F10011C1EB /* PicPickerViewCell.swift in Sources */,
 				9241AD4C1E6EB6A9008D8BD5 /* PopoverViewController.swift in Sources */,
+				921E4E211E7E646300D7A877 /* PhotoBrowserViewCell.swift in Sources */,
 				92D277331E7CCB8A00C365C6 /* EmoticonAttachment.swift in Sources */,
 				9241AD331E6E9A47008D8BD5 /* BaseTableViewController.swift in Sources */,
 				922038AB1E77895800C84FCE /* NSDate+DealWithtime.swift in Sources */,

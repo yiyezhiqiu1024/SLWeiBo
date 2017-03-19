@@ -65,7 +65,7 @@ extension PhotoBrowserController {
         }
         
         // 3.设置collectionView的属性
-        collectionView.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: PhotoBrowserCell)
+        collectionView.registerClass(PhotoBrowserViewCell.self, forCellWithReuseIdentifier: PhotoBrowserCell)
         collectionView.dataSource = self
     }
 }
@@ -79,10 +79,10 @@ extension PhotoBrowserController : UICollectionViewDataSource {
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         // 1.创建cell
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(PhotoBrowserCell, forIndexPath: indexPath)
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(PhotoBrowserCell, forIndexPath: indexPath) as! PhotoBrowserViewCell
         
         // 2.给cell设置数据
-        cell.backgroundColor = indexPath.item % 2 == 0 ? UIColor.orangeColor() : UIColor.blueColor()
+        cell.picURL = picURLs[indexPath.item]
         
         return cell
     }
