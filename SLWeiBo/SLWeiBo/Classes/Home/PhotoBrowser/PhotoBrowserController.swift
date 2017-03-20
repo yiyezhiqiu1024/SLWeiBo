@@ -34,11 +34,21 @@ class PhotoBrowserController: UIViewController {
     }
     
     // MARK:- 系统回调函数
+    
+    override func loadView() {
+        super.loadView()
+        
+        view.bounds.size.width += 20
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // 1.设置UI界面
         setupUI()
+        
+        // 2.滚动到对应的图片
+        collectionView.scrollToItemAtIndexPath(indexPath, atScrollPosition: .Left, animated: false)
     }
 }
 

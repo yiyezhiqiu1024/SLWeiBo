@@ -46,6 +46,7 @@ extension PhotoBrowserViewCell {
         
         // 2.设置子控件frame
         scrollView.frame = contentView.bounds
+        scrollView.frame.size.width -= 20
         progressView.bounds = CGRect(x: 0, y: 0, width: 50, height: 50)
         progressView.center = CGPoint(x: UIScreen.mainScreen().bounds.width * 0.5, y: UIScreen.mainScreen().bounds.height * 0.5)
         
