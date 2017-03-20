@@ -8,6 +8,7 @@
 
 import UIKit
 import SnapKit
+import SVProgressHUD
 
 private let PhotoBrowserCell = "PhotoBrowserCell"
 
@@ -91,8 +92,27 @@ extension PhotoBrowserController {
     }
     
     @objc private func saveBtnClick() {
-        print("saveBtnClick")
+        // 1.获取当前正在显示的image
+        let cell = collectionView.visibleCells().first as! PhotoBrowserViewCell
+        guard let image = cell.imageView.image else {
+            return
+        }
+        
+        // 2.将image对象保存相册
+        UIImageWriteToSavedPhotosAlbum(image, self, #selector(PhotoBrowserController.image(_:didFinishSavingWithError:contextInfo:)), nil)
     }
+    
+    @objc private func image(image : UIImage, didFinishSavingWithError error : NSError?, contextInfo : AnyObject) {
+        var showInfo = ""
+        if error != nil {
+            showInfo = "保存失败"
+        } else {
+            showInfo = "保存成功"
+        }
+        
+        SVProgressHUD.showInfoWithStatus(showInfo)
+    }
+
 }
 
 
@@ -108,12 +128,19 @@ extension PhotoBrowserController : UICollectionViewDataSource {
         
         // 2.给cell设置数据
         cell.picURL = picURLs[indexPath.item]
+        cell.delegate = self
         
         return cell
     }
 }
 
-
+// MARK:- PhotoBrowserViewCell的代理方法
+extension PhotoBrowserController : PhotoBrowserViewCellDelegate {
+    func imageViewClick() {
+        closeBtnClick()
+    }
+}
+// MARK:- 自定义流水布局
 class PhotoBrowserCollectionViewLayout : UICollectionViewFlowLayout {
     override func prepareLayout() {
         super.prepareLayout()

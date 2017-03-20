@@ -9,6 +9,10 @@
 import UIKit
 import SDWebImage
 
+protocol PhotoBrowserViewCellDelegate : NSObjectProtocol {
+    func imageViewClick()
+}
+
 class PhotoBrowserViewCell: UICollectionViewCell {
     // MARK:- 定义属性
     var picURL : NSURL? {
@@ -17,10 +21,13 @@ class PhotoBrowserViewCell: UICollectionViewCell {
         }
     }
     
+    var delegate : PhotoBrowserViewCellDelegate?
+    
     // MARK:- 懒加载属性
     private lazy var scrollView : UIScrollView = UIScrollView()
-    private lazy var imageView : UIImageView = UIImageView()
     private lazy var progressView : ProgressView = ProgressView()
+    
+    lazy var imageView : UIImageView = UIImageView()
     
     // MARK:- 构造函数
     override init(frame: CGRect) {
@@ -53,10 +60,23 @@ extension PhotoBrowserViewCell {
         // 3.设置控件的属性
         progressView.hidden = true
         progressView.backgroundColor = UIColor.clearColor()
+        
+        // 4.监听imageView的点击
+        let tapGes = UITapGestureRecognizer(target: self, action: #selector(PhotoBrowserViewCell.imageViewClick))
+        imageView.addGestureRecognizer(tapGes)
+        imageView.userInteractionEnabled = true
+    }
+}
+
+// MARK:- 事件监听
+extension PhotoBrowserViewCell {
+    @objc private func imageViewClick() {
+        delegate?.imageViewClick()
     }
 }
 
 
+// MARK:- 设置cell的内容
 extension PhotoBrowserViewCell {
     private func setupContent(picURL : NSURL?) {
         // 1.nil值校验
