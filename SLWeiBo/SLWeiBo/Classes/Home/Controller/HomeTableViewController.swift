@@ -29,6 +29,8 @@ class HomeTableViewController: BaseTableViewController {
     
     /// 更新微博提示框
     private lazy var tipLabel : UILabel = UILabel()
+    /// 自定义渐变的转场动画
+    private lazy var photoBrowserAnimator : PhotoBrowserAnimator = PhotoBrowserAnimator()
 
     
     // MARK: - 系统回调函数
@@ -175,7 +177,13 @@ extension HomeTableViewController
         // 1.创建控制器
         let photoBrowserVc = PhotoBrowserController(indexPath: indexPath, picURLs: picURLs)
         
-        // 2.以modal的形式弹出控制器
+        // 2.设置modal样式
+        photoBrowserVc.modalPresentationStyle = .Custom
+        
+        // 3.设置转场的代理
+        photoBrowserVc.transitioningDelegate = photoBrowserAnimator
+        
+        // 4.以modal的形式弹出控制器
         presentViewController(photoBrowserVc, animated: true, completion: nil)
     }
     
