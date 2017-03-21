@@ -173,6 +173,7 @@ extension HomeTableViewController
         // 0.取出数据
         let indexPath = note.userInfo![ShowPhotoBrowserIndexKey] as! NSIndexPath
         let picURLs = note.userInfo![ShowPhotoBrowserUrlsKey] as! [NSURL]
+        let object = note.object as! PicCollectionView
         
         // 1.创建控制器
         let photoBrowserVc = PhotoBrowserController(indexPath: indexPath, picURLs: picURLs)
@@ -183,7 +184,11 @@ extension HomeTableViewController
         // 3.设置转场的代理
         photoBrowserVc.transitioningDelegate = photoBrowserAnimator
         
-        // 4.以modal的形式弹出控制器
+        // 4.设置动画的代理
+        photoBrowserAnimator.presentedDelegate = object
+        photoBrowserAnimator.indexPath = indexPath
+        
+        // 5.以modal的形式弹出控制器
         presentViewController(photoBrowserVc, animated: true, completion: nil)
     }
     
