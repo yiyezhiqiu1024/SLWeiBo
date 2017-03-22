@@ -15,11 +15,17 @@ protocol AnimatorPresentedDelegate : NSObjectProtocol {
     func imageView(indexPath : NSIndexPath) -> UIImageView
 }
 
+protocol AnimatorDismissDelegate : NSObjectProtocol {
+    func indexPathForDimissView() -> NSIndexPath
+    func imageViewForDimissView() -> UIImageView
+}
+
 
 class PhotoBrowserAnimator: NSObject {
     var isPresented : Bool = false
-    var presentedDelegate : AnimatorPresentedDelegate?
     var indexPath : NSIndexPath?
+    var presentedDelegate : AnimatorPresentedDelegate?
+    var dismissDelegate : AnimatorDismissDelegate?
 }
 
 extension PhotoBrowserAnimator : UIViewControllerTransitioningDelegate {
@@ -36,7 +42,7 @@ extension PhotoBrowserAnimator : UIViewControllerTransitioningDelegate {
 
 extension PhotoBrowserAnimator : UIViewControllerAnimatedTransitioning {
     func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
-        return 1.0
+        return 0.5
     }
     
     func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
@@ -75,14 +81,25 @@ extension PhotoBrowserAnimator : UIViewControllerAnimatedTransitioning {
     }
     
     func animationForDismissView(transitionContext: UIViewControllerContextTransitioning) {
+        
+        // nil值校验
+        guard let dismissDelegate = dismissDelegate, presentedDelegate = presentedDelegate else {
+            return
+        }
+        
         // 1.取出消失的View
         let dismissView = transitionContext.viewForKey(UITransitionContextFromViewKey)
+        dismissView?.removeFromSuperview()
         
-        // 2.执行动画
+        // 2.获取执行动画的ImageView
+        let imageView = dismissDelegate.imageViewForDimissView()
+        transitionContext.containerView()?.addSubview(imageView)
+        let indexPath = dismissDelegate.indexPathForDimissView()
+        
+        // 3.执行动画
         UIView.animateWithDuration(transitionDuration(transitionContext), animations: { () -> Void in
-            dismissView?.alpha = 0.0
+            imageView.frame = presentedDelegate.startRect(indexPath)
         }) { (_) -> Void in
-            dismissView?.removeFromSuperview()
             transitionContext.completeTransition(true)
         }
     }

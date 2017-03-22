@@ -187,6 +187,7 @@ extension HomeTableViewController
         // 4.设置动画的代理
         photoBrowserAnimator.presentedDelegate = object
         photoBrowserAnimator.indexPath = indexPath
+        photoBrowserAnimator.dismissDelegate = photoBrowserVc
         
         // 5.以modal的形式弹出控制器
         presentViewController(photoBrowserVc, animated: true, completion: nil)
