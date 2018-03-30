@@ -17,9 +17,9 @@ extension UITextView {
         
         // 2.遍历属性字符串
         let range = NSRange(location: 0, length: attrMStr.length)
-        attrMStr.enumerateAttributesInRange(range, options: []) { (dict, range, _) -> Void in
+        attrMStr.enumerateAttributes(in: range, options: []) { (dict, range, _) -> Void in
             if let attachment = dict["NSAttachment"] as? EmoticonAttachment {
-                attrMStr.replaceCharactersInRange(range, withString: attachment.chs!)
+                attrMStr.replaceCharacters(in: range, with: attachment.chs!)
             }
         }
         
@@ -29,7 +29,7 @@ extension UITextView {
     
     
     /// 给textView插入表情
-    func insertEmoticon(emoticon : Emoticon) {
+    func insertEmoticon(_ emoticon : Emoticon) {
         // 1.空白表情
         if emoticon.isEmpty {
             return
@@ -47,7 +47,7 @@ extension UITextView {
             let textRange = selectedTextRange!
             
             // 3.2.替换emoji表情
-            replaceRange(textRange, withText: emoticon.emojiCode!)
+            replace(textRange, withText: emoticon.emojiCode!)
             
             return
         }
@@ -69,7 +69,7 @@ extension UITextView {
         let range = selectedRange
         
         // 4.3.2.替换属性字符串
-        attrMStr.replaceCharactersInRange(range, withAttributedString: attrImageStr)
+        attrMStr.replaceCharacters(in: range, with: attrImageStr)
         
         // 显示属性字符串
         attributedText = attrMStr

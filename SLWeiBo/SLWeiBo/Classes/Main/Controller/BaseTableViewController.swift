@@ -41,17 +41,17 @@ extension BaseTableViewController {
     /**
      设置访客视图
      */
-    private func setupVisitorView() {
+    fileprivate func setupVisitorView() {
         view = visitorView
         // 监听访客视图中`注册`和`登录`按钮的点击
-        visitorView.registerBtn.addTarget(self, action: #selector(BaseTableViewController.registerBtnClick), forControlEvents: .TouchUpInside)
-        visitorView.loginBtn.addTarget(self, action: #selector(BaseTableViewController.loginBtnClick), forControlEvents: .TouchUpInside)
+        visitorView.registerBtn.addTarget(self, action: #selector(BaseTableViewController.registerBtnClick), for: .touchUpInside)
+        visitorView.loginBtn.addTarget(self, action: #selector(BaseTableViewController.loginBtnClick), for: .touchUpInside)
     }
     
     /// 设置导航栏左右的Item
-    private func setupNavigationItems() {
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "注册", style: .Plain, target: self, action: #selector(BaseTableViewController.registerBtnClick))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "登录", style: .Plain, target: self, action: #selector(BaseTableViewController.loginBtnClick))
+    fileprivate func setupNavigationItems() {
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "注册", style: .plain, target: self, action: #selector(BaseTableViewController.registerBtnClick))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "登录", style: .plain, target: self, action: #selector(BaseTableViewController.loginBtnClick))
     }
 }
 
@@ -61,14 +61,14 @@ extension BaseTableViewController {
     /**
      点击注册按钮
      */
-    @objc private func registerBtnClick() {
+    @objc fileprivate func registerBtnClick() {
         myLog("registerBtnClick")
     }
     
     /**
      点击登录按钮
      */
-    @objc private func loginBtnClick() {
+    @objc fileprivate func loginBtnClick() {
         // 1.创建授权控制器
         let oauthVc = OAuthViewController()
         
@@ -76,7 +76,7 @@ extension BaseTableViewController {
         let oauthNav = UINavigationController(rootViewController: oauthVc)
         
         // 3.弹出控制器
-        presentViewController(oauthNav, animated: true, completion: nil)
+        present(oauthNav, animated: true, completion: nil)
     }
 }
 

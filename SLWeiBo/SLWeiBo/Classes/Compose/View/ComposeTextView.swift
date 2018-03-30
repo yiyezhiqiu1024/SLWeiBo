@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import SnapKit
+//import SnapKit
 
 class ComposeTextView: UITextView {
     // MARK:- 懒加载属性
@@ -24,18 +24,18 @@ class ComposeTextView: UITextView {
 
 // MARK:- 设置UI界面
 extension ComposeTextView {
-    private func setupUI() {
+    fileprivate func setupUI() {
         // 1.添加子控件
         addSubview(placeHolderLabel)
-        
+
         // 2.设置frame
-        placeHolderLabel.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(8)
-            make.left.equalTo(10)
-        }
+//        placeHolderLabel.snp_makeConstraints { (make) -> Void in
+//            make.top.equalTo(8)
+//            make.left.equalTo(10)
+//        }
         
         // 3.设置placeholderLabel属性
-        placeHolderLabel.textColor = UIColor.lightGrayColor()
+        placeHolderLabel.textColor = UIColor.lightGray
         placeHolderLabel.font = font
         
         // 4.设置placeholderLabel文字

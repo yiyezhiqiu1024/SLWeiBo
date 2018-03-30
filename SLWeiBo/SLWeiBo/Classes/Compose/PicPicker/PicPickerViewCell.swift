@@ -21,23 +21,23 @@ class PicPickerViewCell: UICollectionViewCell {
         didSet {
             if image != nil {
                 imageView.image = image
-                addPhotoBtn.userInteractionEnabled = false
-                removePhotoBtn.hidden = false
+                addPhotoBtn.isUserInteractionEnabled = false
+                removePhotoBtn.isHidden = false
             } else {
                 imageView.image = nil
-                addPhotoBtn.userInteractionEnabled = true
-                removePhotoBtn.hidden = true
+                addPhotoBtn.isUserInteractionEnabled = true
+                removePhotoBtn.isHidden = true
             }
         }
     }
     
     // MARK:- 事件监听
     @IBAction func addPhotoClick() {
-        NSNotificationCenter.defaultCenter().postNotificationName(PicPickerAddPhotoNote, object: nil)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: PicPickerAddPhotoNote), object: nil)
     }
     
     @IBAction func removePhotoClick() {
-        NSNotificationCenter.defaultCenter().postNotificationName(PicPickerRemovePhotoNote, object: imageView.image)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: PicPickerRemovePhotoNote), object: imageView.image)
     }
 
 }

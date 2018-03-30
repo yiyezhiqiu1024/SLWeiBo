@@ -18,8 +18,8 @@ enum RequestType : String {
 class NetworkTools: AFHTTPSessionManager {
     // let是线程安全的
     static let shareInstance : NetworkTools = {
-        let url = NSURL(string: "https://api.weibo.com/")
-        let instance = NetworkTools(baseURL: url, sessionConfiguration: NSURLSessionConfiguration.defaultSessionConfiguration())
+        let url = URL(string: "https://api.weibo.com/")
+        let instance = NetworkTools(baseURL: url, sessionConfiguration: URLSessionConfiguration.default)
         instance.responseSerializer.acceptableContentTypes?.insert("text/plain")
         
         return instance
@@ -28,88 +28,102 @@ class NetworkTools: AFHTTPSessionManager {
 
 // MARK:- 封装请求方法
 extension NetworkTools {
-    func request(methodType : RequestType, urlString : String, parameters : [String : AnyObject], finished : (result : AnyObject?, error : NSError?) -> ()) {
+    func request(_ methodType : RequestType, urlString : String, parameters : [String : Any], finished : @escaping (_ result : Any?, _ error : NSError?) -> ()) {
         
         // 1.定义成功的回调闭包
-        let successCallBack = { (task : NSURLSessionDataTask, result : AnyObject?) -> Void in
-            finished(result: result, error: nil)
+        let successCallBack = { (task : URLSessionDataTask, result : Any?) -> Void in
+            finished(result, nil)
         }
         
         // 2.定义失败的回调闭包
-        let failureCallBack = { (task : NSURLSessionDataTask?, error : NSError) -> Void in
-            finished(result: nil, error: error)
+        let failureCallBack = { (task : URLSessionDataTask?, error : NSError) -> Void in
+            finished(nil, error)
         }
         
         // 3.发送网络请求
         if methodType == .GET {
-            GET(urlString, parameters: parameters, progress: nil, success: successCallBack, failure: failureCallBack)
+            
+            get(urlString, parameters: parameters, progress: nil, success: successCallBack, failure: nil)
+            
+//            get(urlString, parameters: parameters, progress: nil, success: successCallBack as? (URLSessionDataTask, Any?) -> Void, failure: (failureCallBack as? (URLSessionDataTask?, Error) -> Void))
+            
+            
         } else {
-            POST(urlString, parameters: parameters, progress: nil, success: successCallBack, failure: failureCallBack)
+            post(urlString, parameters: parameters, progress: nil, success: successCallBack, failure: nil)
+//            post(urlString, parameters: parameters, progress: nil, success: (successCallBack as? (URLSessionDataTask, Any?) -> Void as! (URLSessionDataTask, Any?) -> Void), failure: failureCallBack as? (URLSessionDataTask?, Error) -> Void)
         }
         
+        
+
+
+
+
+
+
+
     }
 }
 
 
 // MARK:- 请求AccessToken
 extension NetworkTools {
-    func loadAccessToken(code : String, finished : (result : [String : AnyObject]?, error : NSError?) -> ()) {
+    func loadAccessToken(_ code : String, finished : @escaping (_ result : [String : Any]?, _ error : NSError?) -> ()) {
         // 1.获取请求的URLString
         let urlString = "oauth2/access_token"
         
         // 2.获取请求的参数
-        let parameters = ["client_id" : WB_App_Key, "client_secret" : WB_App_Secret, "grant_type" : "authorization_code", "redirect_uri" : WB_Redirect_URI, "code" : code]
+        let parameters : [String : Any] = ["client_id" : WB_App_Key, "client_secret" : WB_App_Secret, "grant_type" : "authorization_code", "redirect_uri" : WB_Redirect_URI, "code" : code]
         
         // 3.发送网络请求
         request(.POST, urlString: urlString, parameters: parameters) { (result, error) -> () in
-            finished(result: result as? [String : AnyObject], error: error)
+            finished(result as? [String : Any], error)
         }
     }
 }
 
 // MARK:- 请求用户的信息
 extension NetworkTools {
-    func loadUserInfo(access_token : String, uid : String, finished : (result : [String : AnyObject]?, error : NSError?) -> ()) {
+    func loadUserInfo(_ access_token : String, uid : String, finished : @escaping (_ result : [String : Any]?, _ error : NSError?) -> ()) {
         // 1.获取请求的URLString
         let urlString = "2/users/show.json"
         
         // 2.获取请求的参数
-        let parameters = ["access_token" : access_token, "uid" : uid]
+        let parameters : [String : Any] = ["access_token" : access_token, "uid" : uid]
         
         // 3.发送网络请求
         request(.GET, urlString: urlString, parameters: parameters) { (result, error) -> () in
-            finished(result: result as? [String : AnyObject] , error: error)
+            finished(result as? [String : Any] , error)
         }
     }
 }
 
 // MARK:- 请求首页数据
 extension NetworkTools {
-    func loadStatuses(since_id : Int, max_id : Int, finished : (result : [[String : AnyObject]]?, error : NSError?) -> ()) {
+    func loadStatuses(_ since_id : Int, max_id : Int, finished : @escaping (_ result : [[String : Any]]?, _ error : NSError?) -> ()) {
         // 1.获取请求的URLString
         let urlString = "2/statuses/home_timeline.json"
         
         // 2.获取请求的参数
-        let parameters = ["access_token" : (UserAccountViewModel.shareIntance.account?.access_token)!, "since_id" : "\(since_id)", "max_id" : "\(max_id)"]
+        let parameters : [String : Any] = ["access_token" : (UserAccountViewModel.shareIntance.account?.access_token)!, "since_id" : "\(since_id)", "max_id" : "\(max_id)"]
         
         // 3.发送网络请求
         request(.GET, urlString: urlString, parameters: parameters) { (result, error) -> () in
             
             // 1.获取字典的数据
-            guard let resultDict = result as? [String : AnyObject] else {
-                finished(result: nil, error: error)
+            guard let resultDict = result as? [String : Any] else {
+                finished(nil, error)
                 return
             }
             
             // 2.将数组数据回调给外界控制器
-            finished(result: resultDict["statuses"] as? [[String : AnyObject]], error: error)
+            finished(resultDict["statuses"] as? [[String : Any]], error)
         }
     }
 }
 
 // MARK:- 发送微博
 extension NetworkTools {
-    func sendStatus(statusText : String, isSuccess : (isSuccess : Bool) -> ()) {
+    func sendStatus(_ statusText : String, isSuccess : @escaping (_ isSuccess : Bool) -> ()) {
         // 1.获取请求的URLString
         let urlString = "2/statuses/update.json"
         
@@ -117,11 +131,11 @@ extension NetworkTools {
         let parameters = ["access_token" : (UserAccountViewModel.shareIntance.account?.access_token)!, "status" : statusText]
         
         // 3.发送网络请求
-        request(.POST, urlString: urlString, parameters: parameters) { (result, error) -> () in
+        request(.POST, urlString: urlString, parameters: parameters as [String : Any]) { (result, error) -> () in
             if result != nil {
-                isSuccess(isSuccess: true)
+                isSuccess(true)
             } else {
-                isSuccess(isSuccess: false)
+                isSuccess(false)
             }
         }
     }
@@ -130,7 +144,7 @@ extension NetworkTools {
 
 // MARK:- 发送微博并且携带照片
 extension NetworkTools {
-    func sendStatus(statusText : String, image : UIImage, isSuccess : (isSuccess : Bool) -> ()) {
+    func sendStatus(_ statusText : String, image : UIImage, isSuccess : @escaping (_ isSuccess : Bool) -> ()) {
         // 1.获取请求的URLString
         let urlString = "2/statuses/upload.json"
         
@@ -138,14 +152,14 @@ extension NetworkTools {
         let parameters = ["access_token" : (UserAccountViewModel.shareIntance.account?.access_token)!, "status" : statusText]
         
         // 3.发送网络请求
-        POST(urlString, parameters: parameters, constructingBodyWithBlock: { (formData) -> Void in
+        post(urlString, parameters: parameters, constructingBodyWith: { (formData) -> Void in
             
             if let imageData = UIImageJPEGRepresentation(image, 0.5) {
-                formData.appendPartWithFileData(imageData, name: "pic", fileName: "123.png", mimeType: "image/png")
+                formData.appendPart(withFileData: imageData, name: "pic", fileName: "123.png", mimeType: "image/png")
             }
             
             }, progress: nil, success: { (_, _) -> Void in
-                isSuccess(isSuccess: true)
+                isSuccess(true)
         }) { (_, error) -> Void in
             myLog(error)
         }

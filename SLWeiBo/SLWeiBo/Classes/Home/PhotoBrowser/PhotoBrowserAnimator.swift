@@ -10,97 +10,97 @@ import UIKit
 
 // 面向协议开发
 protocol AnimatorPresentedDelegate : NSObjectProtocol {
-    func startRect(indexPath : NSIndexPath) -> CGRect
-    func endRect(indexPath : NSIndexPath) -> CGRect
-    func imageView(indexPath : NSIndexPath) -> UIImageView
+    func startRect(_ indexPath : IndexPath) -> CGRect
+    func endRect(_ indexPath : IndexPath) -> CGRect
+    func imageView(_ indexPath : IndexPath) -> UIImageView
 }
 
 protocol AnimatorDismissDelegate : NSObjectProtocol {
-    func indexPathForDimissView() -> NSIndexPath
+    func indexPathForDimissView() -> IndexPath
     func imageViewForDimissView() -> UIImageView
 }
 
 
 class PhotoBrowserAnimator: NSObject {
     var isPresented : Bool = false
-    var indexPath : NSIndexPath?
+    var indexPath : IndexPath?
     var presentedDelegate : AnimatorPresentedDelegate?
     var dismissDelegate : AnimatorDismissDelegate?
 }
 
 extension PhotoBrowserAnimator : UIViewControllerTransitioningDelegate {
-    func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         isPresented = true
         return self
     }
     
-    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         isPresented = false
         return self
     }
 }
 
 extension PhotoBrowserAnimator : UIViewControllerAnimatedTransitioning {
-    func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
+    func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return 0.5
     }
     
-    func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
+    func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         isPresented ? animationForPresentedView(transitionContext) : animationForDismissView(transitionContext)
     }
     
-    func animationForPresentedView(transitionContext: UIViewControllerContextTransitioning) {
+    func animationForPresentedView(_ transitionContext: UIViewControllerContextTransitioning) {
         // 0.nil值校验
-        guard let presentedDelegate = presentedDelegate, indexPath = indexPath else {
+        guard let presentedDelegate = presentedDelegate, let indexPath = indexPath else {
             return
         }
         
         // 1.取出弹出的View
-        let presentedView = transitionContext.viewForKey(UITransitionContextToViewKey)!
+        let presentedView = transitionContext.view(forKey: UITransitionContextViewKey.to)!
         
         // 2.将prensentedView添加到containerView中
-        transitionContext.containerView()?.addSubview(presentedView)
+        transitionContext.containerView.addSubview(presentedView)
         
         // 3.获取执行动画的imageView
         let startRect = presentedDelegate.startRect(indexPath)
         let imageView = presentedDelegate.imageView(indexPath)
-        transitionContext.containerView()?.addSubview(imageView)
+        transitionContext.containerView.addSubview(imageView)
         imageView.frame = startRect
         
         // 4.执行动画
         presentedView.alpha = 0.0
-        transitionContext.containerView()?.backgroundColor = UIColor.blackColor()
-        UIView.animateWithDuration(transitionDuration(transitionContext), animations: { () -> Void in
+        transitionContext.containerView.backgroundColor = UIColor.black
+        UIView.animate(withDuration: transitionDuration(using: transitionContext), animations: { () -> Void in
             imageView.frame = presentedDelegate.endRect(indexPath)
-        }) { (_) -> Void in
+        }, completion: { (_) -> Void in
             imageView.removeFromSuperview()
             presentedView.alpha = 1.0
-            transitionContext.containerView()?.backgroundColor = UIColor.clearColor()
+            transitionContext.containerView.backgroundColor = UIColor.clear
             transitionContext.completeTransition(true)
-        }
+        }) 
     }
     
-    func animationForDismissView(transitionContext: UIViewControllerContextTransitioning) {
+    func animationForDismissView(_ transitionContext: UIViewControllerContextTransitioning) {
         
         // nil值校验
-        guard let dismissDelegate = dismissDelegate, presentedDelegate = presentedDelegate else {
+        guard let dismissDelegate = dismissDelegate, let presentedDelegate = presentedDelegate else {
             return
         }
         
         // 1.取出消失的View
-        let dismissView = transitionContext.viewForKey(UITransitionContextFromViewKey)
+        let dismissView = transitionContext.view(forKey: UITransitionContextViewKey.from)
         dismissView?.removeFromSuperview()
         
         // 2.获取执行动画的ImageView
         let imageView = dismissDelegate.imageViewForDimissView()
-        transitionContext.containerView()?.addSubview(imageView)
+        transitionContext.containerView.addSubview(imageView)
         let indexPath = dismissDelegate.indexPathForDimissView()
         
         // 3.执行动画
-        UIView.animateWithDuration(transitionDuration(transitionContext), animations: { () -> Void in
+        UIView.animate(withDuration: transitionDuration(using: transitionContext), animations: { () -> Void in
             imageView.frame = presentedDelegate.startRect(indexPath)
-        }) { (_) -> Void in
+        }, completion: { (_) -> Void in
             transitionContext.completeTransition(true)
-        }
+        }) 
     }
 }

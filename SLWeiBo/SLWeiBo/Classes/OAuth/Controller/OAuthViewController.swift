@@ -29,12 +29,12 @@ class OAuthViewController: UIViewController {
 
 // MARK:- 设置UI界面
 extension OAuthViewController {
-    private func setupNavigationBar() {
+    fileprivate func setupNavigationBar() {
         // 1.设置左侧的item
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "关闭", style: .Plain, target: self, action: #selector(OAuthViewController.closeItemClick))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "关闭", style: .plain, target: self, action: #selector(OAuthViewController.closeItemClick))
         
         // 2.设置右侧的item
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "填充", style: .Plain, target: self, action: #selector(OAuthViewController.fillItemClick))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "填充", style: .plain, target: self, action: #selector(OAuthViewController.fillItemClick))
         
         // 3.设置标题
         title = "登录页面"
@@ -43,17 +43,17 @@ extension OAuthViewController {
     /**
      加载网页
      */
-    private func loadPage() {
+    fileprivate func loadPage() {
         // 1.获取登录页面的URLString
         let urlString = "https://api.weibo.com/oauth2/authorize?client_id=\(WB_App_Key)&redirect_uri=\(WB_Redirect_URI)"
         
         // 2.创建对应NSURL
-        guard let url = NSURL(string: urlString) else {
+        guard let url = URL(string: urlString) else {
             return
         }
         
         // 3.创建NSURLRequest对象
-        let request = NSURLRequest(URL: url)
+        let request = URLRequest(url: url)
         
         // 4.加载request对象
         webView.loadRequest(request)
@@ -62,16 +62,16 @@ extension OAuthViewController {
 
 // MARK:- 事件监听处理
 extension OAuthViewController {
-    @objc private func closeItemClick() {
-        dismissViewControllerAnimated(true, completion: nil)
+    @objc fileprivate func closeItemClick() {
+        dismiss(animated: true, completion: nil)
     }
     
-    @objc private func fillItemClick() {
+    @objc fileprivate func fillItemClick() {
         // 1.书写js代码 : javascript / java --> 雷锋和雷峰塔
         let jsCode = "document.getElementById('userId').value='\(WB_APP_UserId)';document.getElementById('passwd').value='\(WB_APP_Passwd)';"
         
         // 2.执行js代码
-        webView.stringByEvaluatingJavaScriptFromString(jsCode)
+        webView.stringByEvaluatingJavaScript(from: jsCode)
 
     }
 }
@@ -80,43 +80,43 @@ extension OAuthViewController {
 extension OAuthViewController: UIWebViewDelegate
 {
     /// webView开始加载网页
-    func webViewDidStartLoad(webView: UIWebView) {
-            SVProgressHUD.showInfoWithStatus("正在拼命加载网页...")
-            SVProgressHUD.setDefaultMaskType(.Black)
+    func webViewDidStartLoad(_ webView: UIWebView) {
+            SVProgressHUD.showInfo(withStatus: "正在拼命加载网页...")
+            SVProgressHUD.setDefaultMaskType(.black)
     }
     
     /// webView网页加载完成
-    func webViewDidFinishLoad(webView: UIWebView) {
+    func webViewDidFinishLoad(_ webView: UIWebView) {
         SVProgressHUD.dismiss()
         
         
     }
     
     /// webView加载网页失败
-    func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {
+    func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
         SVProgressHUD.dismiss()
     }
     
     // 当准备加载某一个页面时,会执行该方法
     // 返回值: true -> 继续加载该页面 false -> 不会加载该页面
-    func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         
         // 1.获取加载网页的NSURL
-        guard let url = request.URL else {
+        guard let url = request.url else {
             return true
         }
         
         // 2.获取url中的字符串
-        let urlString = url.absoluteString
+        let urlString = url.absoluteString as NSString
         
         
         // 3.判断该字符串中是否包含code
-        guard urlString.containsString("code=") else {
+        guard urlString.contains("code=") else {
             return true
         }
         
         // 4.将code截取出来
-        let code = urlString.componentsSeparatedByString("code=").last!
+        let code = urlString.components(separatedBy: "code=").last!
         
         // 5.加载accessToken
         loadAccessToken(code)
@@ -129,7 +129,7 @@ extension OAuthViewController: UIWebViewDelegate
 // MARK:- 请求数据
 extension OAuthViewController {
     /// 加载AccessToken
-    private func loadAccessToken(code : String) {
+    fileprivate func loadAccessToken(_ code : String) {
         NetworkTools.shareInstance.loadAccessToken(code) { (result, error) -> () in
             // 1.错误校验
             if error != nil {
@@ -153,7 +153,7 @@ extension OAuthViewController {
     
     
     /// 请求用户信息
-    private func loadUserInfo(account : UserAccount) {
+    fileprivate func loadUserInfo(_ account : UserAccount) {
         // 1.获取AccessToken
         guard let accessToken = account.access_token else {
             return
@@ -188,8 +188,8 @@ extension OAuthViewController {
             UserAccountViewModel.shareIntance.account = account
             
             // 6.退出当前控制器
-            self.dismissViewControllerAnimated(true, completion: { () -> Void in
-                 NSNotificationCenter.defaultCenter().postNotificationName(SLRootViewControllerChange, object: self, userInfo: ["message": true])
+            self.dismiss(animated: true, completion: { () -> Void in
+                 NotificationCenter.default.post(name: Notification.Name(rawValue: SLRootViewControllerChange), object: self, userInfo: ["message": true])
             })
 
         }

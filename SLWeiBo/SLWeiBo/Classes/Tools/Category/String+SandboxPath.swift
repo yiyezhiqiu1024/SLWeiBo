@@ -14,10 +14,10 @@ extension String
     func cachesDir() -> String
     {
         // 1.获取缓存目录的路径
-        let cachesPath = NSSearchPathForDirectoriesInDomains(.CachesDirectory, .UserDomainMask, true).last!
+        let cachesPath = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).last!
         // 2.生成缓存路径
         let name = (self as NSString).lastPathComponent
-        let filePath = (cachesPath as NSString).stringByAppendingPathComponent(name)
+        let filePath = (cachesPath as NSString).appendingPathComponent(name)
         
         return filePath
     }
@@ -25,10 +25,10 @@ extension String
     func docDir() -> String
     {
         // 1.获取缓存目录的路径
-        let docPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).last!
+        let docPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).last!
         // 2.生成缓存路径
         let name = (self as NSString).lastPathComponent
-        let filePath = (docPath as NSString).stringByAppendingPathComponent(name)
+        let filePath = (docPath as NSString).appendingPathComponent(name)
         
         return filePath
     }
@@ -40,7 +40,7 @@ extension String
         
         // 2.生成缓存路径
         let name = (self as NSString).lastPathComponent
-        let filePath = (tmpPath as NSString).stringByAppendingPathComponent(name)
+        let filePath = (tmpPath as NSString).appendingPathComponent(name)
         
         return filePath
     }

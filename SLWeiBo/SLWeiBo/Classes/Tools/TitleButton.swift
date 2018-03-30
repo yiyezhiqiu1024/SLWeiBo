@@ -33,18 +33,18 @@ class TitleButton: UIButton {
         setupUI()
     }
     
-    private func setupUI()
+    fileprivate func setupUI()
     {
-        setImage(UIImage(named: "navigationbar_arrow_down"), forState: UIControlState.Normal)
-        setImage(UIImage(named: "navigationbar_arrow_up"), forState: UIControlState.Selected)
+        setImage(UIImage(named: "navigationbar_arrow_down"), for: UIControlState())
+        setImage(UIImage(named: "navigationbar_arrow_up"), for: UIControlState.selected)
         
-        setTitleColor(UIColor.darkGrayColor(), forState: UIControlState.Normal)
+        setTitleColor(UIColor.darkGray, for: UIControlState())
         sizeToFit()
     }
     
-    override func setTitle(title: String?, forState state: UIControlState) {
+    override func setTitle(_ title: String?, for state: UIControlState) {
         // ?? 用于判断前面的参数是否是nil, 如果是nil就返回??后面的数据, 如果不是nil那么??后面的语句不执行
-        super.setTitle((title ?? "") + "  ", forState: state)
+        super.setTitle((title ?? "") + "  ", for: state)
     }
     
     override func layoutSubviews() {

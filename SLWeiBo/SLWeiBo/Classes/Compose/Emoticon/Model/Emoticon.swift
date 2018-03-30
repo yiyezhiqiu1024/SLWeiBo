@@ -17,14 +17,14 @@ class Emoticon: NSObject {
             }
             
             // 1.创建扫描器
-            let scanner = NSScanner(string: code)
+            let scanner = Scanner(string: code)
             
             // 2.调用方法,扫描出code中的值
             var value : UInt32 = 0
-            scanner.scanHexInt(&value)
+            scanner.scanHexInt32(&value)
             
             // 3.将value转成字符
-            let c = Character(UnicodeScalar(value))
+            let c = Character(UnicodeScalar(value)!)
             
             // 4.将字符转成字符串
             emojiCode = String(c)
@@ -36,7 +36,7 @@ class Emoticon: NSObject {
                 return
             }
             
-            pngPath = NSBundle.mainBundle().bundlePath + "/Emoticons.bundle/" + png
+            pngPath = Bundle.main.bundlePath + "/Emoticons.bundle/" + png
         }
     }
     var chs : String?       // 普通表情对应的文字
@@ -52,7 +52,7 @@ class Emoticon: NSObject {
     init(dict : [String : String]) {
         super.init()
         
-        setValuesForKeysWithDictionary(dict)
+        setValuesForKeys(dict)
     }
     init (isRemove : Bool) {
         self.isRemove = isRemove
@@ -62,9 +62,9 @@ class Emoticon: NSObject {
         self.isEmpty = isEmpty
     }
     
-    override func setValue(value: AnyObject?, forUndefinedKey key: String) {}
+    override func setValue(_ value: Any?, forUndefinedKey key: String) {}
     
     override var description : String {
-        return dictionaryWithValuesForKeys(["emojiCode", "pngPath", "chs"]).description
+        return dictionaryWithValues(forKeys: ["emojiCode", "pngPath", "chs"]).description
     }
 }

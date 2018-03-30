@@ -25,27 +25,27 @@ class StatusViewModel {
     /// 处理过的用户会员图标
     var vipImage : UIImage?
     // 处理过的用户头像的地址
-    var profileURL : NSURL?
+    var profileURL : URL?
     /// 处理微博配图的数据
-    var picURLs : [NSURL] = [NSURL]()
+    var picURLs : [URL] = [URL]()
     
     // MARK:- 自定义构造函数
     init(status : Status) {
         self.status = status
         
         // 1.对来源处理
-        if let source = status.source where source != "" {
+        if let source = status.source, source != "" {
             // 1.1.获取起始位置和截取的长度
-            let startIndex = (source as NSString).rangeOfString(">").location + 1
-            let length = (source as NSString).rangeOfString("</").location - startIndex
+            let startIndex = (source as NSString).range(of: ">").location + 1
+            let length = (source as NSString).range(of: "</").location - startIndex
             
             // 1.2.截取字符串
-            sourceText = (source as NSString).substringWithRange(NSRange(location: startIndex, length: length))
+            sourceText = (source as NSString).substring(with: NSRange(location: startIndex, length: length))
         }
         
         // 2.处理时间
         if let createAt = status.created_at {
-            createAtText = NSDate.createDateString(createAt)
+            createAtText = Date.createDateString(createAt)
         }
         
         // 3.处理认证
@@ -69,7 +69,7 @@ class StatusViewModel {
         
         // 5.用户头像的处理
         let profileURLString = status.user?.profile_image_url ?? ""
-        profileURL = NSURL(string: profileURLString)
+        profileURL = URL(string: profileURLString)
         
         // 6.处理配图数据
         // 6.1判断获取微博或转发配图
@@ -79,7 +79,7 @@ class StatusViewModel {
                 guard let picURLString = picURLDict["thumbnail_pic"] else {
                     continue
                 }
-                picURLs.append(NSURL(string: picURLString)!)
+                picURLs.append(URL(string: picURLString)!)
             }
         }
     }

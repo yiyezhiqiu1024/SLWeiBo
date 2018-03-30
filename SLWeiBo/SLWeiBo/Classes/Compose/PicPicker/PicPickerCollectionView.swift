@@ -26,7 +26,7 @@ class PicPickerCollectionView: UICollectionView {
         
         // 设置collectionView的layout
         let layout = collectionViewLayout as! UICollectionViewFlowLayout
-        let itemWH = (UIScreen.mainScreen().bounds.width - 4 * edgeMargin) / 3
+        let itemWH = (UIScreen.main.bounds.width - 4 * edgeMargin) / 3
         layout.itemSize = CGSize(width: itemWH, height: itemWH)
         layout.minimumInteritemSpacing = edgeMargin
         layout.minimumLineSpacing = edgeMargin
@@ -34,7 +34,7 @@ class PicPickerCollectionView: UICollectionView {
         // 设置collectionView的属性
         let nib = UINib(nibName: "\(PicPickerViewCell.self)", bundle: nil
         )
-        registerNib(nib, forCellWithReuseIdentifier: picPickerCell)
+        register(nib, forCellWithReuseIdentifier: picPickerCell)
         
         dataSource = self
         
@@ -45,16 +45,16 @@ class PicPickerCollectionView: UICollectionView {
 
 
 extension PicPickerCollectionView : UICollectionViewDataSource {
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return images.count + 1
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         // 1.创建cell
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(picPickerCell, forIndexPath: indexPath)  as! PicPickerViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: picPickerCell, for: indexPath)  as! PicPickerViewCell
         
         // 2.给cell设置数据
-        cell.backgroundColor = UIColor.redColor()
+        cell.backgroundColor = UIColor.red
         cell.image = indexPath.item <= images.count - 1 ? images[indexPath.item] : nil
         
         return cell

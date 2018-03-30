@@ -34,12 +34,12 @@ class UserAccountViewModel {
             return false
         }
         // 降序比较，判断是否过期，过期 = 未登录，没过期 = 已登录
-        return expiresDate.compare(NSDate()) == NSComparisonResult.OrderedDescending
+        return expiresDate.compare(Date()) == ComparisonResult.orderedDescending
     }
     
     // MARK:- 重写init()函数
     init () {
         // 1.从沙盒中读取中归档的信息
-        account = NSKeyedUnarchiver.unarchiveObjectWithFile(accountPath) as? UserAccount
+        account = NSKeyedUnarchiver.unarchiveObject(withFile: accountPath) as? UserAccount
     }
 }

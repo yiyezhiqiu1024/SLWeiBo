@@ -15,17 +15,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     // MARK: - 系统回调函数
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         /// 设置全局外观
-        UITabBar.appearance().tintColor = UIColor.orangeColor()
-        UINavigationBar.appearance().tintColor = UIColor.orangeColor()
+        UITabBar.appearance().tintColor = UIColor.orange
+        UINavigationBar.appearance().tintColor = UIColor.orange
         
         // 2.注册通知, 监听根控制器的改变
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(AppDelegate.switchRootViewController(_:)), name: SLRootViewControllerChange, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(AppDelegate.switchRootViewController(_:)), name: NSNotification.Name(rawValue: SLRootViewControllerChange), object: nil)
         
         // 3.创建keywindow
-        window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = defaultViewController()
         window?.makeKeyAndVisible()
         
@@ -35,7 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     deinit
     {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
 
 }
@@ -44,21 +44,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 extension AppDelegate
 {
     /// 检查是否有新版本
-    private func isNewVersion() -> Bool
+    fileprivate func isNewVersion() -> Bool
     {
         // 1.从info.plist中获取当前软件的版本号  2.0
-        let currentVersion = NSBundle.mainBundle().infoDictionary!["CFBundleShortVersionString"] as! String
+        let currentVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
         // 2.从沙盒中获取以前的软件版本号   1.0
-        let userDefaults = NSUserDefaults.standardUserDefaults()
-        let sanboxVersion = (userDefaults.objectForKey("CFBundleShortVersionString") as? String) ?? "0.0"
+        let userDefaults = UserDefaults.standard
+        let sanboxVersion = (userDefaults.object(forKey: "CFBundleShortVersionString") as? String) ?? "0.0"
         // 3.利用"当前的"和"沙盒的"进行比较
         // 如果当前的 > 沙盒的, 有新版本
         // 1.0 0.0
-        if currentVersion.compare(sanboxVersion) == NSComparisonResult.OrderedDescending
+        if currentVersion.compare(sanboxVersion) == ComparisonResult.orderedDescending
         {
             // 有新版本
             // 4.存储当前的软件版本号到沙盒中 1.0
-            userDefaults.setObject(currentVersion, forKey: "CFBundleShortVersionString")
+            userDefaults.set(currentVersion, forKey: "CFBundleShortVersionString")
             return true
         }
         
@@ -67,14 +67,14 @@ extension AppDelegate
     }
     
     /// 根据一个Storyboard的名称创建一个控制器
-    private func createViewController(viewControllerName: String) -> UIViewController
+    fileprivate func createViewController(_ viewControllerName: String) -> UIViewController
     {
         let sb = UIStoryboard(name: viewControllerName, bundle: nil)
         return sb.instantiateInitialViewController()!
     }
     
     /// 返回默认控制器
-    private func defaultViewController() -> UIViewController
+    fileprivate func defaultViewController() -> UIViewController
     {
         
         if UserAccountViewModel.shareIntance.isLogin
@@ -86,7 +86,7 @@ extension AppDelegate
     }
     
     /// 切换根控制器器
-    @objc private func switchRootViewController(notify: NSNotification)
+    @objc fileprivate func switchRootViewController(_ notify: Notification)
     {
         if let _ = notify.userInfo
         {
@@ -109,7 +109,7 @@ extension AppDelegate
  - parameter methodName: 函数名
  - parameter lineNumber: 行号
  */
-func myLog<T>(message: T, fileName: String = #file, funcName: String = #function, lineNumber: Int = #line)
+func myLog<T>(_ message: T, fileName: String = #file, funcName: String = #function, lineNumber: Int = #line)
 {
     #if DEBUG
         print("\((fileName as NSString).lastPathComponent) [\(lineNumber)] \(funcName):\(message)")

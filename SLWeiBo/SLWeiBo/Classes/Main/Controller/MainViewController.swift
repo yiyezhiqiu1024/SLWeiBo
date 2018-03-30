@@ -14,7 +14,7 @@ class MainViewController: UITabBarController {
     // MARK: - 懒加载属性
     //==========================================================================================================
     /// 发微博按钮
-    private lazy var composeButton: UIButton = UIButton(imageName:"tabbar_compose_icon_add", backgroundImageName: "tabbar_compose_button")
+    fileprivate lazy var composeButton: UIButton = UIButton(imageName:"tabbar_compose_icon_add", backgroundImageName: "tabbar_compose_button")
 
     //==========================================================================================================
     // MARK: - 系统回调函数
@@ -25,7 +25,7 @@ class MainViewController: UITabBarController {
         
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         // 设置发微博按钮
@@ -50,7 +50,7 @@ extension MainViewController
         composeButton.center = CGPoint(x: tabBar.center.x, y: tabBar.bounds.size.height * 0.5)
         
         // 3.监听按钮点击
-        composeButton.addTarget(self, action: #selector(MainViewController.composeBtnClick(_:)), forControlEvents:.TouchUpInside)
+        composeButton.addTarget(self, action: #selector(MainViewController.composeBtnClick(_:)), for:.touchUpInside)
     }
     
 }
@@ -65,7 +65,7 @@ extension MainViewController
      
      - parameter btn: 发布按钮
      */
-    @objc private func composeBtnClick(btn: UIButton)
+    @objc fileprivate func composeBtnClick(_ btn: UIButton)
     {
         // 1.创建发布控制器
         guard let composeVC = UIStoryboard(name: "Compose", bundle: nil).instantiateInitialViewController() else
@@ -77,6 +77,6 @@ extension MainViewController
         let composeNav = UINavigationController(rootViewController: composeVC)
         
         // 3.弹出控制器
-        presentViewController(composeNav, animated: true, completion: nil)
+        present(composeNav, animated: true, completion: nil)
     }
 }

@@ -17,8 +17,8 @@ class ProgressView: UIView {
     }
     
     // MARK:- 重写drawRect方法
-    override func drawRect(rect: CGRect) {
-        super.drawRect(rect)
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
         // 获取参数
         let center = CGPoint(x: rect.width * 0.5, y: rect.height * 0.5)
         let radius = rect.width * 0.5 - 3
@@ -29,8 +29,8 @@ class ProgressView: UIView {
         let path = UIBezierPath(arcCenter: center, radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: true)
         
         // 绘制一条中心点的线
-        path.addLineToPoint(center)
-        path.closePath()
+        path.addLine(to: center)
+        path.close()
         
         // 设置绘制的颜色
         UIColor(white: 1.0, alpha: 0.4).setFill()

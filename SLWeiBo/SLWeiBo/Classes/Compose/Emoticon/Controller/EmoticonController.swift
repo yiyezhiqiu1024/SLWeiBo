@@ -12,15 +12,15 @@ private let EmoticonCell = "EmoticonCell"
 
 class EmoticonController: UIViewController {
     // MARK:- 定义属性
-    var emoticonCallBack : (emoticon : Emoticon) -> ()
+    var emoticonCallBack : (_ emoticon : Emoticon) -> ()
     
     // MARK:- 懒加载属性
-    private lazy var collectionView : UICollectionView = UICollectionView(frame: CGRectZero, collectionViewLayout: EmoticonCollectionViewLayout())
-    private lazy var toolBar : UIToolbar = UIToolbar()
-    private lazy var manager = EmoticonManager()
+    fileprivate lazy var collectionView : UICollectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: EmoticonCollectionViewLayout())
+    fileprivate lazy var toolBar : UIToolbar = UIToolbar()
+    fileprivate lazy var manager = EmoticonManager()
     
     // MARK:- 自定义构造函数
-    init (emoticonCallBack : (emoticon : Emoticon) -> ()) {
+    init (emoticonCallBack : @escaping (_ emoticon : Emoticon) -> ()) {
         
         self.emoticonCallBack = emoticonCallBack
         
@@ -43,19 +43,19 @@ class EmoticonController: UIViewController {
 
 // MARK:- 设置UI界面内容
 extension EmoticonController {
-    private func setupUI() {
+    fileprivate func setupUI() {
         // 1.添加子控件
         view.addSubview(collectionView)
         view.addSubview(toolBar)
-        collectionView.backgroundColor = UIColor.purpleColor()
-        toolBar.backgroundColor = UIColor.darkGrayColor()
+        collectionView.backgroundColor = UIColor.purple
+        toolBar.backgroundColor = UIColor.darkGray
         
         // 2.设置子控件的frame
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         toolBar.translatesAutoresizingMaskIntoConstraints = false
-        let views = ["tBar" : toolBar, "cView" : collectionView]
-        var cons = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[tBar]-0-|", options: [], metrics: nil, views: views)
-        cons += NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[cView]-0-[tBar]-0-|", options: [.AlignAllLeft, .AlignAllRight], metrics: nil, views: views)
+        let views = ["tBar" : toolBar, "cView" : collectionView] as [String : Any]
+        var cons = NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[tBar]-0-|", options: [], metrics: nil, views: views)
+        cons += NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[cView]-0-[tBar]-0-|", options: [.alignAllLeft, .alignAllRight], metrics: nil, views: views)
         view.addConstraints(cons)
         
         // 3.准备collectionView
@@ -65,13 +65,13 @@ extension EmoticonController {
         prepareForToolBar()
     }
     
-    private func prepareForCollectionView() {
-        collectionView.registerClass(EmioticonViewCell.self, forCellWithReuseIdentifier: EmoticonCell)
+    fileprivate func prepareForCollectionView() {
+        collectionView.register(EmioticonViewCell.self, forCellWithReuseIdentifier: EmoticonCell)
         collectionView.dataSource = self
         collectionView.delegate = self
     }
     
-    private func prepareForToolBar() {
+    fileprivate func prepareForToolBar() {
         // 1.定义toolBar中titles
         let titles = ["最近", "默认", "emoji", "浪小花"]
         
@@ -79,48 +79,48 @@ extension EmoticonController {
         var index = 0
         var tempItems = [UIBarButtonItem]()
         for title in titles {
-            let item = UIBarButtonItem(title: title, style: .Plain, target: self, action: #selector(EmoticonController.itemClick(_:)))
+            let item = UIBarButtonItem(title: title, style: .plain, target: self, action: #selector(EmoticonController.itemClick(_:)))
             item.tag = index
             index += 1
             
             tempItems.append(item)
-            tempItems.append(UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil))
+            tempItems.append(UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil))
         }
         
         // 3.设置toolBar的items数组
         tempItems.removeLast()
         toolBar.items = tempItems
-        toolBar.tintColor = UIColor.orangeColor()
+        toolBar.tintColor = UIColor.orange
     }
     
-    @objc private func itemClick(item : UIBarButtonItem) {
+    @objc fileprivate func itemClick(_ item : UIBarButtonItem) {
         // 1.获取点击的item的tag
         let tag = item.tag
         
         // 2.根据tag获取到当前组
-        let indexPath = NSIndexPath(forItem: 0, inSection: tag)
+        let indexPath = IndexPath(item: 0, section: tag)
         
         // 3.滚动到对应的位置
-        collectionView.scrollToItemAtIndexPath(indexPath, atScrollPosition: .Left, animated: true)
+        collectionView.scrollToItem(at: indexPath, at: .left, animated: true)
     }
 }
 
 
 // MARK: - UICollectionViewDataSource
 extension EmoticonController : UICollectionViewDataSource {
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         return manager.packages.count
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         let package = manager.packages[section]
         
         return package.emoticons.count
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         // 1.创建cell
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(EmoticonCell, forIndexPath: indexPath) as! EmioticonViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EmoticonCell, for: indexPath) as! EmioticonViewCell
         
         // 2.给cell设置数据
         let package = manager.packages[indexPath.section]
@@ -134,7 +134,7 @@ extension EmoticonController : UICollectionViewDataSource {
 // MARK: - UICollectionViewDelegate
 extension EmoticonController: UICollectionViewDelegate {
     /// 代理方法
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         // 1.取出点击的表情
         let package = manager.packages[indexPath.section]
         let emoticon = package.emoticons[indexPath.item]
@@ -143,10 +143,10 @@ extension EmoticonController: UICollectionViewDelegate {
         insertRecentlyEmoticon(emoticon)
         
         // 3.将表情回调给外界控制器
-        emoticonCallBack(emoticon: emoticon)
+        emoticonCallBack(emoticon)
     }
     
-    private func insertRecentlyEmoticon(emoticon : Emoticon) {
+    fileprivate func insertRecentlyEmoticon(_ emoticon : Emoticon) {
         // 1.如果是空白表情或者删除按钮,不需要插入
         if emoticon.isRemove || emoticon.isEmpty {
             return
@@ -154,34 +154,34 @@ extension EmoticonController: UICollectionViewDelegate {
         
         // 2.删除一个表情
         if manager.packages.first!.emoticons.contains(emoticon) { // 原来有该表情
-            let index = (manager.packages.first?.emoticons.indexOf(emoticon))!
-            manager.packages.first?.emoticons.removeAtIndex(index)
+            let index = (manager.packages.first?.emoticons.index(of: emoticon))!
+            manager.packages.first?.emoticons.remove(at: index)
         } else { // 原来没有这个表情
-            manager.packages.first?.emoticons.removeAtIndex(19)
+            manager.packages.first?.emoticons.remove(at: 19)
         }
         
         // 3.将emoticon插入最近分组中
-        manager.packages.first?.emoticons.insert(emoticon, atIndex: 0)
+        manager.packages.first?.emoticons.insert(emoticon, at: 0)
     }
 }
 
 
 
 class EmoticonCollectionViewLayout : UICollectionViewFlowLayout {
-    override func prepareLayout() {
-        super.prepareLayout()
+    override func prepare() {
+        super.prepare()
         
         // 1.计算itemWH
-        let itemWH = UIScreen.mainScreen().bounds.width / 7
+        let itemWH = UIScreen.main.bounds.width / 7
         
         // 2.设置layout的属性
         itemSize = CGSize(width: itemWH, height: itemWH)
         minimumInteritemSpacing = 0
         minimumLineSpacing = 0
-        scrollDirection = .Horizontal
+        scrollDirection = .horizontal
         
         // 3.设置collectionView的属性
-        collectionView?.pagingEnabled = true
+        collectionView?.isPagingEnabled = true
         collectionView?.showsHorizontalScrollIndicator = false
         collectionView?.showsVerticalScrollIndicator = false
         let insetMargin = (collectionView!.bounds.height - 3 * itemWH) / 2

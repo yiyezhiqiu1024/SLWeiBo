@@ -21,7 +21,7 @@ class QRCodeCreateViewController: UIViewController {
         filter?.setDefaults()
         // 3.设置需要生成二维码的数据到滤镜中
         // OC中要求设置的是一个二进制数据
-        filter?.setValue("https://github.com/CoderSLZeng/SLWeiBo".dataUsingEncoding(NSUTF8StringEncoding), forKeyPath: "InputMessage")
+        filter?.setValue("https://github.com/CoderSLZeng/SLWeiBo".data(using: String.Encoding.utf8), forKeyPath: "InputMessage")
         // 4.从滤镜从取出生成好的二维码图片
         guard let ciImage = filter?.outputImage else
         {
@@ -39,27 +39,27 @@ class QRCodeCreateViewController: UIViewController {
      - parameter image: 需要生成原始图片
      - parameter size:  生成的二维码的宽高
      */
-    private func createNonInterpolatedUIImageFormCIImage(image: CIImage, size: CGFloat) -> UIImage {
+    fileprivate func createNonInterpolatedUIImageFormCIImage(_ image: CIImage, size: CGFloat) -> UIImage {
         
-        let extent: CGRect = CGRectIntegral(image.extent)
-        let scale: CGFloat = min(size/CGRectGetWidth(extent), size/CGRectGetHeight(extent))
+        let extent: CGRect = image.extent.integral
+        let scale: CGFloat = min(size/extent.width, size/extent.height)
         
         // 1.创建bitmap;
-        let width = CGRectGetWidth(extent) * scale
-        let height = CGRectGetHeight(extent) * scale
-        let cs: CGColorSpaceRef = CGColorSpaceCreateDeviceGray()!
-        let bitmapRef = CGBitmapContextCreate(nil, Int(width), Int(height), 8, 0, cs, 0)!
+        let width = extent.width * scale
+        let height = extent.height * scale
+        let cs: CGColorSpace = CGColorSpaceCreateDeviceGray()
+        let bitmapRef = CGContext(data: nil, width: Int(width), height: Int(height), bitsPerComponent: 8, bytesPerRow: 0, space: cs, bitmapInfo: 0)!
         
         let context = CIContext(options: nil)
-        let bitmapImage: CGImageRef = context.createCGImage(image, fromRect: extent)
+        let bitmapImage: CGImage = context.createCGImage(image, from: extent)!
         
-        CGContextSetInterpolationQuality(bitmapRef,  CGInterpolationQuality.None)
-        CGContextScaleCTM(bitmapRef, scale, scale);
-        CGContextDrawImage(bitmapRef, extent, bitmapImage);
+        bitmapRef.interpolationQuality = CGInterpolationQuality.none
+        bitmapRef.scaleBy(x: scale, y: scale);
+        bitmapRef.draw(bitmapImage, in: extent);
         
         // 2.保存bitmap到图片
-        let scaledImage: CGImageRef = CGBitmapContextCreateImage(bitmapRef)!
+        let scaledImage: CGImage = bitmapRef.makeImage()!
         
-        return UIImage(CGImage: scaledImage)
+        return UIImage(cgImage: scaledImage)
     }
 }

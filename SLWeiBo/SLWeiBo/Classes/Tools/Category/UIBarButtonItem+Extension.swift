@@ -22,10 +22,10 @@ extension UIBarButtonItem {
     convenience init(imageName: String, target: AnyObject?, action: Selector)
     {
         let btn = UIButton()
-        btn.setImage(UIImage(named: imageName), forState: UIControlState.Normal)
-        btn.setImage(UIImage(named: imageName + "_highlighted"), forState: UIControlState.Highlighted)
+        btn.setImage(UIImage(named: imageName), for: UIControlState())
+        btn.setImage(UIImage(named: imageName + "_highlighted"), for: UIControlState.highlighted)
         btn.sizeToFit()
-        btn.addTarget(target, action: action, forControlEvents: UIControlEvents.TouchUpInside)
+        btn.addTarget(target, action: action, for: UIControlEvents.touchUpInside)
         
         self.init(customView: btn)
     }

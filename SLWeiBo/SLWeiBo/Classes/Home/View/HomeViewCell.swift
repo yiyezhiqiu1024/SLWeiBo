@@ -8,7 +8,7 @@
 
 import UIKit
 import SDWebImage
-import HYLabel
+//import HYLabel
 
 private let edgeMargin : CGFloat = 15
 private let itemMargin : CGFloat = 10
@@ -28,9 +28,9 @@ class HomeViewCell: UITableViewCell {
     /// 来源
     @IBOutlet weak var sourceLabel: UILabel!
     /// 正文
-    @IBOutlet weak var contentLabel: HYLabel!
+    @IBOutlet weak var contentLabel: UILabel!
     /// 转发微博的正文
-    @IBOutlet weak var retweetedContentLabel: HYLabel!
+    @IBOutlet weak var retweetedContentLabel: UILabel!
     /// 配图
     @IBOutlet weak var picView: PicCollectionView!
     /// 转发微博的背景
@@ -59,7 +59,7 @@ class HomeViewCell: UITableViewCell {
             }
             
             // 2.设置头像
-            iconView.sd_setImageWithURL(viewModel.profileURL, placeholderImage: UIImage(named: "avatar_default_small"))
+            iconView.sd_setImage(with: viewModel.profileURL, placeholderImage: UIImage(named: "avatar_default_small"))
             
             // 3.设置认证的图标
             verifiedView.image = viewModel.verifiedImage
@@ -67,7 +67,7 @@ class HomeViewCell: UITableViewCell {
             // 4.昵称
             screenNameLabel.text = viewModel.status?.user?.screen_name
             // 4.1设置昵称的文字颜色
-            screenNameLabel.textColor = viewModel.vipImage == nil ? UIColor.blackColor() : UIColor.orangeColor()
+            screenNameLabel.textColor = viewModel.vipImage == nil ? UIColor.black : UIColor.orange
             
             // 5.会员图标
             vipView.image = viewModel.vipImage
@@ -96,7 +96,7 @@ class HomeViewCell: UITableViewCell {
             // 11.设置转发微博的正文
             if viewModel.status?.retweeted_status != nil {
                 // 1.设置转发微博的正文
-                if let screenName = viewModel.status?.retweeted_status?.user?.screen_name, retweetedText = viewModel.status?.retweeted_status?.text {
+                if let screenName = viewModel.status?.retweeted_status?.user?.screen_name, let retweetedText = viewModel.status?.retweeted_status?.text {
                     retweetedContentLabel.text = "@" + "\(screenName) :" + retweetedText
                     
                     // 2.设置转发正文距离顶部的约束
@@ -104,7 +104,7 @@ class HomeViewCell: UITableViewCell {
                 }
                 
                 // 3.设置背景显示
-                retweetedBgView.hidden = false
+                retweetedBgView.isHidden = false
             } else {
                 // 1.设置转发微博的正文
                 retweetedContentLabel.text = nil
@@ -113,7 +113,7 @@ class HomeViewCell: UITableViewCell {
                 retweetedContentLabelTopCons.constant = 0
                 
                 // 3.设置背景显示
-                retweetedBgView.hidden = true
+                retweetedBgView.isHidden = true
             }
             
             // 12.计算cell的高度
@@ -122,7 +122,7 @@ class HomeViewCell: UITableViewCell {
                 layoutIfNeeded()
                 
                 // 12.2.获取底部工具栏的最大Y值
-                viewModel.cellHeight = CGRectGetMaxY(bottomToolView.frame)
+                viewModel.cellHeight = bottomToolView.frame.maxY
             }
         }
     }
@@ -133,11 +133,21 @@ class HomeViewCell: UITableViewCell {
         super.awakeFromNib()
 
         // 设置微博正文的宽度约束
-        contentLabelWCons.constant = UIScreen.mainScreen().bounds.width - 2 * edgeMargin
+        contentLabelWCons.constant = UIScreen.main.bounds.width - 2 * edgeMargin
         
+//        setupHYLabel()
+    }
+    
+}
+
+// MARK:- 计算方法
+extension HomeViewCell {
+    
+    /*
+    fileprivate func setupHYLabel() {
         // 设置HYLabel的内容
         let customColor = UIColor(red: 0 / 255.0, green: 160 / 255.0, blue: 255 / 255.0, alpha: 1.0)
-
+        
         contentLabel.matchTextColor = customColor
         retweetedContentLabel.matchTextColor = customColor
         
@@ -160,16 +170,13 @@ class HomeViewCell: UITableViewCell {
             myLog(range)
         }
     }
+    */
     
-}
-
-// MARK:- 计算方法
-extension HomeViewCell {
-    private func calculatePicViewSize(count : Int) -> CGSize {
+    fileprivate func calculatePicViewSize(_ count : Int) -> CGSize {
         // 1.没有配图
         if count == 0 {
             picViewBottomCons.constant = 0
-            return CGSizeZero
+            return CGSize.zero
         }
         
         // 有配图需要改约束有值
@@ -182,9 +189,9 @@ extension HomeViewCell {
         if count == 1 {
             // 1.取出图片
             let urlString = viewModel?.picURLs.last?.absoluteString
-            guard let image = SDWebImageManager.sharedManager().imageCache?.imageFromDiskCacheForKey(urlString) else
+            guard let image = SDWebImageManager.shared().imageCache?.imageFromDiskCache(forKey: urlString) else
             {
-                return CGSizeZero
+                return CGSize.zero
             }
             
             // 2.设置一张图片是layout的itemSize
@@ -194,7 +201,7 @@ extension HomeViewCell {
         }
         
         // 4.计算出来imageViewWH
-        let imageViewWH = (UIScreen.mainScreen().bounds.width - 2 * edgeMargin - 2 * itemMargin) / 3
+        let imageViewWH = (UIScreen.main.bounds.width - 2 * edgeMargin - 2 * itemMargin) / 3
         
         // 5.设置其他张图片时layout的itemSize
         layout.itemSize = CGSize(width: imageViewWH, height: imageViewWH)
@@ -213,7 +220,7 @@ extension HomeViewCell {
         let picViewH = rows * imageViewWH + (rows - 1) * itemMargin
         
         // 7.3.计算picView的宽度
-        let picViewW = UIScreen.mainScreen().bounds.width - 2 * edgeMargin
+        let picViewW = UIScreen.main.bounds.width - 2 * edgeMargin
         
         return CGSize(width: picViewW, height: picViewH)
     }

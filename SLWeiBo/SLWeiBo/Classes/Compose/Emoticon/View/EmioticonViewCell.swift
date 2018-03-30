@@ -10,7 +10,7 @@ import UIKit
 
 class EmioticonViewCell: UICollectionViewCell {
     // MARK:- 懒加载属性
-    private lazy var emoticonBtn : UIButton = UIButton()
+    fileprivate lazy var emoticonBtn : UIButton = UIButton()
     
     // MARK:- 定义的属性
     var emoticon : Emoticon? {
@@ -20,12 +20,12 @@ class EmioticonViewCell: UICollectionViewCell {
             }
             
             // 1.设置emoticonBtn的内容
-            emoticonBtn.setImage(UIImage(contentsOfFile: emoticon.pngPath ?? ""), forState: .Normal)
-            emoticonBtn.setTitle(emoticon.emojiCode, forState: .Normal)
+            emoticonBtn.setImage(UIImage(contentsOfFile: emoticon.pngPath ?? ""), for: UIControlState())
+            emoticonBtn.setTitle(emoticon.emojiCode, for: UIControlState())
             
             // 2.设置删除按钮
             if emoticon.isRemove {
-                emoticonBtn.setImage(UIImage(named: "compose_emotion_delete"), forState: .Normal)
+                emoticonBtn.setImage(UIImage(named: "compose_emotion_delete"), for: UIControlState())
             }
         }
     }
@@ -44,7 +44,7 @@ class EmioticonViewCell: UICollectionViewCell {
 
 // MARK:- 设置UI界面内容
 extension EmioticonViewCell {
-    private func setupUI() {
+    fileprivate func setupUI() {
         // 1.添加子控件
         contentView.addSubview(emoticonBtn)
         
@@ -52,7 +52,7 @@ extension EmioticonViewCell {
         emoticonBtn.frame = contentView.bounds
         
         // 3.设置btn属性
-        emoticonBtn.userInteractionEnabled = false
-        emoticonBtn.titleLabel?.font = UIFont.systemFontOfSize(32)
+        emoticonBtn.isUserInteractionEnabled = false
+        emoticonBtn.titleLabel?.font = UIFont.systemFont(ofSize: 32)
     }
 }

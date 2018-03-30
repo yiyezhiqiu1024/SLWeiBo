@@ -14,23 +14,23 @@ class HomeTableViewController: BaseTableViewController {
     
     // MARK: - 懒加载属性
     /// 标题按钮
-    private lazy var titleBtn : TitleButton = TitleButton()
+    fileprivate lazy var titleBtn : TitleButton = TitleButton()
     /*
       注意:在闭包中如果使用当前对象的属性或者调用方法,也需要加self
       两个地方需要使用self : 1> 如果在一个函数中出现歧义 2> 在闭包中使用当前对象的属性和方法也需要加self
      */
     /// 转场动画
-    private lazy var popoverAnimator : PopoverAnimator = PopoverAnimator { [weak self] (presented) in
-        self?.titleBtn.selected = presented
+    fileprivate lazy var popoverAnimator : PopoverAnimator = PopoverAnimator { [weak self] (presented) in
+        self?.titleBtn.isSelected = presented
     }
     
     /// 微博视图模型
-    private lazy var viewModels : [StatusViewModel] = [StatusViewModel]()
+    fileprivate lazy var viewModels : [StatusViewModel] = [StatusViewModel]()
     
     /// 更新微博提示框
-    private lazy var tipLabel : UILabel = UILabel()
+    fileprivate lazy var tipLabel : UILabel = UILabel()
     /// 自定义渐变的转场动画
-    private lazy var photoBrowserAnimator : PhotoBrowserAnimator = PhotoBrowserAnimator()
+    fileprivate lazy var photoBrowserAnimator : PhotoBrowserAnimator = PhotoBrowserAnimator()
 
     
     // MARK: - 系统回调函数
@@ -73,7 +73,7 @@ extension HomeTableViewController
     /**
      设置导航条
      */
-    private func setupNavigationBar()
+    fileprivate func setupNavigationBar()
     {
         // 1.添加左右按钮
         navigationItem.leftBarButtonItem = UIBarButtonItem(imageName: "navigationbar_friendattention", target: self, action: #selector(HomeTableViewController.leftBtnClick))
@@ -81,22 +81,22 @@ extension HomeTableViewController
         // 2.添加标题按钮
         // 获取用户名称
         let title = UserAccountViewModel.shareIntance.account?.screen_name ?? "CoderSLZeng"
-        titleBtn.setTitle(title + " ", forState: .Normal)
-        titleBtn.addTarget(self, action: #selector(HomeTableViewController.titleBtnClick(_:)), forControlEvents: .TouchUpInside)
+        titleBtn.setTitle(title + " ", for: UIControlState())
+        titleBtn.addTarget(self, action: #selector(HomeTableViewController.titleBtnClick(_:)), for: .touchUpInside)
         navigationItem.titleView = titleBtn
     }
     
     /**
      设置头部刷新控件
      */
-    private func setupRefreshHeaderView() {
+    fileprivate func setupRefreshHeaderView() {
         // 1.创建headerView
         let refreshHeader = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: #selector(HomeTableViewController.loadNewStatuses))
         
         // 2.设置header的属性
-        refreshHeader.setTitle("下拉刷新", forState: .Idle)
-        refreshHeader.setTitle("释放更新", forState: .Pulling)
-        refreshHeader.setTitle("加载中...", forState: .Refreshing)
+        refreshHeader?.setTitle("下拉刷新", for: .idle)
+        refreshHeader?.setTitle("释放更新", for: .pulling)
+        refreshHeader?.setTitle("加载中...", for: .refreshing)
         
         // 3.设置tableView的header
         tableView.mj_header = refreshHeader
@@ -108,30 +108,30 @@ extension HomeTableViewController
     /**
      设置底部刷新控件
      */
-    private func setupRefreshFooterView() {
+    fileprivate func setupRefreshFooterView() {
          tableView.mj_footer = MJRefreshAutoFooter(refreshingTarget: self, refreshingAction: #selector(HomeTableViewController.loadMoreStatuses))
     }
     
     /**
      设置更新微博提示框
      */
-    private func setupTipLabel() {
+    fileprivate func setupTipLabel() {
         // 1.添加父控件中
-        navigationController?.navigationBar.insertSubview(tipLabel, atIndex: 0)
+        navigationController?.navigationBar.insertSubview(tipLabel, at: 0)
         
         // 2.设置边框尺寸
-        tipLabel.frame = CGRect(x: 0, y: 10, width: UIScreen.mainScreen().bounds.width, height: 32)
+        tipLabel.frame = CGRect(x: 0, y: 10, width: UIScreen.main.bounds.width, height: 32)
         
         // 3.设置属性
-        tipLabel.backgroundColor = UIColor.orangeColor()
-        tipLabel.textColor = UIColor.whiteColor()
-        tipLabel.font = UIFont.systemFontOfSize(14)
-        tipLabel.textAlignment = .Center
-        tipLabel.hidden = true
+        tipLabel.backgroundColor = UIColor.orange
+        tipLabel.textColor = UIColor.white
+        tipLabel.font = UIFont.systemFont(ofSize: 14)
+        tipLabel.textAlignment = .center
+        tipLabel.isHidden = true
     }
     
-    private func setupNatifications() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeTableViewController.showPhotoBrowser(_:)), name: ShowPhotoBrowserNote, object: nil)
+    fileprivate func setupNatifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(HomeTableViewController.showPhotoBrowser(_:)), name: NSNotification.Name(rawValue: ShowPhotoBrowserNote), object: nil)
     }
 
 }
@@ -139,26 +139,26 @@ extension HomeTableViewController
 // MARK: - 监听事件处理
 extension HomeTableViewController
 {
-    @objc private func leftBtnClick()
+    @objc fileprivate func leftBtnClick()
     {
         myLog("")
     }
-    @objc private func rightBtnClick()
+    @objc fileprivate func rightBtnClick()
     {
         // 1.创建二维码控制器
         let sb = UIStoryboard(name: "QRCode", bundle: nil)
         let vc = sb.instantiateInitialViewController()!
         // 2.弹出二维码控制器
-        presentViewController(vc, animated: true, completion: nil)
+        present(vc, animated: true, completion: nil)
     }
     
-    @objc private func titleBtnClick(button: TitleButton)
+    @objc fileprivate func titleBtnClick(_ button: TitleButton)
     {
         // 1.创建弹出的控制器
         let popoverVc = PopoverViewController()
         
         // 2.设置控制器的modal样式
-        popoverVc.modalPresentationStyle = .Custom
+        popoverVc.modalPresentationStyle = .custom
         
         // 3.设置转场的代理
         popoverVc.transitioningDelegate = popoverAnimator
@@ -166,20 +166,20 @@ extension HomeTableViewController
         popoverAnimator.presentedFrame = CGRect(x: 100, y: 55, width: 180, height: 250)
         
         // 5.弹出控制器
-        presentViewController(popoverVc, animated: true, completion: nil)
+        present(popoverVc, animated: true, completion: nil)
     }
     
-    @objc private func showPhotoBrowser(note : NSNotification) {
+    @objc fileprivate func showPhotoBrowser(_ note : Notification) {
         // 0.取出数据
-        let indexPath = note.userInfo![ShowPhotoBrowserIndexKey] as! NSIndexPath
-        let picURLs = note.userInfo![ShowPhotoBrowserUrlsKey] as! [NSURL]
+        let indexPath = note.userInfo![ShowPhotoBrowserIndexKey] as! IndexPath
+        let picURLs = note.userInfo![ShowPhotoBrowserUrlsKey] as! [URL]
         let object = note.object as! PicCollectionView
         
         // 1.创建控制器
         let photoBrowserVc = PhotoBrowserController(indexPath: indexPath, picURLs: picURLs)
         
         // 2.设置modal样式
-        photoBrowserVc.modalPresentationStyle = .Custom
+        photoBrowserVc.modalPresentationStyle = .custom
         
         // 3.设置转场的代理
         photoBrowserVc.transitioningDelegate = photoBrowserAnimator
@@ -190,16 +190,16 @@ extension HomeTableViewController
         photoBrowserAnimator.dismissDelegate = photoBrowserVc
         
         // 5.以modal的形式弹出控制器
-        presentViewController(photoBrowserVc, animated: true, completion: nil)
+        present(photoBrowserVc, animated: true, completion: nil)
     }
     
     /// 加载最新的数据
-    @objc private func loadNewStatuses() {
+    @objc fileprivate func loadNewStatuses() {
         loadStatuses(true)
     }
     
     /// 加载更多的数据
-    @objc private func loadMoreStatuses() {
+    @objc fileprivate func loadMoreStatuses() {
         loadStatuses(false)
     }
     
@@ -209,7 +209,7 @@ extension HomeTableViewController
 extension HomeTableViewController {
     
     /// 加载微博数据
-    private func loadStatuses(isNewData : Bool) {
+    fileprivate func loadStatuses(_ isNewData : Bool) {
         
         // 1.获取since_id/max_id
         var since_id = 0
@@ -258,22 +258,22 @@ extension HomeTableViewController {
     /**
      缓存图片
      */
-    private func cacheImages(viewModels : [StatusViewModel]) {
+    fileprivate func cacheImages(_ viewModels : [StatusViewModel]) {
         // 0.创建group
-        let group = dispatch_group_create()
+        let group = DispatchGroup()
         
         // 1.缓存图片
         for viewmodel in viewModels {
             for picURL in viewmodel.picURLs {
-                dispatch_group_enter(group)
-                SDWebImageManager.sharedManager().loadImageWithURL(picURL, options: [], progress: nil, completed: { (_, _, _, _, _, _) in
-                    dispatch_group_leave(group)
+                group.enter()
+                SDWebImageManager.shared().loadImage(with: picURL, options: [], progress: nil, completed: { (_, _, _, _, _, _) in
+                    group.leave()
                 })
             }
         }
         
         // 2.刷新表格
-        dispatch_group_notify(group, dispatch_get_main_queue()) { () -> Void in
+        group.notify(queue: DispatchQueue.main) { () -> Void in
             self.tableView.reloadData()
             
             // 停止刷新
@@ -286,21 +286,21 @@ extension HomeTableViewController {
     }
     
     /// 显示更新微博提示的框
-    private func showTipLabel(count : Int) {
+    fileprivate func showTipLabel(_ count : Int) {
         // 1.设置属性
-        tipLabel.hidden = false
+        tipLabel.isHidden = false
         tipLabel.text = count == 0 ? "没有更新的微博" : "更新了\(count) 条形微博"
         
         // 2.执行动画
-        UIView.animateWithDuration(1.0, animations: { () -> Void in
+        UIView.animate(withDuration: 1.0, animations: { () -> Void in
             self.tipLabel.frame.origin.y = 44
-        }) { (_) -> Void in
-            UIView.animateWithDuration(1.0, delay: 1.5, options: [], animations: { () -> Void in
+        }, completion: { (_) -> Void in
+            UIView.animate(withDuration: 1.0, delay: 1.5, options: [], animations: { () -> Void in
                 self.tipLabel.frame.origin.y = 10
                 }, completion: { (_) -> Void in
-                    self.tipLabel.hidden = true
+                    self.tipLabel.isHidden = true
             })
-        }
+        }) 
     }
 }
 
@@ -308,13 +308,13 @@ extension HomeTableViewController {
 
 // MARK:- tableView的数据源方法
 extension HomeTableViewController {
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModels.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // 1.创建cell
-        let cell = tableView.dequeueReusableCellWithIdentifier("HomeCell") as! HomeViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "HomeCell") as! HomeViewCell
         
         // 2.给cell设置数据
         cell.viewModel = viewModels[indexPath.row]
@@ -322,7 +322,7 @@ extension HomeTableViewController {
         return cell
     }
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         // 1.获取模型对象
         let viewModel = viewModels[indexPath.row]
         

@@ -61,7 +61,8 @@
 		92893D821E7A7D7B009FBA42 /* ComposeTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92893D811E7A7D7B009FBA42 /* ComposeTextView.swift */; };
 		929658EA1E755222008D7E36 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929658E81E755222008D7E36 /* WelcomeViewController.swift */; };
 		929658ED1E75581A008D7E36 /* WelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 929658EC1E75581A008D7E36 /* WelcomeViewController.xib */; };
-		929F30C41E728DBD00E7104B /* OAuthInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929F30C31E728DBD00E7104B /* OAuthInfo.swift */; };
+		92A91175206D2A92001EF489 /* OAuthInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A91174206D2A92001EF489 /* OAuthInfo.swift */; };
+		92A9117E206D2E70001EF489 /* HYLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A9117D206D2E70001EF489 /* HYLabel.swift */; };
 		92C49BFA1E803271003ACFC7 /* PhotoBrowserAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C49BF91E803271003ACFC7 /* PhotoBrowserAnimator.swift */; };
 		92CD80261E77F2EC00347B3A /* PicCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CD80251E77F2EC00347B3A /* PicCollectionView.swift */; };
 		92D2772F1E7CCB8A00C365C6 /* UITextView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D277241E7CCB8A00C365C6 /* UITextView+Extension.swift */; };
@@ -157,7 +158,8 @@
 		92893D811E7A7D7B009FBA42 /* ComposeTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeTextView.swift; sourceTree = "<group>"; };
 		929658E81E755222008D7E36 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		929658EC1E75581A008D7E36 /* WelcomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WelcomeViewController.xib; sourceTree = "<group>"; };
-		929F30C31E728DBD00E7104B /* OAuthInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuthInfo.swift; sourceTree = "<group>"; };
+		92A91174206D2A92001EF489 /* OAuthInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuthInfo.swift; sourceTree = "<group>"; };
+		92A9117D206D2E70001EF489 /* HYLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HYLabel.swift; sourceTree = "<group>"; };
 		92C49BF91E803271003ACFC7 /* PhotoBrowserAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoBrowserAnimator.swift; sourceTree = "<group>"; };
 		92CD80251E77F2EC00347B3A /* PicCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PicCollectionView.swift; sourceTree = "<group>"; };
 		92D277241E7CCB8A00C365C6 /* UITextView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextView+Extension.swift"; sourceTree = "<group>"; };
@@ -247,6 +249,7 @@
 		922E84331E72C86D00CE80C0 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				92A91174206D2A92001EF489 /* OAuthInfo.swift */,
 				922F89081E6F9BB4002631BA /* OAuthViewController.swift */,
 				922F89091E6F9BB4002631BA /* OAuthViewController.xib */,
 			);
@@ -259,7 +262,6 @@
 				922E84331E72C86D00CE80C0 /* Controller */,
 				922E84321E72C86200CE80C0 /* Mode */,
 				922E84311E72C85600CE80C0 /* View */,
-				929F30C31E728DBD00E7104B /* OAuthInfo.swift */,
 			);
 			path = OAuth;
 			sourceTree = "<group>";
@@ -488,10 +490,10 @@
 		9250B7601E6DAAAC00390BBE /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				92A9117C206D2E70001EF489 /* View */,
 				9241AD051E6E56CB008D8BD5 /* Resource */,
 				9250B7611E6DAAAC00390BBE /* Controller */,
 				9250B7621E6DAAAC00390BBE /* Model */,
-				9250B7631E6DAAAC00390BBE /* View */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -511,13 +513,6 @@
 			children = (
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		9250B7631E6DAAAC00390BBE /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		9250B7641E6DAAAC00390BBE /* Message */ = {
@@ -615,6 +610,14 @@
 				929658E81E755222008D7E36 /* WelcomeViewController.swift */,
 			);
 			path = Welcome;
+			sourceTree = "<group>";
+		};
+		92A9117C206D2E70001EF489 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				92A9117D206D2E70001EF489 /* HYLabel.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		92D277221E7CCB8A00C365C6 /* Emoticon */ = {
@@ -773,13 +776,16 @@
 				TargetAttributes = {
 					9250B7211E6DAA9000390BBE = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0830;
 					};
 					9250B7351E6DAA9000390BBE = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0830;
 						TestTargetID = 9250B7211E6DAA9000390BBE;
 					};
 					9250B7401E6DAA9000390BBE = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0830;
 						TestTargetID = 9250B7211E6DAA9000390BBE;
 					};
 				};
@@ -993,6 +999,7 @@
 				92D277321E7CCB8A00C365C6 /* Emoticon.swift in Sources */,
 				92D277461E7D100300C365C6 /* PhotoBrowserController.swift in Sources */,
 				921E4E231E7E66B600D7A877 /* ProgressView.swift in Sources */,
+				92A9117E206D2E70001EF489 /* HYLabel.swift in Sources */,
 				929658EA1E755222008D7E36 /* WelcomeViewController.swift in Sources */,
 				9241AD4F1E6EB79B008D8BD5 /* SLPresentationController.swift in Sources */,
 				92D277301E7CCB8A00C365C6 /* EmoticonController.swift in Sources */,
@@ -1012,7 +1019,7 @@
 				9241AD091E6E622D008D8BD5 /* UIButton+Extension.swift in Sources */,
 				925677F51E73B0EF00C7C227 /* String+SandboxPath.swift in Sources */,
 				9241AD511E6EBB33008D8BD5 /* PopoverAnimator.swift in Sources */,
-				929F30C41E728DBD00E7104B /* OAuthInfo.swift in Sources */,
+				92A91175206D2A92001EF489 /* OAuthInfo.swift in Sources */,
 				92D277361E7CCB8A00C365C6 /* EmioticonViewCell.swift in Sources */,
 				9241AD291E6E968C008D8BD5 /* VisitorView.swift in Sources */,
 				9250B7751E6DABBC00390BBE /* DiscoverTableViewController.swift in Sources */,
@@ -1161,6 +1168,7 @@
 				"OTHER_SWIFT_FLAGS[arch=*]" = "-D DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = CoderSLZeng.com.github.SLWeiBo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -1174,6 +1182,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = CoderSLZeng.com.github.SLWeiBo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -1186,6 +1195,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = CoderSLZeng.com.github.SLWeiBoTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SLWeiBo.app/SLWeiBo";
 			};
 			name = Debug;
@@ -1199,6 +1209,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = CoderSLZeng.com.github.SLWeiBoTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SLWeiBo.app/SLWeiBo";
 			};
 			name = Release;
@@ -1211,6 +1222,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = CoderSLZeng.com.github.SLWeiBoUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = SLWeiBo;
 			};
 			name = Debug;
@@ -1223,6 +1235,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = CoderSLZeng.com.github.SLWeiBoUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = SLWeiBo;
 			};
 			name = Release;

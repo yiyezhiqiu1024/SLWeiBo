@@ -27,21 +27,21 @@ class Status: NSObject {
     
     
     // MARK:- 自定义构造函数
-    init(dict : [String : AnyObject]) {
+    init(dict : [String : Any]) {
         super.init()
         
-        setValuesForKeysWithDictionary(dict)
+        setValuesForKeys(dict)
         
         // 1.将用户字典转成用户模型对象
-        if let userDict = dict["user"] as? [String : AnyObject] {
+        if let userDict = dict["user"] as? [String : Any] {
             user = User(dict: userDict)
         }
         
         // 2.将转发微博字典转成转发微博模型对象
-        if let retweetedStatusDict = dict["retweeted_status"] as? [String : AnyObject] {
+        if let retweetedStatusDict = dict["retweeted_status"] as? [String : Any] {
             retweeted_status = Status(dict: retweetedStatusDict)
         }
 
     }
-    override func setValue(value: AnyObject?, forUndefinedKey key: String) {}
+    override func setValue(_ value: Any?, forUndefinedKey key: String) {}
 }

@@ -22,7 +22,7 @@ class EmoticonPackage: NSObject {
         }
         
         // 2.根据id拼接info.plist的路径
-        let plistPath = NSBundle.mainBundle().pathForResource("\(id)/info.plist", ofType: nil, inDirectory: "Emoticons.bundle")!
+        let plistPath = Bundle.main.path(forResource: "\(id)/info.plist", ofType: nil, inDirectory: "Emoticons.bundle")!
         
         // 3.根据plist文件的路径读取数据 [[String : String]]
         let array = NSArray(contentsOfFile: plistPath)! as! [[String : String]]
@@ -48,7 +48,7 @@ class EmoticonPackage: NSObject {
         addEmptyEmoticon(false)
     }
     
-    private func addEmptyEmoticon(isRecently : Bool) {
+    fileprivate func addEmptyEmoticon(_ isRecently : Bool) {
         let count = emoticons.count % 21
         if count == 0 && !isRecently {
             return

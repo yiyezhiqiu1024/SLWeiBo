@@ -7,12 +7,12 @@
 //
 
 import UIKit
-import SnapKit
+//import SnapKit
 
 class ComposeTitleView: UIView {
     // MARK:- 懒加载属性
-    private lazy var titleLabel : UILabel = UILabel()
-    private lazy var screenNameLabel : UILabel = UILabel()
+    fileprivate lazy var titleLabel : UILabel = UILabel()
+    fileprivate lazy var screenNameLabel : UILabel = UILabel()
     
     // MARK:- 构造函数
     override init(frame: CGRect) {
@@ -29,25 +29,25 @@ class ComposeTitleView: UIView {
 
 // MARK:- 设置UI界面
 extension ComposeTitleView {
-    private func setupUI() {
+    fileprivate func setupUI() {
         // 1.将子控件添加到view中
         addSubview(titleLabel)
         addSubview(screenNameLabel)
         
         // 2.设置frame
-        titleLabel.snp_makeConstraints { (make) -> Void in
-            make.centerX.equalTo(self)
-            make.top.equalTo(self)
-        }
-        screenNameLabel.snp_makeConstraints { (make) -> Void in
-            make.centerX.equalTo(titleLabel.snp_centerX)
-            make.top.equalTo(titleLabel.snp_bottom).offset(3)
-        }
+//        titleLabel.snp_makeConstraints { (make) -> Void in
+//            make.centerX.equalTo(self)
+//            make.top.equalTo(self)
+//        }
+//        screenNameLabel.snp_makeConstraints { (make) -> Void in
+//            make.centerX.equalTo(titleLabel.snp_centerX)
+//            make.top.equalTo(titleLabel.snp_bottom).offset(3)
+//        }
         
         // 3.设置空间的属性
-        titleLabel.font = UIFont.systemFontOfSize(16)
-        screenNameLabel.font = UIFont.systemFontOfSize(14)
-        screenNameLabel.textColor = UIColor.lightGrayColor()
+        titleLabel.font = UIFont.systemFont(ofSize: 16)
+        screenNameLabel.font = UIFont.systemFont(ofSize: 14)
+        screenNameLabel.textColor = UIColor.lightGray
         
         // 4.设置文字内容
         titleLabel.text = "发微博"

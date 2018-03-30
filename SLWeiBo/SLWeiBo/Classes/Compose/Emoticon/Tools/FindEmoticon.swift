@@ -13,10 +13,10 @@ class FindEmoticon: NSObject {
     static let shareIntance : FindEmoticon = FindEmoticon()
     
     // MARK:- 表情属性
-    private lazy var manager : EmoticonManager = EmoticonManager()
+    fileprivate lazy var manager : EmoticonManager = EmoticonManager()
     
     // 查找属性字符串的方法
-    func findAttrString(statusText : String?, font : UIFont) -> NSMutableAttributedString? {
+    func findAttrString(_ statusText : String?, font : UIFont) -> NSMutableAttributedString? {
         // 0.如果statusText没有值,则直接返回nil
         guard let statusText = statusText else {
             return nil
@@ -31,16 +31,19 @@ class FindEmoticon: NSObject {
         }
         
         // 3.开始匹配
-        let results = regex.matchesInString(statusText, options: [], range: NSRange(location: 0, length: statusText.characters.count))
+        let results = regex.matches(in: statusText, options: [], range: NSRange(location: 0, length: statusText.characters.count))
         
         // 4.获取结果
         let attrMStr = NSMutableAttributedString(string: statusText)
-        for var i = results.count - 1; i >= 0; i -= 1 {
+        
+        for i in (0..<results.count).reversed() {
+        
+//        for var i = results.count - 1; i >= 0; i -= 1 {
             // 4.0.获取结果
             let result = results[i]
             
             // 4.1.获取chs
-            let chs = (statusText as NSString).substringWithRange(result.range)
+            let chs = (statusText as NSString).substring(with: result.range)
             
             // 4.2.根据chs,获取图片的路径
             guard let pngPath = findPngPath(chs) else {
@@ -54,14 +57,14 @@ class FindEmoticon: NSObject {
             let attrImageStr = NSAttributedString(attachment: attachment)
             
             // 4.4.将属性字符串替换到来源的文字位置
-            attrMStr.replaceCharactersInRange(result.range, withAttributedString: attrImageStr)
+            attrMStr.replaceCharacters(in: result.range, with: attrImageStr)
         }
         
         // 返回结果
         return attrMStr
     }
     
-    private func findPngPath(chs : String) -> String? {
+    fileprivate func findPngPath(_ chs : String) -> String? {
         for package in manager.packages {
             for emoticon in package.emoticons {
                 if emoticon.chs == chs {

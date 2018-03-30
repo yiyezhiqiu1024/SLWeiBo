@@ -12,7 +12,7 @@ import SDWebImage
 class PicCollectionView: UICollectionView {
     
     // MARK:- 定义属性
-    var picURLs : [NSURL] = [NSURL]() {
+    var picURLs : [URL] = [URL]() {
         didSet {
             self.reloadData()
         }
@@ -30,13 +30,13 @@ class PicCollectionView: UICollectionView {
 
 // MARK:- collectionView的数据源方法
 extension PicCollectionView : UICollectionViewDataSource {
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return picURLs.count
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         // 1.获取cell
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("PicCell", forIndexPath: indexPath) as! PicCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PicCell", for: indexPath) as! PicCollectionViewCell
         
         // 2.给cell设置数据
         cell.picURL = picURLs[indexPath.item]
@@ -48,59 +48,59 @@ extension PicCollectionView : UICollectionViewDataSource {
 // MARK: - UICollectionViewDelegate
 extension PicCollectionView : UICollectionViewDelegate
 {
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         // 1.获取通知需要传递的参数
-        let userInfo = [ShowPhotoBrowserIndexKey : indexPath, ShowPhotoBrowserUrlsKey : picURLs]
+        let userInfo = [ShowPhotoBrowserIndexKey : indexPath, ShowPhotoBrowserUrlsKey : picURLs] as [String : Any]
         
         // 2.发出通知
-        NSNotificationCenter.defaultCenter().postNotificationName(ShowPhotoBrowserNote, object: self, userInfo: userInfo)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: ShowPhotoBrowserNote), object: self, userInfo: userInfo)
     }
 }
 
 extension PicCollectionView : AnimatorPresentedDelegate {
-    func startRect(indexPath: NSIndexPath) -> CGRect {
+    func startRect(_ indexPath: IndexPath) -> CGRect {
         // 1.获取cell
-        let cell = self.cellForItemAtIndexPath(indexPath)!
+        let cell = self.cellForItem(at: indexPath)!
         
         // 2.获取cell的frame
-        let startFrame = self.convertRect(cell.frame, toCoordinateSpace: UIApplication.sharedApplication().keyWindow!)
+        let startFrame = self.convert(cell.frame, to: UIApplication.shared.keyWindow!)
         
         return startFrame
     }
     
-    func endRect(indexPath: NSIndexPath) -> CGRect {
+    func endRect(_ indexPath: IndexPath) -> CGRect {
         // 1.获取该位置的image对象
         let picURL = picURLs[indexPath.item]
-        guard let image = SDWebImageManager.sharedManager().imageCache?.imageFromDiskCacheForKey(picURL.absoluteString) else
+        guard let image = SDWebImageManager.shared().imageCache?.imageFromDiskCache(forKey: picURL.absoluteString) else
         {
             myLog("获取缓存图片失败")
-            return CGRectZero
+            return CGRect.zero
         }
         
         // 2.计算结束后的frame
-        let w = UIScreen.mainScreen().bounds.width
+        let w = UIScreen.main.bounds.width
         let h = w / image.size.width * image.size.height
         var y : CGFloat = 0
-        if h > UIScreen.mainScreen().bounds.height {
+        if h > UIScreen.main.bounds.height {
             y = 0
         } else {
-            y = (UIScreen.mainScreen().bounds.height - h) * 0.5
+            y = (UIScreen.main.bounds.height - h) * 0.5
         }
         
         return CGRect(x: 0, y: y, width: w, height: h)
     }
     
-    func imageView(indexPath: NSIndexPath) -> UIImageView {
+    func imageView(_ indexPath: IndexPath) -> UIImageView {
         // 1.创建UIImageView对象
         let imageView = UIImageView()
         
         // 2.获取该位置的image对象
         let picURL = picURLs[indexPath.item]
-        let image = SDWebImageManager.sharedManager().imageCache?.imageFromDiskCacheForKey(picURL.absoluteString)
+        let image = SDWebImageManager.shared().imageCache?.imageFromDiskCache(forKey: picURL.absoluteString)
         
         // 3.设置imageView的属性
         imageView.image = image
-        imageView.contentMode = .ScaleAspectFill
+        imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         
         return imageView
@@ -112,13 +112,13 @@ extension PicCollectionView : AnimatorPresentedDelegate {
 // MARK:- 配图的cell
 class PicCollectionViewCell : UICollectionViewCell {
     // MARK:- 定义模型属性
-    var picURL : NSURL? {
+    var picURL : URL? {
         didSet {
             guard let picURL = picURL else {
                 return
             }
                         
-            iconView.sd_setImageWithURL(picURL, placeholderImage: UIImage(named: "empty_picture"))
+            iconView.sd_setImage(with: picURL, placeholderImage: UIImage(named: "empty_picture"))
         }
     }
     

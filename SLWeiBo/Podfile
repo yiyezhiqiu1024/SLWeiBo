@@ -1,5 +1,5 @@
 # Uncomment this line to define a global platform for your project
-# platform :ios, '9.0'
+ platform :ios, '9.0'
 
 target 'SLWeiBo' do
   # Comment this line if you're not using Swift and don't want to use dynamic frameworks
@@ -10,10 +10,9 @@ target 'SLWeiBo' do
   pod 'AFNetworking'
   pod 'SDWebImage'
   pod 'MJRefresh'
+
   # 当前开发环境swift版本2.2
-  pod 'SnapKit', '~> 0.22.0'
-  pod 'SVProgressHUD'
-  pod 'HYLabel'
+#  pod 'SnapKit', '~> 3.0.0'
 
   target 'SLWeiBoTests' do
     inherit! :search_paths
