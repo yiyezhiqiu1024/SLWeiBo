@@ -17,6 +17,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - 系统回调函数
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
+        #if APPSTORE
+        print("AppStore")
+        #elseif DEV
+        print("开发模式")
+        #else
+        print("APP -- 其它")
+        #endif
+        
         /// 设置全局外观
         UITabBar.appearance().tintColor = UIColor.orange
         UINavigationBar.appearance().tintColor = UIColor.orange
