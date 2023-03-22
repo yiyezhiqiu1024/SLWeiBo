@@ -20,12 +20,12 @@ class EmioticonViewCell: UICollectionViewCell {
             }
             
             // 1.设置emoticonBtn的内容
-            emoticonBtn.setImage(UIImage(contentsOfFile: emoticon.pngPath ?? ""), for: UIControlState())
-            emoticonBtn.setTitle(emoticon.emojiCode, for: UIControlState())
+            emoticonBtn.setImage(UIImage(contentsOfFile: emoticon.pngPath ?? ""), for: UIControl.State())
+            emoticonBtn.setTitle(emoticon.emojiCode, for: UIControl.State())
             
             // 2.设置删除按钮
             if emoticon.isRemove {
-                emoticonBtn.setImage(UIImage(named: "compose_emotion_delete"), for: UIControlState())
+                emoticonBtn.setImage(UIImage(named: "compose_emotion_delete"), for: UIControl.State())
             }
         }
     }

@@ -71,7 +71,7 @@ extension VisitorView
         
         // 2.设置动画的属性
         rotationAnim.fromValue = 0
-        rotationAnim.toValue = M_PI * 2
+        rotationAnim.toValue = Double.pi * 2
         rotationAnim.repeatCount = MAXFLOAT
         rotationAnim.duration = 5
         

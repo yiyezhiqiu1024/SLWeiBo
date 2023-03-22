@@ -36,7 +36,7 @@ extension NetworkTools {
         }
         
         // 2.定义失败的回调闭包
-        let failureCallBack = { (task : URLSessionDataTask?, error : NSError) -> Void in
+        _ = { (task : URLSessionDataTask?, error : NSError) -> Void in
             finished(nil, error)
         }
         
@@ -154,7 +154,7 @@ extension NetworkTools {
         // 3.发送网络请求
         post(urlString, parameters: parameters, constructingBodyWith: { (formData) -> Void in
             
-            if let imageData = UIImageJPEGRepresentation(image, 0.5) {
+            if let imageData = image.jpegData(compressionQuality: 0.5) {
                 formData.appendPart(withFileData: imageData, name: "pic", fileName: "123.png", mimeType: "image/png")
             }
             

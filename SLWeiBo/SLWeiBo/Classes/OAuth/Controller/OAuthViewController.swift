@@ -99,7 +99,7 @@ extension OAuthViewController: UIWebViewDelegate
     
     // 当准备加载某一个页面时,会执行该方法
     // 返回值: true -> 继续加载该页面 false -> 不会加载该页面
-    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebView.NavigationType) -> Bool {
         
         // 1.获取加载网页的NSURL
         guard let url = request.url else {

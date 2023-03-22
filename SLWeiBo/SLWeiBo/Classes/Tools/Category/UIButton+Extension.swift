@@ -25,13 +25,13 @@ extension UIButton
         
         if imageName != "" {
             // 1.设置前景图片
-            setImage(UIImage(named: imageName), for: UIControlState())
+            setImage(UIImage(named: imageName), for: UIControl.State())
             setImage(UIImage(named: imageName + "_highlighted"), for: .highlighted)
         }
         
         if backgroundImageName != "" {
             // 2.设置背景图片
-            setBackgroundImage(UIImage(named: backgroundImageName), for: UIControlState())
+            setBackgroundImage(UIImage(named: backgroundImageName), for: UIControl.State())
             setBackgroundImage(UIImage(named: backgroundImageName + "_highlighted"), for: .highlighted)
         }
         
@@ -43,7 +43,7 @@ extension UIButton
     convenience init(bgColor : UIColor, fontSize : CGFloat, title : String) {
         self.init()
         
-        setTitle(title, for: UIControlState())
+        setTitle(title, for: UIControl.State())
         backgroundColor = bgColor
         titleLabel?.font = UIFont.systemFont(ofSize: fontSize)
     }

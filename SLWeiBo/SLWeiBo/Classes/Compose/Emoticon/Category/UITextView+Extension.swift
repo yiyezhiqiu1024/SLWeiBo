@@ -18,7 +18,7 @@ extension UITextView {
         // 2.遍历属性字符串
         let range = NSRange(location: 0, length: attrMStr.length)
         attrMStr.enumerateAttributes(in: range, options: []) { (dict, range, _) -> Void in
-            if let attachment = dict["NSAttachment"] as? EmoticonAttachment {
+            if let attachment = dict[NSAttributedString.Key(rawValue: "NSAttachment")] as? EmoticonAttachment {
                 attrMStr.replaceCharacters(in: range, with: attachment.chs!)
             }
         }

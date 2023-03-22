@@ -62,7 +62,7 @@ extension NewfeatureViewController:UICollectionViewDelegate {
             cell.startButton.isUserInteractionEnabled = false
             cell.startButton.transform = CGAffineTransform(scaleX: 0.0, y: 0.0)
             
-            UIView.animate(withDuration: 2.0, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 10.0, options: UIViewAnimationOptions(rawValue: 0), animations: { () -> Void in
+            UIView.animate(withDuration: 2.0, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 10.0, options: UIView.AnimationOptions(rawValue: 0), animations: { () -> Void in
                 cell.startButton.transform = CGAffineTransform.identity
                 }, completion: { (_) -> Void in
                     cell.startButton.isUserInteractionEnabled = true
@@ -91,9 +91,9 @@ class SLCollectionViewCell: UICollectionViewCell {
     /// 进入微博按钮
     fileprivate lazy var startButton: UIButton = {
         let btn = UIButton()
-        btn.setBackgroundImage(UIImage(named: "new_feature_button"), for: UIControlState())
-        btn.setBackgroundImage(UIImage(named: "new_feature_button_highlighted"), for: UIControlState.highlighted)
-        btn.addTarget(self, action: #selector(SLCollectionViewCell.startBtnClick), for: UIControlEvents.touchUpInside)
+        btn.setBackgroundImage(UIImage(named: "new_feature_button"), for: UIControl.State())
+        btn.setBackgroundImage(UIImage(named: "new_feature_button_highlighted"), for: UIControl.State.highlighted)
+        btn.addTarget(self, action: #selector(SLCollectionViewCell.startBtnClick), for: UIControl.Event.touchUpInside)
         btn.sizeToFit()
         return btn
     }()
@@ -148,7 +148,7 @@ class SLFlowLayout: UICollectionViewFlowLayout {
         itemSize = collectionView!.bounds.size
         minimumInteritemSpacing = 0
         minimumLineSpacing = 0
-        scrollDirection = UICollectionViewScrollDirection.horizontal
+        scrollDirection = UICollectionView.ScrollDirection.horizontal
         
         collectionView?.bounces = false
         collectionView?.showsHorizontalScrollIndicator = false

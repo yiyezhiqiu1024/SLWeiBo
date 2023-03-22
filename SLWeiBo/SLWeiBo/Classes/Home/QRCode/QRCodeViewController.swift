@@ -27,7 +27,7 @@ class QRCodeViewController: UIViewController {
     // MARK: - 懒加载
     /// 输入对象
     fileprivate lazy var input: AVCaptureDeviceInput? = {
-        let device = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
+        guard let device = AVCaptureDevice.default(for: AVMediaType(rawValue: convertFromAVMediaType(AVMediaType.video))) else { return nil }
         return try? AVCaptureDeviceInput(device: device)
     }()
     
@@ -97,7 +97,7 @@ extension QRCodeViewController
          case Camera 相机
          case SavedPhotosAlbum 图片库
          */
-        if !UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary)
+        if !UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.photoLibrary)
         {
             return
         }
@@ -138,6 +138,7 @@ extension QRCodeViewController
     /// 开始扫描二维码
     fileprivate func scanQRCode()
     {
+        guard let input = input else { return }
         // 1.判断输入能否添加到会话中
         if !session.canAddInput(input)
         {
@@ -176,11 +177,14 @@ extension QRCodeViewController
 extension QRCodeViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate
 {
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+// Local variable inserted by Swift 4.2 migrator.
+let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+
         //        NJLog(info)
         
         // 1.取出选中的图片
-        guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else
+        guard let image = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)] as? UIImage else
         {
             return
         }
@@ -211,7 +215,7 @@ extension QRCodeViewController: UINavigationControllerDelegate, UIImagePickerCon
 extension QRCodeViewController: AVCaptureMetadataOutputObjectsDelegate
 {
     /// 只要扫描到结果就会调用
-    func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [Any]!, from connection: AVCaptureConnection!)
+    func metadataOutput(_ captureOutput: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection)
     {
         // 1.显示结果
         customLabel.text =  (metadataObjects.last as AnyObject).stringValue
@@ -219,7 +223,7 @@ extension QRCodeViewController: AVCaptureMetadataOutputObjectsDelegate
         clearLayers()
         
         // 2.拿到扫描到的数据
-        guard let metadata = metadataObjects.last as? AVMetadataObject else
+        guard let metadata = metadataObjects.last else
         {
             return
         }
@@ -235,11 +239,8 @@ extension QRCodeViewController: AVCaptureMetadataOutputObjectsDelegate
     fileprivate func drawLines(_ objc: AVMetadataMachineReadableCodeObject)
     {
         
-        // 0.安全校验
-        guard let array = objc.corners else
-        {
-            return
-        }
+        // 0.获取 corners
+        let array = objc.corners
         
         // 1.创建图层, 用于保存绘制的矩形
         let layer = CAShapeLayer()
@@ -303,4 +304,19 @@ extension QRCodeViewController: UITabBarDelegate
         // 重新开启动画
         startAnimation()
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromAVMediaType(_ input: AVMediaType) -> String {
+	return input.rawValue
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
+	return input.rawValue
 }

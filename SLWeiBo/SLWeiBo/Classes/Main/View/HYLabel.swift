@@ -102,7 +102,7 @@ open class HYLabel: UILabel {
             let selectedColor = isSelected ? UIColor(white: 0.7, alpha: 0.2) : UIColor.clear
             
             // 2.1.设置颜色
-            textStorage.addAttribute(NSBackgroundColorAttributeName, value: selectedColor, range: selectedRange!)
+            textStorage.addAttribute(NSAttributedString.Key.backgroundColor, value: selectedColor, range: selectedRange!)
             
             // 2.2.绘制背景
             layoutManager.drawBackground(forGlyphRange: selectedRange!, at: CGPoint(x: 0, y: 0))
@@ -151,7 +151,7 @@ extension HYLabel {
         // 2.设置换行模型
         let attrStringM = addLineBreak(attrString!)
         
-        attrStringM.addAttribute(NSFontAttributeName, value: font, range: NSRange(location: 0, length: attrStringM.length))
+        attrStringM.addAttribute(NSAttributedString.Key.font, value: font, range: NSRange(location: 0, length: attrStringM.length))
         
         // 3.设置textStorage的内容
         textStorage.setAttributedString(attrStringM)
@@ -160,7 +160,7 @@ extension HYLabel {
         if let linkRanges = getLinkRanges() {
             self.linkRanges = linkRanges
             for range in linkRanges {
-                textStorage.addAttribute(NSForegroundColorAttributeName, value: matchTextColor, range: range)
+                textStorage.addAttribute(NSAttributedString.Key.foregroundColor, value: matchTextColor, range: range)
             }
         }
         
@@ -168,7 +168,7 @@ extension HYLabel {
         if let userRanges = getRanges("@[\\u4e00-\\u9fa5a-zA-Z0-9_-]*") {
             self.userRanges = userRanges
             for range in userRanges {
-                textStorage.addAttribute(NSForegroundColorAttributeName, value: matchTextColor, range: range)
+                textStorage.addAttribute(NSAttributedString.Key.foregroundColor, value: matchTextColor, range: range)
             }
         }
         
@@ -177,7 +177,7 @@ extension HYLabel {
         if let topicRanges = getRanges("#.*?#") {
             self.topicRanges = topicRanges
             for range in topicRanges {
-                textStorage.addAttribute(NSForegroundColorAttributeName, value: matchTextColor, range: range)
+                textStorage.addAttribute(NSAttributedString.Key.foregroundColor, value: matchTextColor, range: range)
             }
         }
         
@@ -325,19 +325,35 @@ extension HYLabel {
         }
         
         var range = NSRange(location: 0, length: 0)
-        var attributes = attrStringM.attributes(at: 0, effectiveRange: &range)
-        var paragraphStyle = attributes[NSParagraphStyleAttributeName] as? NSMutableParagraphStyle
+        var attributes = convertFromNSAttributedStringKeyDictionary(attrStringM.attributes(at: 0, effectiveRange: &range))
+        var paragraphStyle = attributes[convertFromNSAttributedStringKey(NSAttributedString.Key.paragraphStyle)] as? NSMutableParagraphStyle
         
         if paragraphStyle != nil {
             paragraphStyle!.lineBreakMode = NSLineBreakMode.byWordWrapping
         } else {
             paragraphStyle = NSMutableParagraphStyle()
             paragraphStyle!.lineBreakMode = NSLineBreakMode.byWordWrapping
-            attributes[NSParagraphStyleAttributeName] = paragraphStyle
+            attributes[convertFromNSAttributedStringKey(NSAttributedString.Key.paragraphStyle)] = paragraphStyle
             
-            attrStringM.setAttributes(attributes, range: range)
+            attrStringM.setAttributes(convertToOptionalNSAttributedStringKeyDictionary(attributes), range: range)
         }
         
         return attrStringM
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromNSAttributedStringKeyDictionary(_ input: [NSAttributedString.Key: Any]) -> [String: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromNSAttributedStringKey(_ input: NSAttributedString.Key) -> String {
+	return input.rawValue
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToOptionalNSAttributedStringKeyDictionary(_ input: [String: Any]?) -> [NSAttributedString.Key: Any]? {
+	guard let input = input else { return nil }
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (NSAttributedString.Key(rawValue: key), value)})
 }

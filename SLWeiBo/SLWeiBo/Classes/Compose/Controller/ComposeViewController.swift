@@ -72,7 +72,7 @@ extension ComposeViewController {
     
     fileprivate func setupNotifications() {
         // 监听键盘的弹出
-        NotificationCenter.default.addObserver(self, selector: #selector(ComposeViewController.keyboardWillChangeFrame(_:)), name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ComposeViewController.keyboardWillChangeFrame(_:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
         
         // 监听添加照片的按钮的点击
         NotificationCenter.default.addObserver(self, selector: #selector(ComposeViewController.addPhotoClick), name: NSNotification.Name(rawValue: PicPickerAddPhotoNote), object: nil)
@@ -116,10 +116,10 @@ extension ComposeViewController {
     
     @objc fileprivate func keyboardWillChangeFrame(_ note : Notification) {
         // 1.获取动画执行的时间
-        let duration = note.userInfo![UIKeyboardAnimationDurationUserInfoKey] as! TimeInterval
+        let duration = note.userInfo![UIResponder.keyboardAnimationDurationUserInfoKey] as! TimeInterval
         
         // 2.获取键盘最终Y值
-        let endFrame = (note.userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        let endFrame = (note.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         let y = endFrame.origin.y
         
         // 3.计算工具栏距离底部的间距
@@ -196,9 +196,12 @@ extension ComposeViewController {
 
 // MARK:- UIImagePickerController的代理方法
 extension ComposeViewController : UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+// Local variable inserted by Swift 4.2 migrator.
+let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+
         // 1.获取选中的照片
-        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+        let image = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)] as! UIImage
         
         // 2.将选中的照片添加到数组中
         images.append(image)
@@ -222,4 +225,14 @@ extension ComposeViewController : UITextViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         textView.resignFirstResponder()
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
+	return input.rawValue
 }

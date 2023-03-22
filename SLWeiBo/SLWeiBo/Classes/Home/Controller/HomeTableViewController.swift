@@ -81,7 +81,7 @@ extension HomeTableViewController
         // 2.添加标题按钮
         // 获取用户名称
         let title = UserAccountViewModel.shareIntance.account?.screen_name ?? "CoderSLZeng"
-        titleBtn.setTitle(title + " ", for: UIControlState())
+        titleBtn.setTitle(title + " ", for: UIControl.State())
         titleBtn.addTarget(self, action: #selector(HomeTableViewController.titleBtnClick(_:)), for: .touchUpInside)
         navigationItem.titleView = titleBtn
     }
