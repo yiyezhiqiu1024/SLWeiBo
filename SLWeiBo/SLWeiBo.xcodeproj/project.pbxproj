@@ -886,20 +886,21 @@
 					9250B7211E6DAA9000390BBE = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = CAML5566K6;
-						LastSwiftMigration = 1010;
+						LastSwiftMigration = "";
 					};
 					9250B7351E6DAA9000390BBE = {
 						CreatedOnToolsVersion = 7.3.1;
-						LastSwiftMigration = 1010;
+						LastSwiftMigration = "";
 						TestTargetID = 9250B7211E6DAA9000390BBE;
 					};
 					9250B7401E6DAA9000390BBE = {
 						CreatedOnToolsVersion = 7.3.1;
-						LastSwiftMigration = 1010;
+						LastSwiftMigration = "";
 						TestTargetID = 9250B7211E6DAA9000390BBE;
 					};
 					92BF128D2088E78900E05784 = {
 						DevelopmentTeam = CAML5566K6;
+						LastSwiftMigration = "";
 					};
 				};
 			};
@@ -908,6 +909,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -1389,7 +1391,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = CoderSLZeng.com.github.SLWeiBo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -1406,7 +1408,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = CoderSLZeng.com.github.SLWeiBo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -1420,7 +1422,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = CoderSLZeng.com.github.SLWeiBoTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SLWeiBo.app/SLWeiBo";
 			};
 			name = Debug;
@@ -1435,7 +1437,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = CoderSLZeng.com.github.SLWeiBoTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SLWeiBo.app/SLWeiBo";
 			};
 			name = Release;
@@ -1449,7 +1451,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = CoderSLZeng.com.github.SLWeiBoUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TEST_TARGET_NAME = SLWeiBo;
 			};
 			name = Debug;
@@ -1463,7 +1465,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = CoderSLZeng.com.github.SLWeiBoUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TEST_TARGET_NAME = SLWeiBo;
 			};
 			name = Release;
@@ -1480,7 +1482,7 @@
 				"OTHER_SWIFT_FLAGS[arch=*]" = "-D DEBUG -D DEV";
 				PRODUCT_BUNDLE_IDENTIFIER = CoderSLZeng.com.github.Dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -1496,7 +1498,7 @@
 				OTHER_SWIFT_FLAGS = "-D DEV";
 				PRODUCT_BUNDLE_IDENTIFIER = CoderSLZeng.com.github.Dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
