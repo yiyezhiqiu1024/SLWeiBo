@@ -26,12 +26,19 @@ DEPENDENCIES:
   - SDWebImage
   - SVProgressHUD
 
+SPEC REPOS:
+  trunk:
+    - AFNetworking
+    - MJRefresh
+    - SDWebImage
+    - SVProgressHUD
+
 SPEC CHECKSUMS:
-  AFNetworking: 8ac6017b94ea105479f7776e5288e48ae9c59bb4
+  AFNetworking: 2287d2a061a9695bdfe6ea82f484e56d76ee2631
   MJRefresh: b48380ae2b927b46c4ef000de9adb8dc748e1df7
   SDWebImage: 6da6c8bca115addc4de8613362e1b15f66333825
   SVProgressHUD: 59b2d3dabacbd051576d21d32293ca7228dc18b0
 
-PODFILE CHECKSUM: 4c0b5c405cba56bdc63b01a396f14881810447e1
+PODFILE CHECKSUM: 17a92edb896607c8f6d83b6e50d6d7ef9ddf0c9c
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.11.3
